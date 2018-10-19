@@ -40,7 +40,7 @@ type EtcdConf struct {
 }
 
 type TradeConf struct {
-	TradeAmountMutiple float64
+	TradeAmountMutiple string
 	TradeInsprctiontime time.Duration
 }
 
@@ -51,9 +51,11 @@ func InitConf(confType, filename string) (err error) {
 		fmt.Println("new config failed, err:", err)
 		return
 	}
-	redisconf := &RedisConf{}
+	redisConf := &RedisConf{}
+	tradeConf := &TradeConf{}
 	AppConfig = &Config{
-		RedisConf: redisconf,
+		RedisConf: redisConf,
+		TradeConf:tradeConf,
 	}
 	AppConfig.logLevel = conf.String("logs::log_level")
 	if len(AppConfig.logLevel) == 0 {
@@ -85,7 +87,7 @@ func InitConf(confType, filename string) (err error) {
 		log.Warn("load redis config failed")
 	}
 
-	AppConfig.TradeConf.TradeAmountMutiple, err = conf.Float("redis::trade_amount_multiple")
+	AppConfig.TradeConf.TradeAmountMutiple = conf.String("redis::trade_amount_multiple")
 	if err != nil {
 		log.Warn("load trade config failed")
 	}

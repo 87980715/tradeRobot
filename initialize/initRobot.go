@@ -3,6 +3,7 @@ package initialize
 import (
 	"github.com/astaxie/beego/logs"
 	"fmt"
+	"tradeRobot/models"
 	)
 
 func InitRobot() (err error){
@@ -30,5 +31,10 @@ func InitRobot() (err error){
 		return
 	}
 
+	initSymbol()
+	logs.Info("OKexSymbols:%s,HuobiSymbols:%s",models.OKexSymbols,models.HuobiSymbols)
+
+	initAccounts()
+	logs.Info("init Accounts success")
 	return
 }

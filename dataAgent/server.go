@@ -2,16 +2,28 @@ package dataAgent
 
 import (
 	"tradeRobot/initialize"
-	"time"
+	"tradeRobot/models"
 )
 
-func AgentServerRun(coinNames map[int]string, toCionNames map[int]string) {
+func AgentServerRun() {
 
-	go func(){
+	if len(models.OKexSymbolsArray) != 0 {
+		go func() {
+			initialize.AppConfig.Wg.Add(1)
+			GetCionDepthOKex(models.OKexSymbolsArray)
+		}()
+	}
+
+	if len(models.HuobiSymbolsArray) != 0 {
+		go func() {
+			initialize.AppConfig.Wg.Add(1)
+			GetCionDepthHuobi(models.HuobiSymbolsArray)
+		}()
+	}
+	/*
+	go func() {
 		initialize.AppConfig.Wg.Add(1)
-		for {
-			time.Sleep(500*time.Millisecond)
-			GetDataFromOkex(coinNames,toCionNames)
-		}
+		GetFinishedOrdersFromZT()
 	}()
+	*/
 }

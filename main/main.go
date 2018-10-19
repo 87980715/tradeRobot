@@ -4,10 +4,14 @@ import (
 	"github.com/astaxie/beego/logs"
 	"tradeRobot/initialize"
 	"tradeRobot/dataAgent"
+	"tradeRobot/models"
 	"tradeRobot/trade"
 )
 
 func main() {
+
+	models.OKexSymbolsArray = [][2]string {{"eth","usdt"}} // ,{"eos","usdt"}
+	models.HuobiSymbolsArray = [][2]string{} // {"btc","usdt"},{"ltc","usdt"}
 
 	err := initialize.InitRobot()
 	if err != nil {
@@ -15,21 +19,15 @@ func main() {
 		panic("init robot failed")
 	}
 
-	logs.Debug("init conf succ, config")
-
+	logs.Debug("init conf succ")
 	initialize.AppConfig.Wg.Add(1)
+	dataAgent.AgentServerRun()
+	if err != nil {
+		logs.Error("dataAgent.AgentServerRun failed err:",err)
+		panic(err)
+	}
 
-	var coinNames = map[int]string{1: "ltc",2:"true"}//,3:"eos"}
-	var toCoinNames = map[int]string{1: "eth", 2: "btc",3:"usdt"}// 3: "usdt"}
-
-	api_keys := []string{trade.API_KEY}
-
-	accounts := trade.SetAccounts(api_keys)
-
-	dataAgent.AgentServerRun(coinNames,toCoinNames)
-
-	trade.TradeServerRun(coinNames,toCoinNames,accounts)
+	trade.ZTTradeServerRun()
 
 	initialize.AppConfig.Wg.Wait()
-
 }
