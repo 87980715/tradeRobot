@@ -43,13 +43,13 @@ func SendOrdersToredis(records []*utils.Record)  {
 				okexPostDataLimit := &utils.OKexPostDataLimit{}
 				okexPostDataLimit.Amount = record.Amount
 				okexPostDataLimit.Price = record.Price
-				okexPostDataLimit.Symbol = symbol
+				okexPostDataLimit.Instrument_id = symbol
 				okexPostDataLimit.Type = "buy"
 			}
 			okexPostDataLimit := &utils.OKexPostDataLimit{}
 			okexPostDataLimit.Amount = record.Amount
 			okexPostDataLimit.Price = record.Price
-			okexPostDataLimit.Symbol = symbol
+			okexPostDataLimit.Instrument_id = symbol
 			okexPostDataLimit.Type = "sell"
 
 			dataBytes, err := json.Marshal(okexPostDataLimit)
@@ -61,6 +61,16 @@ func SendOrdersToredis(records []*utils.Record)  {
 				return
 			}
 		}
+	}
+}
+
+func  SendTradesToRedis(trade string)  {
+	conn := initialize.RedisPool.Get()
+	defer conn.Close()
+	_, err := conn.Do("LPUSH", "T", trade)
+	if err != nil {
+		logs.Error("SendOrdersToRedis failed err:", err)
+		return
 	}
 }
 
