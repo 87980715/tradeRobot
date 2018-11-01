@@ -1,92 +1,32 @@
 package main
 
 import (
-	"github.com/astaxie/beego/logs"
-	"github.com/PuerkitoBio/goquery"
-	"net/http"
+	"tradeRobot/robot/utils"
 	"fmt"
-	"encoding/json"
-	"strings"
-	"net/url"
-	"io/ioutil"
+	"time"
+	"net/http"
+	"github.com/PuerkitoBio/goquery"
+	"tradeRobot/robot/models"
 )
 
-type CurTicker struct {
-	Date   string  `json:"date"`
-	Ticker *Ticker `json:"ticker"`
-}
-
-type Ticker struct {
-	Buy  string `json:"buy"`
-	High string `json:"high"`
-	Last string `json:"last"`
-	Low  string `json:"low"`
-	Sell string `json:"sell"`
-	Vol  string `json:"vol"`
-}
-
-type Depth struct {
-	Asks [][2]float64 `json:"asks"`
-	Bids [][2]float64 `json:"bids"`
-}
-
 func main() {
-	//GetCionData("ltc")
-	//GetDepthData("true")
-	//md5Hash()
-	post()
-}
 
+	data := make(map[string]string)
+	data["AccessKeyId"] = "eca1800e-e94af9ce-c2a77a7b-7a8b4"
+	data["SignatureVersion"] = "2"
+	data["SignatureMethod"] = "HmacSHA256"
+	data["Timestamp"] = time.Now().UTC().Format("2006-01-02T15:04:05")
 
-func GetCionData(cionName string) {
-	url := "https://www.okex.com/api/v1/ticker.do?symbol=" + cionName + "_btc"
-	res, err := http.Get(url)
+	sign := utils.HuobiSign(data, "GET", models.Huobi_API_URL, "/v1/account/accounts", "5658bce4-10643a8d-7e62938f-24139")
+	data["Signature"] = sign
+
+	strUrl := "https://" + models.Huobi_API_URL + "/v1/account/accounts?" + utils.Map2UrlQuery(utils.MapValueEncodeURI(data))
+	fmt.Println(strUrl)
+	resp, err := http.Get(strUrl)
 	if err != nil {
-		logs.Error("http.Get failed for OKex err:", err)
+		fmt.Println("err:", err)
 	}
-	var curTicker = &CurTicker{}
-	doc, err := goquery.NewDocumentFromReader(res.Body)
+	doc, _ := goquery.NewDocumentFromReader(resp.Body)
 	fmt.Println(doc.Text())
-	err = json.Unmarshal([]byte(doc.Text()), &curTicker)
-	if err != nil {
-		fmt.Println("json.Unmarshal failed:", err)
-	}
-	fmt.Println("curTicker:", curTicker.Ticker.Buy)
+
 }
-
-func GetDepthData(cionName string) {
-	url := "https://www.okex.com/api/v1/depth.do?symbol=" + cionName + "_btc"
-	res, err := http.Get(url)
-	if err != nil {
-		logs.Error("http.Get failed for OKex err:", err)
-	}
-	var curDepth = &Depth{}
-	doc, err := goquery.NewDocumentFromReader(res.Body)
-	//fmt.Println(doc.Text())
-	err = json.Unmarshal([]byte(doc.Text()), &curDepth)
-	if err != nil {
-		fmt.Println("json.Unmarshal failed:", err)
-	}
-	fmt.Println("curDepth:", curDepth.Bids)
-	fmt.Println("curDepth:", len(curDepth.Bids))
-	fmt.Println("curDepth:", curDepth.Asks)
-	fmt.Println("curDepth:", len(curDepth.Asks))
-}
-
-func post() {
-	rd := ioutil.NopCloser(strings.NewReader(url.Values{}.Encode()))
-	fmt.Println("--------")
-	url := "https://www.zg.com/api/v1/private/user"
-	resp,err := http.Post(url,"multipart/form-data",rd)
-
-	if err != nil {
-		fmt.Println("http.Post failed err:",err)
-		return
-	}
-	if resp.StatusCode == http.StatusOK {
-		Doc, _ := goquery.NewDocumentFromReader(resp.Body)
-		fmt.Println("DOC:",Doc.Text())
-	}
-	fmt.Println("err")
-}
-

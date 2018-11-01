@@ -1,0 +1,101 @@
+package utils
+
+import (
+	"github.com/jinzhu/gorm"
+	"github.com/astaxie/beego/logs"
+	"tradeRobot/robot/models"
+	"sync"
+	"strconv"
+	_ "github.com/go-sql-driver/mysql"
+	"database/sql"
+)
+
+var (
+	once sync.Once
+)
+
+type DBConfig struct {
+	User     string `default:"root"`
+	Password string `default:""`
+	Path     string `required:"true"`
+	Port     uint   `default:"3306"`
+	DbName   string `required:"true"`
+	Charset  string `default:"utf8"`
+}
+
+func LoadRobotDB()(*gorm.DB,error) {
+	dbConfig := new(DBConfig)
+	dbConfig.Path = "127.0.0.1"
+	dbConfig.Port = 3306
+	dbConfig.DbName = "tradeRobot"
+	dbConfig.User = "root"
+	dbConfig.Password = "root"
+
+	db, err := GetDBConnection(dbConfig)
+	if err != nil {
+		return nil, err
+	}
+	return db, nil
+}
+
+func InitRobotDB() (error) {
+	db, err := LoadRobotDB()
+	defer db.Close()
+	if err != nil {
+		logs.Error("loadDB failed err:",err)
+	}
+	if !db.HasTable(&models.HuobiTradeResults{}) {
+		if err = db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").CreateTable(&models.HuobiTradeResults{}).Error; err != nil {
+			return err
+		}
+	}
+	if !db.HasTable(&models.ZGTradeResults{}) {
+		if err = db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").CreateTable(&models.ZGTradeResults{}).Error; err != nil {
+			return err
+		}
+	}
+	logs.Error("create trade result tables success")
+	return nil
+}
+
+func GetDBConnection(conf *DBConfig) (db *gorm.DB, err error) {
+	once.Do(func() {
+		str := conf.User + ":" +
+			conf.Password + "@tcp(" +
+			conf.Path + ":" +
+			strconv.FormatUint(uint64(conf.Port), 10) + ")/" +
+			conf.DbName + "?" +
+			conf.Charset + "&parseTime=True&loc=Local"
+		db, err = gorm.Open("mysql", str)
+		if err!= nil {
+			logs.Error("gorm open mysql failed err:",err)
+		}
+
+		db.DB().SetMaxIdleConns(200)
+		db.DB().SetMaxOpenConns(100)
+	})
+	return
+}
+
+func LoadExchangeDB() (*sql.DB,error) {
+	conf := new(DBConfig)
+	conf.Path = "47.99.74.117"
+	conf.User = "exchange"
+	conf.Password = "exchange"
+	conf.Port = 3306
+	conf.DbName = "trade_history"
+
+	str := conf.User + ":" +
+		conf.Password + "@tcp(" +
+		conf.Path + ":" +
+		strconv.FormatUint(uint64(conf.Port), 10) + ")/" +
+		conf.DbName + "?" +
+		conf.Charset
+
+	db, err := sql.Open("mysql",str)
+	if err != nil {
+		logs.Error("sql open mysql failed err:",err)
+		return nil,err
+	}
+	return db,nil
+}
