@@ -28,7 +28,7 @@ func (c *ZGFinishedController) ZGFinished() {
 	result := make(map[string]interface{})
 
 	result["code"] = 0
-	result["message"] = "query success"
+	result["message"] = "操作成功"
 
 	defer func() {
 		c.Data["json"] = result
@@ -43,6 +43,8 @@ func (c *ZGFinishedController) ZGFinished() {
 
 	if err != nil {
 		logs.Error("load robotDB failed err:", err)
+		result["code"] = 1001
+		result["message"] = "操作失败"
 	}
 
 	defer db.Close()
