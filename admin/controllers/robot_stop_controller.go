@@ -32,7 +32,7 @@ func (c *RobotStopController) Stop() {
 		result["message"] = "stop failed"
 	}
 
-	// 减去相应的robot
+	// 从机器人列表中减去相应的robot
 	delete(Robots,id)
 }
 

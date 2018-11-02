@@ -5,7 +5,6 @@ import (
 	"tradeRobot/robot/models"
 	"tradeRobot/robot/initialize"
 	"tradeRobot/robot/server"
-	"fmt"
 	"strconv"
 	"strings"
 	"context"
@@ -63,7 +62,7 @@ func (c *RobotStartController) Start() {
 	}
 	models.HuobiUserID = strconv.Itoa(id)
 
-	fmt.Println("models.HuobiUserID:", models.HuobiUserID)
+	//fmt.Println("models.HuobiUserID:", models.HuobiUserID)
 
 	if !initialize.VerfiZGKey() {
 		result["code"] = 1001
@@ -94,5 +93,4 @@ func (c *RobotStartController) Start() {
 	}
 
 	result["robot"] = string(bytes)
-	fmt.Println("Robots:",Robots)
 }
