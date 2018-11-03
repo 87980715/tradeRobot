@@ -164,6 +164,7 @@ func QureyDealOerder(dealIds []int, userId int64) (data *utils.Record) {
 				}
 				for r.Next() {
 					row.Scan(&CreatedAt, &UserId, &Symbol, &TradeId, &Type, &Price, &DealAmount, &Total, &DealFee)
+					// huobi 交易所需数据
 					data.Amount = DealAmount
 					data.Price = Price
 					side, _ := strconv.Atoi(Type)
@@ -193,19 +194,25 @@ func QureyDealOerder(dealIds []int, userId int64) (data *utils.Record) {
 	return
 }
 
-func ZGInsertToDB() {
+func ZGInsertToDB(ctx context.Context) {
 	db, err := utils.LoadRobotDB()
 	if err != nil {
 		logs.Error("loadDB failed err:", err)
 		return
 	}
 	defer db.Close()
+
 	for {
-		time.Sleep(time.Second)
-		tradeResult := <-ZGTradeResult
-		if err := db.Create(tradeResult).Error; err != nil {
-			logs.Error("insert failed into Huobi tradeResult ")
+		select {
+		case <-ctx.Done():
 			return
+		default:
+			time.Sleep(time.Second)
+			tradeResult := <-ZGTradeResult
+			if err := db.Create(tradeResult).Error; err != nil {
+				logs.Error("insert failed into Huobi tradeResult ")
+				return
+			}
 		}
 	}
 }

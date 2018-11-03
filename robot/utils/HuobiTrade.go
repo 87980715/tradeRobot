@@ -12,7 +12,6 @@ import (
 	"sort"
 	"time"
 	"strings"
-	"io/ioutil"
 	"github.com/astaxie/beego/logs"
 	"encoding/json"
 	"strconv"
@@ -37,13 +36,13 @@ type HuobiTradesDealReturn struct {
 }
 
 type TradeDeal struct {
-	Id            string `json:"id"`
+	Id            int    `json:"id"`
 	Symbol        string `json:"symbol"`
 	Type          string `json:"type"`
 	Price         string `json:"price"`
-	Filled_amount string `json:"filled_amount"`
-	Filled_fees   string `json:"filled_fees"`
-	Created_at    string `json:"created_at"`
+	Filled_amount string `json:"filled-amount"`
+	Filled_fees   string `json:"filled-fees"`
+	Created_at    int    `json:"created-at"`
 }
 
 type HuobiGetDataPending struct {
@@ -108,12 +107,12 @@ type HuobiPendingOrdersReturn struct {
 }
 
 type PendingOrdersReturnData struct {
-	Id                 string `json:"id"`
+	Id                 int    `json:"id"`
 	Symbol             string `json:"symbol"`
 	Account_id         int    `json:"account-id"`
 	Amount             string `json:"amount"`
 	Price              string `json:"price"`
-	Created_at         string `json:"created-at"` // 下单时间（毫秒）
+	Created_at         int    `json:"created-at"` // 下单时间（毫秒）
 	Type               string `json:"type"`       // 订单类型
 	Filled_amount      string `json:"filled-amount"`
 	Filled_cash_amount string `json:"filled-cash-amount"`
@@ -158,16 +157,18 @@ func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 	sign := HuobiSign(signParams, "POST", models.Huobi_API_URL, "/v1/order/orders/place", models.Huobi_Secretkey)
 	signParams["Signature"] = sign
 	strUrl := "https://" + models.Huobi_API_URL + "/v1/order/orders/place?" + Map2UrlQuery(MapValueEncodeURI(signParams))
-	//-----测试----
-	//fmt.Println(strUrl)
-	v := url.Values{}
-	v.Set("account-id", r.PostDataLimit.Account_id)
-	v.Set("amount", r.PostDataLimit.Amount)
-	v.Set("price", r.PostDataLimit.Price)
-	v.Set("symbol", r.PostDataLimit.Symbol)
-	v.Set("type", r.PostDataLimit.Type)
 
-	rd := ioutil.NopCloser(strings.NewReader(v.Encode()))
+	mapParams := make(map[string]string)
+	mapParams["account-id"] = r.PostDataLimit.Account_id
+	mapParams["amount"] = r.PostDataLimit.Amount
+	mapParams["price"] = r.PostDataLimit.Price
+	mapParams["symbol"] = r.PostDataLimit.Symbol
+	mapParams["type"] = r.PostDataLimit.Type
+
+	bytesParams, _ := json.Marshal(mapParams)
+	jsonParams := string(bytesParams)
+
+	rd := strings.NewReader(jsonParams)
 	req, err := http.NewRequest("POST", strUrl, rd)
 	if err != nil {
 		logs.Error("http new request cancel order failed err:", err)
@@ -188,6 +189,8 @@ func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 			logs.Error(" go qurey new document from reader failed err:", err)
 			return
 		}
+		// ------测试--------
+		fmt.Println(doc.Text())
 		var limitTradeReturn = &HuobiLimitTradeReturn{}
 		err = json.Unmarshal([]byte(doc.Text()), limitTradeReturn)
 		if err != nil {
@@ -213,12 +216,12 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 	signParams["SignatureMethod"] = "HmacSHA256"
 	signParams["Timestamp"] = time.Now().UTC().Format("2006-01-02T15:04:05")
 
-	signParams["symbol"] = r.GetDataPending.Symbol
+	signParams["symbol"] = r.GetTradesDeal.Symbol
 	signParams["size"] = strconv.Itoa(models.Huobi_FilledOrdersSize)
 
-	sign := HuobiSign(signParams, "GET", models.Huobi_API_URL, "/v1/orders/openOrders", models.Huobi_Secretkey)
+	sign := HuobiSign(signParams, "GET", models.Huobi_API_URL, "/v1/order/matchresults", models.Huobi_Secretkey)
 	signParams["Signature"] = sign
-	strUrl := "https://" + models.Huobi_API_URL + "/v1/orders/matchresults?" + Map2UrlQuery(MapValueEncodeURI(signParams))
+	strUrl := "https://" + models.Huobi_API_URL + "/v1/order/matchresults?" + Map2UrlQuery(MapValueEncodeURI(signParams))
 
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", strUrl, nil)
@@ -233,75 +236,60 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 	if resp.StatusCode == http.StatusOK {
 		size := models.Huobi_FilledOrdersSize
 		var tradesDealReturn = &HuobiTradesDealReturn{
-			Data:make([]*TradeDeal,size),
+			Data: make([]*TradeDeal, size),
 		}
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		if err != nil {
 			logs.Error(" go query filled orders from reader failed err:", err)
 			return
 		}
-
 		err = json.Unmarshal([]byte(doc.Text()), tradesDealReturn)
 		if err != nil {
 			logs.Error(" json unmarshal filled orders failed err:", err)
 			return
 		}
 		var id int
-		for _,order := range tradesDealReturn.Data {
-			order_id,_ := strconv.Atoi(order.Id)
-			a ,err := strconv.ParseFloat(order.Filled_amount,64)
-			if err != nil {
-				logs.Error(" strconv parseFloat order filled_amount  failed err:", err)
-				return
-			}
-			p ,err := strconv.ParseFloat(order.Price,64)
-			if err != nil {
-				logs.Error(" strconv parseFloat order price failed err:", err)
-				return
-			}
-			t := a * p
-			total := fmt.Sprintf("%."+strconv.Itoa(8)+"f", t)
-			if order_id > id {
-				var tradeResult models.HuobiTradeResults
-				if order.Type == "buy-limit" {
-					tradeResult = models.HuobiTradeResults{
-						User_id:models.HuobiUserID,
-						Trade_id:order.Id,
-						Symbol : order.Symbol,
-						Type :"买",
-						Price : order.Price,
-						Deal_amount : order.Filled_amount,
-						Deal_fees :order.Filled_fees,
-						Created_at : order.Created_at,
-						Total : total }
-					}else {
-					tradeResult = models.HuobiTradeResults{
-						User_id:models.HuobiUserID,
-						Trade_id:order.Id,
-						Symbol : order.Symbol,
-						Type :"卖",
-						Price : order.Price,
-						Deal_amount : order.Filled_amount,
-						Deal_fees :order.Filled_fees,
-						Created_at : order.Created_at,
-						Total : total }
+		for _, order := range tradesDealReturn.Data {
+			if order.Id > id {
+				var tradeResult = &models.HuobiTradeResults{}
+				a, err := strconv.ParseFloat(order.Filled_amount, 64)
+				if err != nil {
+					logs.Error(" strconv parseFloat order filled_amount  failed err:", err)
+					return
 				}
-				db,err:= LoadRobotDB()
+				p, err := strconv.ParseFloat(order.Price, 64)
+				if err != nil {
+					logs.Error(" strconv parseFloat order price failed err:", err)
+					return
+				}
+				t := a * p
+				total := fmt.Sprintf("%."+strconv.Itoa(8)+"f", t)
+
+				tradeResult.User_id = models.HuobiUserID
+				tradeResult.Trade_id = strconv.Itoa(order.Id)
+				tradeResult.Symbol = order.Symbol
+				tradeResult.Type = order.Type
+				tradeResult.Price = order.Price
+				tradeResult.Deal_amount = order.Filled_amount
+				tradeResult.Deal_fees = order.Filled_fees
+				tradeResult.Created_at = strconv.Itoa(order.Created_at)
+				tradeResult.Total = total
+
+				db, err := LoadRobotDB()
 				if err != nil {
 					logs.Error("loadDB failed")
 					return
 				}
 				defer db.Close()
+
 				if err = db.Create(tradeResult).Error; err != nil {
 					logs.Error("insert failed into Huobi tradeResult ")
 					return
 				}
-
 			}
 		}
 		// 去重
-		preId,_:= strconv.Atoi(tradesDealReturn.Data[len(tradesDealReturn.Data)-1].Id)
-		id = preId
+		id = tradesDealReturn.Data[len(tradesDealReturn.Data)-1].Id
 	}
 }
 
@@ -317,21 +305,17 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 	signParams["symbol"] = r.GetDataPending.Symbol
 	signParams["size"] = strconv.Itoa(models.Huobi_PendingOrdersSize)
 
-	sign := HuobiSign(signParams, "GET", models.Huobi_API_URL, "/v1/orders/openOrders", models.Huobi_Secretkey)
+	sign := HuobiSign(signParams, "GET", models.Huobi_API_URL, "/v1/order/openOrders", models.Huobi_Secretkey)
 	signParams["Signature"] = sign
-	strUrl := "https://" + models.Huobi_API_URL + "/v1/orders/openOrders?" + Map2UrlQuery(MapValueEncodeURI(signParams))
+	strUrl := "https://" + models.Huobi_API_URL + "/v1/order/openOrders?" + Map2UrlQuery(MapValueEncodeURI(signParams))
 
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", strUrl, nil)
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36")
 
-	// -----测试------
-	fmt.Println("strUrl", strUrl)
-	//resp,err := http.Get(strUrl)
 	resp, err := client.Do(req)
 	if err != nil {
 		logs.Error("http get pending orders failed err:", err)
-		return
 	}
 
 	if resp.StatusCode == http.StatusOK {
@@ -349,34 +333,39 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 			logs.Error(" json unmarshal pending orders failed err:", err)
 			return
 		}
-		// -----测试------
-		fmt.Println("doc", doc.Text())
-		for _, order := range pendingOrdersReturn.Data {
-			// 获取当前时间，毫秒 ms
-			curTime := time.Now().UnixNano() / 1e6
-			createTime, _ := strconv.Atoi(order.Created_at)
-			// 超过500ms,未成交
-			if curTime-int64(createTime) > models.TradeInspectTime {
-				if r.HuobiCancelOrder(order.Id) {
-					postDataLimit := &HuobiPostDataLimit{}
-					postDataLimit.Account_id = strconv.Itoa(order.Account_id)
-					postDataLimit.Symbol = order.Symbol
-					postDataLimit.Type = order.Type
-					if order.Type == "buy-limit" {
-						p, _ := strconv.ParseFloat(order.Price, 64)
-						price := p * (1 + models.TradePriceAdjust)
-						postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
-					} else {
-						// 价格设置：降低价格1‰，重新挂单
-						p, _ := strconv.ParseFloat(order.Price, 64)
-						price := p * (1 - models.TradePriceAdjust)
-						postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+
+		if len(pendingOrdersReturn.Data) != 0 {
+			for _, order := range pendingOrdersReturn.Data {
+				// 获取当前时间，毫秒 ms
+				curTime := time.Now().UnixNano() / 1e6
+				createTime := order.Created_at
+				// 超过500ms,未成交
+				if curTime-int64(createTime) > models.TradeInspectTime {
+					// 取消订单
+					orderId := strconv.Itoa(order.Id)
+					if r.HuobiCancelOrder(orderId) {
+						postDataLimit := &HuobiPostDataLimit{}
+						postDataLimit.Account_id = strconv.Itoa(order.Account_id)
+						postDataLimit.Symbol = order.Symbol
+						postDataLimit.Type = order.Type
+						if order.Type == "buy-limit" {
+							p, _ := strconv.ParseFloat(order.Price, 64)
+							price := p * (1 + models.TradePriceAdjust)
+							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+						} else {
+							// 价格设置：降低价格1‰，重新挂单
+							p, _ := strconv.ParseFloat(order.Price, 64)
+							price := p * (1 - models.TradePriceAdjust)
+							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+						}
+						// 数量设置：减去已成交的数量
+						amount, _ := strconv.Atoi(order.Amount)
+						filledAmount, _ := strconv.Atoi(order.Filled_amount)
+						postDataLimit.Amount = strconv.Itoa(amount - filledAmount)
+						// 测试-------
+						fmt.Println("postDataLimit:", postDataLimit)
+						HuobiOrders <- postDataLimit
 					}
-					// 数量设置：减去已成交的数量
-					amount, _ := strconv.Atoi(order.Amount)
-					filledAmount, _ := strconv.Atoi(order.Filled_amount)
-					postDataLimit.Amount = strconv.Itoa(amount - filledAmount)
-					HuobiOrders <- postDataLimit
 				}
 			}
 		}
@@ -395,15 +384,16 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 
 	sign := HuobiSign(signParams, "POST", models.Huobi_API_URL, strRequestPath, models.Huobi_Secretkey)
 	signParams["Signature"] = sign
-	strUrl := "https://" + models.Huobi_API_URL + strRequestPath + Map2UrlQuery(MapValueEncodeURI(signParams))
+	strUrl := "https://" + models.Huobi_API_URL + strRequestPath + "?" + Map2UrlQuery(MapValueEncodeURI(signParams))
 
-	v := url.Values{}
-	v.Set("order-id", orderId)
-	//--------测试-------
-	fmt.Println(strUrl)
+	mapParams := make(map[string]string)
+	mapParams["order-id"] = orderId
 
+	bytesParams, _ := json.Marshal(mapParams)
+	jsonParams := string(bytesParams)
+
+	rd := strings.NewReader(jsonParams)
 	client := &http.Client{}
-	rd := ioutil.NopCloser(strings.NewReader(v.Encode()))
 	req, err := http.NewRequest("POST", strUrl, rd)
 	if err != nil {
 		logs.Error("http new request cancel order failed err:", err)
@@ -412,17 +402,20 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Accept-Language", "zh-cn")
 
+	var flag = true
 	resp, err := client.Do(req)
 	if err != nil {
 		logs.Error("http.Post huobi cancel order failed err:", err)
 		return false
 	}
+
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		if err != nil {
 			logs.Error(" go qurey new document from cancel huobi order failed err:", err)
 			return false
 		}
+
 		var cancelReturn = &HuobiCanleReturn{}
 		err = json.Unmarshal([]byte(doc.Text()), cancelReturn)
 		if err != nil {
@@ -433,12 +426,13 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 			logs.Error("cancelReturn status is not ok ")
 			return false
 		}
+		return true
+	} else {
+		flag = false
 	}
 	resp.Body.Close()
-	return true
+	return flag
 }
-
-
 
 // Huobi加密
 func HuobiSign(mapParams map[string]string, strMethod, strHostUrl, strRequestPath, strSecretKey string) string {
@@ -451,7 +445,6 @@ func HuobiSign(mapParams map[string]string, strMethod, strHostUrl, strRequestPat
 	strPayload := strMethod + "\n" + strHostUrl + "\n" + strRequestPath + "\n" + strParams
 	return ComputeHmac256(strPayload, strSecretKey)
 }
-
 
 func ComputeHmac256(strMessage string, strSecret string) string {
 	key := []byte(strSecret)
