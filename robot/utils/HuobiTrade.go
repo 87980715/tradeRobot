@@ -217,13 +217,14 @@ func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 		for {
 			if limitTradeReturn.Status == "ok" {
 				logs.Info("火币交易挂单成功")
-				break
-			}
-			if n > 5 {
-				logs.Info("火币挂单失败")
-				break
+				return
 			}
 
+			if n > 5 {
+				logs.Info("火币挂单失败")
+				return
+			}
+			r.HuobiLimitTrade()
 		}
 	}
 }
@@ -254,7 +255,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 		defer resp.Body.Close()
 	}
 	if err != nil {
-		logs.Error("http get pending orders failed err:", err)
+		logs.Error("http get huobi pending orders failed err:", err)
 		return
 	}
 
@@ -265,7 +266,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 		}
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		if err != nil {
-			logs.Error(" go query filled orders from reader failed err:", err)
+			logs.Error(" go query huobi filled orders from reader failed err:", err)
 			return
 		}
 
@@ -273,7 +274,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 		// fmt.Println("火币已成交数据:",doc.Text())
 		err = json.Unmarshal([]byte(doc.Text()), tradesDealReturn)
 		if err != nil {
-			logs.Error(" json unmarshal filled orders failed err:", err)
+			logs.Error(" json unmarshal huobi filled orders failed err:", err)
 			return
 		}
 
@@ -285,12 +286,12 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 				var tradeResult = &models.HuobiTradeResults{}
 				a, err := strconv.ParseFloat(order.Filled_amount, 64)
 				if err != nil {
-					logs.Error(" strconv parseFloat order filled_amount  failed err:", err)
+					logs.Error(" strconv parseFloat huobi order filled_amount  failed err:", err)
 					return
 				}
 				p, err := strconv.ParseFloat(order.Price, 64)
 				if err != nil {
-					logs.Error(" strconv parseFloat order price failed err:", err)
+					logs.Error(" strconv parseFloat huobi order price failed err:", err)
 					return
 				}
 				t := a * p
@@ -347,7 +348,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 	}
 
 	if err != nil {
-		logs.Error("http get pending orders failed err:", err)
+		logs.Error("http get huobi pending orders failed err:", err)
 		return
 	}
 
@@ -358,14 +359,14 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 		}
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		if err != nil {
-			logs.Error(" go query pending orders from reader failed err:", err)
+			logs.Error(" go query huobi pending orders from reader failed err:", err)
 			return
 		}
 		// 测试--
 		//fmt.Println("火币未成交数据:",doc.Text())
 		err = json.Unmarshal([]byte(doc.Text()), pendingOrdersReturn)
 		if err != nil {
-			logs.Error(" json unmarshal pending orders failed err:", err)
+			logs.Error(" json unmarshal huobi pending orders failed err:", err)
 			return
 		}
 		if len(pendingOrdersReturn.Data) != 0 {
@@ -436,7 +437,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", strUrl, rd)
 	if err != nil {
-		logs.Error("http new request cancel order failed err:", err)
+		logs.Error("http new request huobi cancel order failed err:", err)
 	}
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36")
 	req.Header.Add("Content-Type", "application/json")
@@ -463,14 +464,14 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 		var cancelReturn = &HuobiCanleReturn{}
 		err = json.Unmarshal([]byte(doc.Text()), cancelReturn)
 		if err != nil {
-			logs.Error(" json unmarshal  cancelReturn failed err:", err)
+			logs.Error(" json unmarshal huobi cancelReturn failed err:", err)
 			return false
 		}
 
-		fmt.Println("cancelReturn.Status",cancelReturn.Status)
+		// fmt.Println("huobicancelReturn.Status",cancelReturn.Status)
 
 		if cancelReturn.Status != "ok" {
-			logs.Error("cancelReturn status is not ok ")
+			logs.Error("huobi cancelReturn status is not ok ")
 			return false
 		}
 		return true

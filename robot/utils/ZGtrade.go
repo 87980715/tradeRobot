@@ -295,7 +295,6 @@ func (r *ZTRestfulApiRequest) ZTOrderFinished() (string) {
 
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
-		resp.Body.Close()
 		if err != nil {
 			logs.Error("goquery.NewDocumentFromReader failed err:", err)
 		}

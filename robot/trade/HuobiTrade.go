@@ -23,7 +23,7 @@ func TradeLimitHuobi(ctx context.Context) {
 			return
 		default:
 			postDataLimit := <-utils.HuobiOrders
-			//fmt.Println("amount:",postDataLimit.Amount)
+			// fmt.Println("amount:",postDataLimit.Amount)
 			// 设置交易参数,精度需处理
 			account := utils.HuobiAccount
 			account.PostDataLimit.Symbol = postDataLimit.Symbol
@@ -32,7 +32,7 @@ func TradeLimitHuobi(ctx context.Context) {
 			a := amount + rand.Float64()
 
 			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(2)+"f", a)
-			fmt.Println("amount:",account.PostDataLimit.Amount)
+			// fmt.Println("amount:",account.PostDataLimit.Amount)
 			// 价格，8位小数
 			p,_:= strconv.ParseFloat(postDataLimit.Price, 64)
 			RMuLock.RLock()
@@ -40,6 +40,7 @@ func TradeLimitHuobi(ctx context.Context) {
 			usdtPrice := models.UsdtPrice["huobi"]
 			RMuLock.RUnlock()
 			price := p / (ethPrice * usdtPrice)
+			// fmt.Println("price:",price)
 			account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 
 			account.PostDataLimit.Type = postDataLimit.Type
@@ -50,6 +51,7 @@ func TradeLimitHuobi(ctx context.Context) {
 		}
 	}
 }
+
 
 func TradeCancelHuobi(symbol []string, ctx context.Context) {
 	for {

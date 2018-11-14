@@ -49,7 +49,6 @@ type Data struct {
 
 var WRMuLock sync.RWMutex
 
-
 func GetTradesHuobiMtEth(symbol []string, size string, ctx context.Context) {
 Loop:
 	for {
@@ -149,7 +148,7 @@ Loop:
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							} else {
-								price := data.Price * models.EthPrice["huobi"]*usdtPrice - (rand.Float64() / 1000)
+								price := data.Price*models.EthPrice["huobi"]*usdtPrice - (rand.Float64() / 1000)
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							}
@@ -161,7 +160,7 @@ Loop:
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							} else {
-								price := data.Price * models.EthPrice["huobi"]*usdtPrice + (rand.Float64() / 1000)
+								price := data.Price*models.EthPrice["huobi"]*usdtPrice + (rand.Float64() / 1000)
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							}
@@ -249,7 +248,6 @@ func GetHuobiUsdtPrice() {
 		time.Sleep(20 * time.Second)
 	}
 }
-
 
 func GetTradesHuobiEthUsdt(symbol []string, size string, ctx context.Context) {
 Loop:
@@ -352,4 +350,3 @@ Loop:
 		}
 	}
 }
-
