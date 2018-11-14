@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/astaxie/beego/logs"
-	"fmt"
 	"sort"
 	"crypto/md5"
 	"encoding/hex"
@@ -222,7 +221,7 @@ func (r *ZTRestfulApiRequest) ZTTradeLimit() {
 	_, err = goquery.NewDocumentFromReader(resp.Body)
 
 	if err != nil {
-		logs.Error("goquery.NewDocumentFromReader failed err:", err)
+		logs.Info("goquery.NewDocumentFromReader failed err:", err)
 		return
 	}
 	logs.Info("ZG挂单成功")
