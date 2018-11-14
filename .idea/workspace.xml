@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="36d6e100-40bb-47f6-8848-9e6fbf5e7961" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/admin/admin" afterPath="$PROJECT_DIR$/admin/admin" />
-      <change beforePath="$PROJECT_DIR$/admin/robot" afterPath="$PROJECT_DIR$/admin/robot" />
-      <change beforePath="$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go" afterPath="$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go" />
-      <change beforePath="$PROJECT_DIR$/robot/logs/tradeRobot.log" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/robot/trade/HuobiTrade.go" afterPath="$PROJECT_DIR$/robot/trade/HuobiTrade.go" />
-      <change beforePath="$PROJECT_DIR$/robot/trade/ZGTrade.go" afterPath="$PROJECT_DIR$/robot/trade/ZGTrade.go" />
-      <change beforePath="$PROJECT_DIR$/robot/utils/HuobiTrade.go" afterPath="$PROJECT_DIR$/robot/utils/HuobiTrade.go" />
+      <change beforePath="$PROJECT_DIR$/robot/logs/tradeRobot.log" afterPath="$PROJECT_DIR$/robot/logs/tradeRobot.log" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,8 +17,8 @@
       <file leaf-file-name="HuobidataHandle.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="160" column="60" lean-forward="false" selection-start-line="160" selection-start-column="60" selection-end-line="160" selection-end-column="60" />
+            <state relative-caret-position="20">
+              <caret line="137" column="52" lean-forward="false" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -42,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZGDataHandle.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ZGDataHandle.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -104,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HuobiTrade.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HuobiTrade.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/robot/utils/HuobiTrade.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7303">
-              <caret line="446" column="9" lean-forward="false" selection-start-line="446" selection-start-column="9" selection-end-line="446" selection-end-column="9" />
+            <state relative-caret-position="-1120">
+              <caret line="448" column="9" lean-forward="false" selection-start-line="448" selection-start-column="9" selection-end-line="448" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -815,14 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="160" column="60" lean-forward="false" selection-start-line="160" selection-start-column="60" selection-end-line="160" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/robot/trade/ZGTrade.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -830,14 +816,6 @@
           <folding>
             <element signature="e#15#189#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/utils/HuobiTrade.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7303">
-          <caret line="446" column="9" lean-forward="false" selection-start-line="446" selection-start-column="9" selection-end-line="446" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -855,6 +833,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="137" column="52" lean-forward="false" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/utils/HuobiTrade.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1120">
+          <caret line="448" column="9" lean-forward="false" selection-start-line="448" selection-start-column="9" selection-end-line="448" selection-end-column="9" />
           <folding />
         </state>
       </provider>
