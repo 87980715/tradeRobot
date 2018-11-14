@@ -60,7 +60,7 @@ func GetDealOrdersZG(ctx context.Context) {
 				postDataLimit.Amount = record.Amount
 				postDataLimit.Account_id = models.Huobi_Account_ID
 				//------测试-------
-				// fmt.Println("火币挂单数据:", postDataLimit)
+				fmt.Println("火币挂单数据:", postDataLimit)
 				utils.HuobiOrders <- postDataLimit
 
 			}
@@ -141,7 +141,7 @@ func QureyDealOerder(db *sql.DB, dealIds []int, userId int64) {
 		if v == 2 {
 			continue
 		}
-		//fmt.Println("dealId:", k)
+		fmt.Println("dealId:", k)
 		queryStr := "select COUNT(deal_id) from " + table + " where deal_id = " + strconv.Itoa(k) + " and " + " user_id = " + strconv.Itoa(int(userId))
 		row, err := db.Query(queryStr)
 		if err != nil {
@@ -162,7 +162,7 @@ func QureyDealOerder(db *sql.DB, dealIds []int, userId int64) {
 				for r.Next() {
 					r.Scan(&CreatedAt, &UserId, &Symbol, &TradeId, &Type, &Price, &DealAmount, &Total, &DealFee)
 					// huobi 交易所需数据
-					//fmt.Println("数据库数据:",CreatedAt, UserId, TradeId, Symbol, Type, Price, DealAmount, DealFee, Total)
+					fmt.Println("数据库数据:",CreatedAt, UserId, TradeId, Symbol, Type, Price, DealAmount, DealFee, Total)
 					data := &utils.Record{}
 					data.Amount = DealAmount
 					data.Price = Price

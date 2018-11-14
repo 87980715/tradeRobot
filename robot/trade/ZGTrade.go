@@ -15,6 +15,7 @@ import (
 
 // 限价交易
 func TradeLimitZG(ctx context.Context) {
+	rand.Seed(time.Now().UnixNano())
 	postDataLimit := &utils.ZTPostDataLimit{}
 Loop:
 	for {
@@ -39,7 +40,8 @@ Loop:
 			account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", p)
 			// 交易数量Amount 设置
 			a, _ := strconv.ParseFloat(postDataLimit.Amount, 64)
-			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", a*models.TradeAmountMultiple)
+			amount := a *models.TradeAmountMultiple + rand.Float64()
+			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
 			// 签名
 			account.ZTLimitMd5Sign()
 			account.ZTTradeLimit()
@@ -79,7 +81,7 @@ func CanleOrdersZG(symbol []string,ctx context.Context) {
 	rand.Seed(time.Now().Unix())
 	market := symbol[0] + "_" + symbol[1]
 	for {
-		time.Sleep(4000 * time.Millisecond)
+		time.Sleep(8000 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return

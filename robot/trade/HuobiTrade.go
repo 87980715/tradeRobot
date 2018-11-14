@@ -10,10 +10,12 @@ import (
 	"strconv"
 	"sync"
 	"github.com/astaxie/beego/logs"
+	"math/rand"
 )
 var RMuLock sync.RWMutex
 // 限价交易
 func TradeLimitHuobi(ctx context.Context) {
+	rand.Seed(time.Now().UnixNano())
 	for {
 		time.Sleep(150 * time.Millisecond)
 		select {
@@ -27,8 +29,10 @@ func TradeLimitHuobi(ctx context.Context) {
 			account.PostDataLimit.Symbol = postDataLimit.Symbol
 			// 数量最小为0.01，2位小数
 			amount,_:= strconv.ParseFloat(postDataLimit.Amount, 64)
-			a := strconv.FormatFloat(amount, 'E', -1, 64)
-			account.PostDataLimit.Amount = a
+			a := amount + rand.Float64()
+
+			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(2)+"f", a)
+			fmt.Println("amount:",account.PostDataLimit.Amount)
 			// 价格，8位小数
 			p,_:= strconv.ParseFloat(postDataLimit.Price, 64)
 			RMuLock.RLock()
