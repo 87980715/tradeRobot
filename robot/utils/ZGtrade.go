@@ -221,7 +221,7 @@ func (r *ZTRestfulApiRequest) ZTTradeLimit() {
 	_, err = goquery.NewDocumentFromReader(resp.Body)
 
 	if err != nil {
-		logs.Info("goquery.NewDocumentFromReader failed err:", err)
+		logs.Error("goquery.NewDocumentFromReader failed err:", err)
 		return
 	}
 	logs.Info("ZG挂单成功")
@@ -325,7 +325,7 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 		}
 		err = json.Unmarshal([]byte(doc.Text()), pendingOrders)
 		if err != nil {
-			logs.Error("http.Post query pending failed err:", err)
+			logs.Info("http.Post query pending failed err:", err)
 		}
 
 		var cancelOrders []*ZTPostDataCancel
@@ -343,7 +343,7 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 				}
 			}
 		}
-		logs.Error("查询未成交订单成功")
+		logs.Info("查询未成交订单成功")
 		return cancelOrders
 	}
 	time.Sleep(3 * time.Second)
