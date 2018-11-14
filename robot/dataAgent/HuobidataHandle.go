@@ -66,11 +66,15 @@ Loop:
 			tradesRes, err := http.Get(tradesUrl)
 			if err != nil {
 				logs.Error("http.Get trades failed from huobi err:", err)
-				tradesRes.Body.Close()
+				if tradesRes != nil {
+					tradesRes.Body.Close()
+				}
 				continue Loop
 			}
 			mtEthDoc, err := goquery.NewDocumentFromReader(tradesRes.Body)
-			tradesRes.Body.Close()
+			if tradesRes != nil {
+				tradesRes.Body.Close()
+			}
 
 			if err != nil {
 				logs.Error("goquery.NewDocumentFromReader mtEthDoc failed err:", err)
@@ -97,11 +101,15 @@ Loop:
 			tradesRes, err = http.Get(tradesUrl)
 			if err != nil {
 				logs.Error("http.Get trades failed from huobi err:", err)
-				tradesRes.Body.Close()
+				if tradesRes != nil {
+					tradesRes.Body.Close()
+				}
 				continue Loop
 			}
 			ethUsdtDoc, err := goquery.NewDocumentFromReader(tradesRes.Body)
-			tradesRes.Body.Close()
+			if tradesRes != nil {
+				tradesRes.Body.Close()
+			}
 			if err != nil {
 				logs.Error("goquery.NewDocumentFromReader failed err:", err)
 				continue Loop
@@ -258,11 +266,15 @@ Loop:
 			tradesRes, err := http.Get(tradesUrl)
 			if err != nil {
 				logs.Error("http.Get trades failed from huobi err:", err)
-				tradesRes.Body.Close()
+				if tradesRes != nil {
+					tradesRes.Body.Close()
+				}
 				continue Loop
 			}
 			doc, err := goquery.NewDocumentFromReader(tradesRes.Body)
-			tradesRes.Body.Close()
+			if tradesRes != nil {
+				tradesRes.Body.Close()
+			}
 			if err != nil {
 				logs.Error("goquery.NewDocumentFromReader failed err:", err)
 				continue Loop

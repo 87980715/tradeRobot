@@ -142,11 +142,15 @@ func (r *HuobiRestfulApiRequest) HuobiGetUserAssets() {
 
 	strUrl := "https://" + models.Huobi_API_URL + "/v1/account/accounts?" + Map2UrlQuery(MapValueEncodeURI(signParams))
 	resp, err := http.Get(strUrl)
+
+	if resp != nil {
+		defer resp.Body.Close()
+	}
 	if err != nil {
 		fmt.Println("err:", err)
 		return
 	}
-	defer resp.Body.Close()
+
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	fmt.Println(doc.Text())
 }
@@ -186,11 +190,15 @@ func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
+	if resp != nil {
+		defer resp.Body.Close()
+	}
+
 	if err != nil {
 		logs.Error("http.Post GetUserAssets failed err:", err)
 		return
 	}
-	defer resp.Body.Close()
+
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		// 测试
@@ -241,11 +249,15 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36")
 
 	resp, err := client.Do(req)
+
+	if resp != nil {
+		defer resp.Body.Close()
+	}
 	if err != nil {
 		logs.Error("http get pending orders failed err:", err)
 		return
 	}
-	defer resp.Body.Close()
+
 	if resp.StatusCode == http.StatusOK {
 		size := models.Huobi_FilledOrdersSize
 		var tradesDealReturn = &HuobiTradesDealReturn{
@@ -329,11 +341,16 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36")
 
 	resp, err := client.Do(req)
+
+	if resp != nil {
+		defer resp.Body.Close()
+	}
+
 	if err != nil {
 		logs.Error("http get pending orders failed err:", err)
 		return
 	}
-	defer resp.Body.Close()
+
 	if resp.StatusCode == http.StatusOK {
 		size := models.Huobi_PendingOrdersSize
 		var pendingOrdersReturn = &HuobiPendingOrdersReturn{
@@ -427,11 +444,15 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 
 	var flag = true
 	resp, err := client.Do(req)
+
+	if resp != nil {
+		defer resp.Body.Close()
+	}
+
 	if err != nil {
 		logs.Error("http.Post huobi cancel order failed err:", err)
 		return false
 	}
-	defer resp.Body.Close()
 
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
