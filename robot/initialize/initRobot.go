@@ -26,14 +26,15 @@ func InitRobot() (err error){
 
 	err = utils.InitRobotDB()
 	if err != nil {
-		fmt.Printf("init mysqldb failed, err:%v\n", err)
+		logs.Error("init mysqldb failed, err:%v\n", err)
 		panic("init db failed")
 		return
 	}
 
-	err = InitRedis()
+	utils.ExchangeDB,err = utils.LoadExchangeDB()
 	if err != nil {
-		logs.Error("init redis failed")
+		logs.Error("init mysqldb failed, err:%v\n", err)
+		panic("init exchangedb failed")
 		return
 	}
 

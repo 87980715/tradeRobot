@@ -16,7 +16,7 @@ func TradeServerRun(symbol []string,ctx context.Context) {
 		initialize.AppConfig.Wg.Add(1)
 		CanleOrdersZG(symbol,ctx)
 	}(symbol,ctx)
-	/*
+
 	go func(ctx context.Context) {
 		initialize.AppConfig.Wg.Add(1)
 		TradeLimitHuobi(ctx)
@@ -27,8 +27,8 @@ func TradeServerRun(symbol []string,ctx context.Context) {
 		TradeCancelHuobi(symbol,ctx)
 	}(symbol,ctx)
 
-	go func(ctx context.Context) {
-		HuobiInsertToDB(ctx)
-	}(ctx)
-	*/
+	go func(symbol []string,ctx context.Context) {
+		HuobiInsertToDB(symbol,ctx)
+	}(symbol,ctx)
+
 }

@@ -15,6 +15,7 @@ import (
 	"github.com/astaxie/beego/logs"
 	"encoding/json"
 	"strconv"
+	"sync"
 )
 
 type HuobiRestfulApiRequest struct {
@@ -65,7 +66,7 @@ type HuobiPostDataLimit struct {
 
 type HuobiPostDataMarket struct {
 	Symbol string // 市场名称 交易对
-	Type   string // 买卖类型：限价单(buy/sell) 市价单(buy_market/sell_market)
+	Type   string // 买卖类型：限价单(buy-limit/sell-limit) 市价单(buy_market/sell_market)
 	Price  string // 下单总价格
 }
 
@@ -123,7 +124,10 @@ type HuobiCanleReturn struct {
 	Status string `json:"status"`
 }
 
-var HuobiOrders = make(chan *HuobiPostDataLimit, 100)
+var (
+	HuobiOrders = make(chan *HuobiPostDataLimit, 100)
+	RMuLock sync.RWMutex
+)
 
 // Huobi 获取用户资产
 func (r *HuobiRestfulApiRequest) HuobiGetUserAssets() {
@@ -145,7 +149,7 @@ func (r *HuobiRestfulApiRequest) HuobiGetUserAssets() {
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	fmt.Println(doc.Text())
 }
-
+var n int
 // Huobi 进行限价交易
 func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 	signParams := make(map[string]string)
@@ -164,6 +168,8 @@ func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 	mapParams["price"] = r.PostDataLimit.Price
 	mapParams["symbol"] = r.PostDataLimit.Symbol
 	mapParams["type"] = r.PostDataLimit.Type
+	// 测试
+	// fmt.Println("mapParams:",mapParams)
 
 	bytesParams, _ := json.Marshal(mapParams)
 	jsonParams := string(bytesParams)
@@ -183,33 +189,39 @@ func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 		logs.Error("http.Post GetUserAssets failed err:", err)
 		return
 	}
+
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
+		fmt.Println(doc.Text())
 		if err != nil {
 			logs.Error(" go qurey new document from reader failed err:", err)
 			return
 		}
-		// ------测试--------
-		fmt.Println(doc.Text())
 		var limitTradeReturn = &HuobiLimitTradeReturn{}
 		err = json.Unmarshal([]byte(doc.Text()), limitTradeReturn)
 		if err != nil {
 			logs.Error(" go query limit trade return  from reader failed err:", err)
 			return
 		}
+		n++
 		for {
 			if limitTradeReturn.Status == "ok" {
+				logs.Info("火币交易挂单成功")
 				break
 			}
-			r.HuobiLimitTrade()
+			if n > 5 {
+				logs.Info("火币挂单失败")
+				break
+			}
+
 		}
-		logs.Info("火币交易挂单成功")
 	}
 	resp.Body.Close()
 }
 
 // huobi查询已成交订单 并写入数据库
 func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
+
 	signParams := make(map[string]string)
 	signParams["AccessKeyId"] = models.Huobi_AccessKeyId
 	signParams["SignatureVersion"] = "2"
@@ -243,14 +255,20 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 			logs.Error(" go query filled orders from reader failed err:", err)
 			return
 		}
+		//-测试------------
+		// fmt.Println("火币已成交数据:",doc.Text())
 		err = json.Unmarshal([]byte(doc.Text()), tradesDealReturn)
 		if err != nil {
 			logs.Error(" json unmarshal filled orders failed err:", err)
 			return
 		}
-		var id int
+
+		key := signParams["symbol"] + "HuobiDealId"
+
 		for _, order := range tradesDealReturn.Data {
-			if order.Id > id {
+			if order.Id > int(models.HuoPreDealId[key]) {
+
+				// fmt.Println(order.Id,HuobiDealId)
 				var tradeResult = &models.HuobiTradeResults{}
 				a, err := strconv.ParseFloat(order.Filled_amount, 64)
 				if err != nil {
@@ -275,12 +293,13 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 				tradeResult.Created_at = strconv.Itoa(order.Created_at)
 				tradeResult.Total = total
 
-				db, err := LoadRobotDB()
-				if err != nil {
-					logs.Error("loadDB failed")
-					return
-				}
-				defer db.Close()
+				db := RobotDB
+				//db, err := LoadRobotDB()
+				//if err != nil {
+				//	logs.Error("loadDB failed")
+				//	return
+				//}
+				//defer db.Close()
 
 				if err = db.Create(tradeResult).Error; err != nil {
 					logs.Error("insert failed into Huobi tradeResult ")
@@ -289,8 +308,11 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 			}
 		}
 		// 去重
-		id = tradesDealReturn.Data[len(tradesDealReturn.Data)-1].Id
+		if len(tradesDealReturn.Data) != 0 {
+			models.HuoPreDealId[key] = int64(tradesDealReturn.Data[0].Id)
+		}
 	}
+	resp.Body.Close()
 }
 
 // Huobi查询未成交订单并取消满足条件的订单
@@ -316,6 +338,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 	resp, err := client.Do(req)
 	if err != nil {
 		logs.Error("http get pending orders failed err:", err)
+		return
 	}
 
 	if resp.StatusCode == http.StatusOK {
@@ -324,53 +347,61 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 			Data: make([]*PendingOrdersReturnData, size),
 		}
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
+		resp.Body.Close()
 		if err != nil {
 			logs.Error(" go query pending orders from reader failed err:", err)
 			return
 		}
+		// 测试--
+		//fmt.Println("火币未成交数据:",doc.Text())
 		err = json.Unmarshal([]byte(doc.Text()), pendingOrdersReturn)
 		if err != nil {
 			logs.Error(" json unmarshal pending orders failed err:", err)
 			return
 		}
-
 		if len(pendingOrdersReturn.Data) != 0 {
 			for _, order := range pendingOrdersReturn.Data {
 				// 获取当前时间，毫秒 ms
 				curTime := time.Now().UnixNano() / 1e6
 				createTime := order.Created_at
 				// 超过500ms,未成交
+				//fmt.Println("未成交时间:",curTime-int64(createTime),"参数时间:",models.TradeInspectTime)
 				if curTime-int64(createTime) > models.TradeInspectTime {
 					// 取消订单
 					orderId := strconv.Itoa(order.Id)
 					if r.HuobiCancelOrder(orderId) {
+						RMuLock.RLock()
+						usdtPrice := models.UsdtPrice["huobi"]
+						ethPrice := models.EthPrice["huobi"]
+						RMuLock.RUnlock()
 						postDataLimit := &HuobiPostDataLimit{}
 						postDataLimit.Account_id = strconv.Itoa(order.Account_id)
 						postDataLimit.Symbol = order.Symbol
 						postDataLimit.Type = order.Type
 						if order.Type == "buy-limit" {
 							p, _ := strconv.ParseFloat(order.Price, 64)
-							price := p * (1 + models.TradePriceAdjust)
-							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+							price := p * (1 + models.TradePriceAdjust) * usdtPrice * ethPrice
+							// 4
+							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 						} else {
 							// 价格设置：降低价格1‰，重新挂单
 							p, _ := strconv.ParseFloat(order.Price, 64)
-							price := p * (1 - models.TradePriceAdjust)
-							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+							price := p * (1 - models.TradePriceAdjust) * usdtPrice * ethPrice
+							// 4
+							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 						}
 						// 数量设置：减去已成交的数量
-						amount, _ := strconv.Atoi(order.Amount)
-						filledAmount, _ := strconv.Atoi(order.Filled_amount)
-						postDataLimit.Amount = strconv.Itoa(amount - filledAmount)
-						// 测试-------
-						fmt.Println("postDataLimit:", postDataLimit)
+						amount, _ := strconv.ParseFloat(order.Amount, 64)
+						filledAmount, _ := strconv.ParseFloat(order.Filled_amount, 64)
+						postDataLimit.Amount = strconv.FormatFloat(amount - filledAmount, 'E', -1, 64)
+
+						//fmt.Println("cancel:",postDataLimit)
 						HuobiOrders <- postDataLimit
 					}
 				}
 			}
 		}
 	}
-	resp.Body.Close()
 }
 
 // Huobi取消订单
@@ -415,13 +446,16 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 			logs.Error(" go qurey new document from cancel huobi order failed err:", err)
 			return false
 		}
-
 		var cancelReturn = &HuobiCanleReturn{}
 		err = json.Unmarshal([]byte(doc.Text()), cancelReturn)
 		if err != nil {
 			logs.Error(" json unmarshal  cancelReturn failed err:", err)
 			return false
 		}
+
+		//
+		fmt.Println("cancelReturn.Status",cancelReturn.Status)
+
 		if cancelReturn.Status != "ok" {
 			logs.Error("cancelReturn status is not ok ")
 			return false

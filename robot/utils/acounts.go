@@ -20,7 +20,7 @@ func SetAccountsZT(apiKey string) *ZTRestfulApiRequest {
 		PostDataOrderFinished:&ZTPostDataOrderFinished{},
 	}
 	account.API_KEY = apiKey
-	account.SECRET_KEY = models.ZG_SECRET_KEY
+	account.SECRET_KEY = models.ZT_SECRET_KEY
 	return account
 }
 
@@ -36,12 +36,13 @@ func SetAccountOKex(apiKey string) *OKexRestfulApiRequest {
 	return tempAccount
 }
 
-func SetAccountHuobi(apiKey string) *HuobiRestfulApiRequest {
+func SetAccountHuobi() *HuobiRestfulApiRequest {
 	tempAccount := &HuobiRestfulApiRequest{
 		PostDataLimit : &HuobiPostDataLimit{},
 		PostDataMarket: &HuobiPostDataMarket{},
 		PostPataCancle :&HuobiPostDataCancel{},
 		GetDataPending: &HuobiGetDataPending{},
+		GetTradesDeal: &HuobiGetTradesDeal {},
 	}
 	return tempAccount
 }

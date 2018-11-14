@@ -5,7 +5,6 @@ import (
 	"tradeRobot/robot/server"
 	"context"
 	"strings"
-	"fmt"
 )
 
 type RobotStartController struct {
@@ -23,22 +22,30 @@ func  (c *RobotStartController) Start() {
 		c.ServeJSON()
 	}()
 
+	if len(Robots) == 0 {
+		result["code"] = 1001
+		result["message"] = "操作失败"
+		result["error"] = "未绑定机器人"
+		return
+	}
+
 	id,_ := c.GetInt("robotId")
-	fmt.Println("id:",id)
 	robot , ok:= Robots[id]
 	if !ok {
-		result["code"] = 0
+		result["code"] = 1001
 		result["message"] = "操作失败"
 		result["error"] = "无效的机器编号"
+		return
 	}
+
 	ctx := robot.ctx
-	fmt.Println("ctx:",ctx)
 	symbol := strings.Split(robot.Symbol,"_")
 
 	go func(symbol []string, c context.Context) {
 		server.RobotRun(symbol, ctx)
 	}(symbol, ctx)
+
+	robot.Stutas = "start"
+	Robots[id] = robot
 }
 
-// 新增 删除
-// 启动 暂停

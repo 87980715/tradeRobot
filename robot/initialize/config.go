@@ -5,7 +5,6 @@ import (
 	"github.com/astaxie/beego/config"
 	"github.com/labstack/gommon/log"
 	"sync"
-	"time"
 )
 
 var (
@@ -16,9 +15,7 @@ type Config struct {
 	logLevel           string
 	logPath            string
 
-	TradeConf *TradeConf
 	RedisConf *RedisConf
-	EtcdConf  *EtcdConf
 
 	Wg     sync.WaitGroup
 	RWlock sync.RWMutex
@@ -31,17 +28,6 @@ type RedisConf struct {
 	RedisIdleTimeout int
 }
 
-type EtcdConf struct {
-	EtcdAddr string
-	//Timeout           int
-	EtcdSecKeyPrefix  string
-	EtcdSecProductKey string
-}
-
-type TradeConf struct {
-	TradeAmountMutiple string
-	TradeInsprctiontime time.Duration
-}
 
 func InitConf(confType, filename string) (err error) {
 
@@ -51,10 +37,9 @@ func InitConf(confType, filename string) (err error) {
 		return
 	}
 	redisConf := &RedisConf{}
-	tradeConf := &TradeConf{}
+
 	AppConfig = &Config{
 		RedisConf: redisConf,
-		TradeConf:tradeConf,
 	}
 	AppConfig.logLevel = conf.String("logs::log_level")
 	if len(AppConfig.logLevel) == 0 {
@@ -85,23 +70,6 @@ func InitConf(confType, filename string) (err error) {
 	if err != nil {
 		log.Warn("load redis config failed")
 	}
-
-	AppConfig.TradeConf.TradeAmountMutiple = conf.String("redis::trade_amount_multiple")
-	if err != nil {
-		log.Warn("load trade config failed")
-	}
-
-	//AppConfig.EtcdAddr = conf.String("etcd::addr")
-	//if len(AppConfig.etcdAddr) == 0 {
-	//	err = fmt.Errorf("invalid etcd addr")
-	//	return
-	//}
-
-	//appConfig.etcdKey = conf.String("etcd::configKey")
-	//if len(appConfig.etcdKey) == 0 {
-	//	err = fmt.Errorf("invalid etcd key")
-	//	return
-	//}
 
 	return
 }

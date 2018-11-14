@@ -5,11 +5,11 @@ import (
 	"context"
 	"strings"
 	"strconv"
-	"encoding/json"
-	"github.com/astaxie/beego/logs"
 	"tradeRobot/robot/models"
 	"tradeRobot/robot/initialize"
 )
+// 新增 删除
+// 启动 暂停
 
 type RobotManagerController struct {
 	beego.Controller
@@ -25,6 +25,7 @@ type Robot struct {
 	cancel  context.CancelFunc
 	RobotId int    `json:"robot_id"`
 	ctx     context.Context
+	Stutas string `json:"stutas"`
 }
 
 func (c *RobotManagerController) Add() {
@@ -40,18 +41,23 @@ func (c *RobotManagerController) Add() {
 	models.Huobi_AccessKeyId = c.Input().Get("HuobiAccessKeyId")
 	models.Huobi_Secretkey = c.Input().Get("HuobiSecretkey")
 
-	models.ZG_API_KEY = c.Input().Get("ZGApiKey")
-	models.ZG_SECRET_KEY = c.Input().Get("ZGSecret_key")
+	models.ZT_API_KEY = c.Input().Get("ZTApiKey")
+	models.ZT_SECRET_KEY = c.Input().Get("ZTSecretKey")
 
 	s := c.Input().Get("symbol")
-
-	// 从参数获取
 	symbol := strings.Split(s, "-")
 
-	// 策略
-	models.TradeInspectTime = 500 //单位毫秒
-	models.TradePriceAdjust = 0.001
-	models.TradeAmountMultiple = 1
+	// 策略参数
+	i := c.Input().Get("inspectTime")
+	models.TradeInspectTime ,_ = strconv.ParseInt(i,10,64) //单位毫秒
+	p := c.Input().Get("priceAdjust")
+	models.TradePriceAdjust ,_ = strconv.ParseFloat(p,64)
+	a:= c.Input().Get("amountMultiple")
+	models.TradeAmountMultiple,_ = strconv.ParseFloat(a,64)
+	// Usdt第一个值
+	r := c.Input().Get("usdtPrice")
+	usdtPrice,_ := strconv.ParseFloat(r,64)
+	models.UsdtPrice["Huobi"] = usdtPrice
 
 	id, err := initialize.HuobiUserId()
 	if err != nil {
@@ -60,22 +66,25 @@ func (c *RobotManagerController) Add() {
 		result["error"] = "invalid HuobiAccessKeyId or HuobiSecretkey"
 		return
 	}
-	models.HuobiUserID = strconv.Itoa(id)
+	models.Huobi_Account_ID = strconv.Itoa(id)
 
-	if !initialize.VerfiZGKey() {
-		result["code"] = 1001
-		result["message"] = "操作失败"
-		result["error"] = "invalid ZGAccessKeyId or ZGSecretkey"
-		return
-	}
+	//id,err = initialize.ZGUserId()
+	//if err != nil {
+	//	result["code"] = 1001
+	//	result["message"] = "操作失败"
+	//	result["error"] = "invalid AccessKeyId or Secretkey"
+	//	return
+	//}
+	models.ZGUserID = strconv.Itoa(902) //strconv.Itoa(id)
 
 	robot := Robot{}
-	robot.Symbol = strings.ToUpper(symbol[0] + "_" + "CNZ")
+	robot.Symbol = strings.ToUpper(symbol[0] + "_" + "CNT")
 
 	parentCtx := context.WithValue(context.Background(), "symbol", robot.Symbol)
 	ctx, cancel := context.WithCancel(parentCtx)
 	robot.ctx = ctx
 	robot.cancel = cancel
+	robot.Stutas = "stop"
 
 	RobotId ++
 	robot.RobotId = RobotId
@@ -88,7 +97,6 @@ func (c *RobotManagerController) Add() {
 func (c *RobotManagerController) Delete() {
 
 	result := make(map[string]interface{})
-
 	result["code"] = 0
 	result["message"] = "操作成功"
 	defer func() {
@@ -121,10 +129,5 @@ func (c *RobotManagerController) RobotsList() {
 		c.ServeJSON()
 	}()
 
-	bytes, err := json.Marshal(Robots)
-	if err != nil {
-		logs.Error("json marshal robot failed err:", err)
-	}
-
-	result["Robots"] = string(bytes)
+	result["Robots"] = Robots
 }

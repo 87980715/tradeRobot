@@ -22,6 +22,13 @@ func (c *RobotStopController) Stop() {
 
 	id,_ := c.GetInt("robotId")
 
+	if len(Robots) == 0 {
+		result["code"] = 1001
+		result["message"] = "操作失败"
+		result["error"] = "未启动器人"
+		return
+	}
+
 	robot,ok := Robots[id]
 	if ok {
 		cancel := robot.cancel
@@ -30,6 +37,7 @@ func (c *RobotStopController) Stop() {
 		result["code"] = 1001
 		result["message"] = "操作失败"
 		result["error"] = "无效机器人编号"
+		return
 	}
 
 	// 重新生成 ctx，不让重新启动不了了
@@ -37,6 +45,7 @@ func (c *RobotStopController) Stop() {
 	ctx, cancel := context.WithCancel(parentCtx)
 	robot.ctx = ctx
 	robot.cancel = cancel
+	robot.Stutas = "stop"
 
 	Robots[id] = robot
 }

@@ -7,6 +7,8 @@ import (
 	"github.com/astaxie/beego/logs"
 )
 
+
+
 func main() {
 
 	err := initialize.InitRobot()

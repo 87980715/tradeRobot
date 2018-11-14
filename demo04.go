@@ -20,7 +20,7 @@ var (
 )
 
 func main() {
-	dealIds := queryDealIds(1805)
+	dealIds := queryDealIds(436701)
 
 	qureyDealOerder(dealIds)
 
@@ -74,8 +74,9 @@ func qureyDealOerder(dealIds []int) {
 				}
 				for row.Next() {
 					row.Scan(&CreatedAt, &UserId,  &Symbol, &TradeId,&Type, &Price, &DealAmount,&Total,&DealFee)
-					tradeResult := &models.ZGTradeResults{}
-					//tradeResult.Id = "1"
+					fmt.Println("---:",CreatedAt, UserId, TradeId, Symbol, Type, Price, DealAmount, DealFee, Total)
+					tradeResult := &models.HuobiTradeResults{}
+
 					tradeResult.User_id = UserId
 					tradeResult.Trade_id = TradeId
 					tradeResult.Symbol = Symbol
@@ -86,7 +87,7 @@ func qureyDealOerder(dealIds []int) {
 					tradeResult.Created_at = CreatedAt
 					tradeResult.Total = Total
 
-					ZGInsertToDB(tradeResult)
+					HuobiInsertToDB(tradeResult)
 				}
 				row.Columns()
 			}
@@ -106,6 +107,19 @@ func ZGInsertToDB(t *models.ZGTradeResults) {
 	fmt.Println("插入成功")
 	db.Close()
 }
+
+func HuobiInsertToDB(t *models.HuobiTradeResults) {
+
+	db,_:= loadDB()
+	fmt.Println("连接成功")
+	if err := db.Create(t).Error; err != nil {
+		logs.Error("insert failed into Huobi tradeResult ")
+		return
+	}
+	fmt.Println("插入成功")
+	db.Close()
+}
+
 
 
 type DBConfig struct {

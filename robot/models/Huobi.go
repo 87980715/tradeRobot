@@ -15,21 +15,24 @@ type HuobiAccountsReturn struct {
 }
 
 var (
-	Huobi_API_URL           = "api.huobi.pro"
+	Huobi_API_URL = "api.huobi.pro"
 	//Huobi_Post_Content_type = "application/json"
 	//Huobi_Get_Content_type  = "application/x-www-form-urlencoded"
 
-	Huobi_PendingOrdersSize = 15 // huobi 每次未成交订单获取条数
-	Huobi_FilledOrdersSize  = 15 // huobi 每次已成交订单获取条数
-	Huobi_OrdersSize = "10" // 查询火币交易历史
-)
-var (
-	Huobi_AccessKeyId string = "eca1800e-e94af9ce-c2a77a7b-7a8b4"
-	Huobi_Secretkey   string = "5658bce4-10643a8d-7e62938f-24139"
-	Huobi_Account_ID string
+	Huobi_PendingOrdersSize = 15   // huobi 每次未成交订单获取条数
+	Huobi_FilledOrdersSize  = 15   // huobi 每次已成交订单获取条数
+	Huobi_OrdersSize        = "10" // 查询火币交易历史
+
+	Huobi_AccessKeyId string = "b2af8f9f-4ac75b4d-4fce0763-1c789"
+	Huobi_Secretkey   string = "80653212-f2b1fc55-f1af7577-b9a3f"
+	Huobi_Account_ID  string = "4821321"
 
 	TradeAmountMultiple float64
 	TradeInspectTime    int64
 	TradePriceAdjust    float64
 	HuobiUserID         string
+
+	// 默认值设置
+	UsdtPrice = map[string]float64{"huobi":6.88}
+	EthPrice = make(map[string]float64)
 )

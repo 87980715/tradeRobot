@@ -82,12 +82,12 @@ func (r *OKexRestfulApiRequest) OKexQureyMd5Sign() {
 
 	// 查询账户时需要设置的参数
 	data["api_key"] = r.API_KEY
+	//data["X-SITE-ID"] = "1"
 	r.Sign = ZGSign(data, r.SECRET_KEY)
 }
 
 func (r *OKexRestfulApiRequest) OKexMarketMd5Sign() {
 	var data = make(map[string]string)
-
 	if r.PostDataMarket != nil {
 		data["api_key"] = r.API_KEY
 		data["Symbol"] = r.PostDataMarket.Symbol

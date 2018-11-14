@@ -2,53 +2,695 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36d6e100-40bb-47f6-8848-9e6fbf5e7961" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/admin/controllers/robot_start_controller.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/admin/controllers/robot_stop_controller.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/demo04.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/initialize/UserId.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/main/main.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/models/Huobi.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/models/ZG.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/models/tradeResult.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/server/server.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/trade/HuobiTrade.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/trade/ZGTrade.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/utils/HuobiTrade.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/utils/Mysql.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/robot/utils/acounts.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/demo10.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/huobiTradeLimit.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/robot/models/ID.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/spider.go" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Gopkg.lock" afterPath="$PROJECT_DIR$/Gopkg.lock" />
-      <change beforePath="$PROJECT_DIR$/conf/app.conf" afterPath="$PROJECT_DIR$/robot/conf/app.conf" />
-      <change beforePath="$PROJECT_DIR$/dataAgent/HuobidataHandle.go" afterPath="$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go" />
-      <change beforePath="$PROJECT_DIR$/dataAgent/OKexDataHandle.go" afterPath="$PROJECT_DIR$/robot/dataAgent/OKexDataHandle.go" />
-      <change beforePath="$PROJECT_DIR$/dataAgent/USDT_CNZ_Rate.go" afterPath="$PROJECT_DIR$/robot/dataAgent/USDT_CNZ_Rate.go" />
-      <change beforePath="$PROJECT_DIR$/dataAgent/ZGDataHandle.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataAgent/sendToRedis.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataAgent/server.go" afterPath="$PROJECT_DIR$/robot/dataAgent/server.go" />
-      <change beforePath="$PROJECT_DIR$/demo01.go" afterPath="$PROJECT_DIR$/demo01.go" />
-      <change beforePath="$PROJECT_DIR$/demo02.go" afterPath="$PROJECT_DIR$/demo02.go" />
-      <change beforePath="$PROJECT_DIR$/demo03.go" afterPath="$PROJECT_DIR$/demo03.go" />
-      <change beforePath="$PROJECT_DIR$/initialize/accouts.go" afterPath="$PROJECT_DIR$/robot/initialize/accouts.go" />
-      <change beforePath="$PROJECT_DIR$/initialize/config.go" afterPath="$PROJECT_DIR$/robot/initialize/config.go" />
-      <change beforePath="$PROJECT_DIR$/initialize/etcd.go" afterPath="$PROJECT_DIR$/robot/initialize/etcd.go" />
-      <change beforePath="$PROJECT_DIR$/initialize/initRobot.go" afterPath="$PROJECT_DIR$/robot/initialize/initRobot.go" />
-      <change beforePath="$PROJECT_DIR$/initialize/initSymbols.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/initialize/log.go" afterPath="$PROJECT_DIR$/robot/initialize/log.go" />
-      <change beforePath="$PROJECT_DIR$/initialize/redis.go" afterPath="$PROJECT_DIR$/robot/initialize/redis.go" />
-      <change beforePath="$PROJECT_DIR$/main/main.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/models/HuobiAccouts.go" afterPath="$PROJECT_DIR$/robot/models/OKex.go" />
-      <change beforePath="$PROJECT_DIR$/models/const.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/models/symbols.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/trade/HuobiTrade.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/trade/OKexTrade.go" afterPath="$PROJECT_DIR$/robot/trade/OKexTrade.go" />
-      <change beforePath="$PROJECT_DIR$/trade/ZTTrade.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/trade/readFromRedis.go" afterPath="$PROJECT_DIR$/robot/trade/readFromRedis.go" />
-      <change beforePath="$PROJECT_DIR$/trade/server.go" afterPath="$PROJECT_DIR$/robot/trade/server.go" />
-      <change beforePath="$PROJECT_DIR$/utils/HuobiTrade.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/utils/OKexTrade.go" afterPath="$PROJECT_DIR$/robot/utils/OKexTrade.go" />
-      <change beforePath="$PROJECT_DIR$/utils/ZTtrade.go" afterPath="$PROJECT_DIR$/robot/utils/ZGtrade.go" />
-      <change beforePath="$PROJECT_DIR$/utils/acounts.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/admin/admin" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/admin/conf/app.conf" afterPath="$PROJECT_DIR$/admin/conf/app.conf" />
+      <change beforePath="$PROJECT_DIR$/admin/controllers/robot_huobi_finished.go" afterPath="$PROJECT_DIR$/admin/controllers/robot_huobi_finished.go" />
+      <change beforePath="$PROJECT_DIR$/admin/controllers/robot_manager.go" afterPath="$PROJECT_DIR$/admin/controllers/robot_manager.go" />
+      <change beforePath="$PROJECT_DIR$/admin/controllers/robot_start_controller.go" afterPath="$PROJECT_DIR$/admin/controllers/robot_start_controller.go" />
+      <change beforePath="$PROJECT_DIR$/admin/controllers/robot_stop_controller.go" afterPath="$PROJECT_DIR$/admin/controllers/robot_stop_controller.go" />
+      <change beforePath="$PROJECT_DIR$/admin/controllers/robot_zg_finished.go" afterPath="$PROJECT_DIR$/admin/controllers/robot_zg_finished.go" />
+      <change beforePath="$PROJECT_DIR$/admin/main.go" afterPath="$PROJECT_DIR$/admin/main.go" />
+      <change beforePath="$PROJECT_DIR$/admin/robot" afterPath="$PROJECT_DIR$/admin/robot" />
+      <change beforePath="$PROJECT_DIR$/cancel.go" afterPath="$PROJECT_DIR$/demo0.go" />
+      <change beforePath="$PROJECT_DIR$/demo01.go" afterPath="$PROJECT_DIR$/huobiAsset.go" />
+      <change beforePath="$PROJECT_DIR$/demo04.go" afterPath="$PROJECT_DIR$/demo04.go" />
+      <change beforePath="$PROJECT_DIR$/demo05.go" afterPath="$PROJECT_DIR$/demo05.go" />
+      <change beforePath="$PROJECT_DIR$/demo06.go" afterPath="$PROJECT_DIR$/demo09.go" />
+      <change beforePath="$PROJECT_DIR$/demo07.go" afterPath="$PROJECT_DIR$/demo07.go" />
+      <change beforePath="$PROJECT_DIR$/robot/conf/app.conf" afterPath="$PROJECT_DIR$/robot/conf/app.conf" />
+      <change beforePath="$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go" afterPath="$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go" />
+      <change beforePath="$PROJECT_DIR$/robot/dataAgent/OKexDataHandle.go" afterPath="$PROJECT_DIR$/robot/dataAgent/OKexDataHandle.go" />
+      <change beforePath="$PROJECT_DIR$/robot/dataAgent/USDT_CNZ_Rate.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go" afterPath="$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go" />
+      <change beforePath="$PROJECT_DIR$/robot/dataAgent/server.go" afterPath="$PROJECT_DIR$/robot/dataAgent/server.go" />
+      <change beforePath="$PROJECT_DIR$/robot/initialize/UserId.go" afterPath="$PROJECT_DIR$/robot/initialize/UserId.go" />
+      <change beforePath="$PROJECT_DIR$/robot/initialize/accouts.go" afterPath="$PROJECT_DIR$/robot/initialize/accouts.go" />
+      <change beforePath="$PROJECT_DIR$/robot/initialize/config.go" afterPath="$PROJECT_DIR$/robot/initialize/config.go" />
+      <change beforePath="$PROJECT_DIR$/robot/initialize/etcd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/robot/initialize/initRobot.go" afterPath="$PROJECT_DIR$/robot/initialize/initRobot.go" />
+      <change beforePath="$PROJECT_DIR$/robot/initialize/redis.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/robot/main/main.go" afterPath="$PROJECT_DIR$/robot/main/main.go" />
+      <change beforePath="$PROJECT_DIR$/robot/models/Huobi.go" afterPath="$PROJECT_DIR$/robot/models/Huobi.go" />
+      <change beforePath="$PROJECT_DIR$/robot/models/ZG.go" afterPath="$PROJECT_DIR$/robot/models/ZG.go" />
+      <change beforePath="$PROJECT_DIR$/robot/models/tradeResult.go" afterPath="$PROJECT_DIR$/robot/models/tradeResult.go" />
+      <change beforePath="$PROJECT_DIR$/robot/trade/HuobiTrade.go" afterPath="$PROJECT_DIR$/robot/trade/HuobiTrade.go" />
+      <change beforePath="$PROJECT_DIR$/robot/trade/ZGTrade.go" afterPath="$PROJECT_DIR$/robot/trade/ZGTrade.go" />
+      <change beforePath="$PROJECT_DIR$/robot/trade/readFromRedis.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/robot/trade/server.go" afterPath="$PROJECT_DIR$/robot/trade/server.go" />
+      <change beforePath="$PROJECT_DIR$/robot/utils/HuobiTrade.go" afterPath="$PROJECT_DIR$/robot/utils/HuobiTrade.go" />
+      <change beforePath="$PROJECT_DIR$/robot/utils/Mysql.go" afterPath="$PROJECT_DIR$/robot/utils/Mysql.go" />
+      <change beforePath="$PROJECT_DIR$/robot/utils/OKexTrade.go" afterPath="$PROJECT_DIR$/robot/utils/OKexTrade.go" />
+      <change beforePath="$PROJECT_DIR$/robot/utils/ZGtrade.go" afterPath="$PROJECT_DIR$/robot/utils/ZGtrade.go" />
+      <change beforePath="$PROJECT_DIR$/robot/utils/acounts.go" afterPath="$PROJECT_DIR$/robot/utils/acounts.go" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/Documentation/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/NOTICE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/auth/authpb/auth.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/auth/authpb/auth.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/auth.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/client.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/cluster.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/compact_op.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/compare.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/config.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/health_balancer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/kv.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/lease.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/logger.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/maintenance.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/op.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/options.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/ready_wait.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/retry.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/sort.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/txn.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/clientv3/watch.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/cmd/etcd" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/cmd/etcdctl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/cmd/functional" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/cmd/tools" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/api/v3rpc/rpctypes/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/api/v3rpc/rpctypes/error.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/api/v3rpc/rpctypes/md.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/etcdserverpb/etcdserver.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/etcdserverpb/etcdserver.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/etcdserverpb/raft_internal.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/etcdserverpb/raft_internal.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/etcdserverpb/raft_internal_stringer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/etcdserverpb/rpc.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/etcdserver/etcdserverpb/rpc.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/mvcc/mvccpb/kv.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/mvcc/mvccpb/kv.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/pkg/types/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/pkg/types/id.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/pkg/types/set.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/pkg/types/slice.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/pkg/types/urls.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/coreos/etcd/pkg/types/urlsmap.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/AUTHORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/CONTRIBUTORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/GOLANG_CONTRIBUTORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/gogoproto/Makefile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/gogoproto/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/gogoproto/gogo.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/gogoproto/gogo.pb.golden" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/gogoproto/gogo.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/gogoproto/helper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/Makefile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/clone.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/custom_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/decode.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/discard.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/duration.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/duration_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/encode.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/encode_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/equal.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/extensions.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/extensions_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/lib.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/lib_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/message_set.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/pointer_reflect.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/pointer_reflect_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/pointer_unsafe.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/pointer_unsafe_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/properties.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/properties_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/skip_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/table_marshal.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/table_marshal_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/table_merge.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/table_unmarshal.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/table_unmarshal_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/text.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/text_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/text_parser.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/timestamp.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/proto/timestamp_gogo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/protoc-gen-gogo/descriptor/Makefile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/protoc-gen-gogo/descriptor/descriptor.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/protoc-gen-gogo/descriptor/descriptor.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/protoc-gen-gogo/descriptor/descriptor_gostring.gen.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/gogo/protobuf/protoc-gen-gogo/descriptor/helper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/AUTHORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/CONTRIBUTORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/clone.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/decode.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/discard.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/encode.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/equal.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/extensions.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/lib.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/message_set.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/pointer_reflect.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/pointer_unsafe.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/properties.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/table_marshal.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/table_merge.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/table_unmarshal.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/text.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/text_parser.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/any.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/any/any.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/any/any.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/duration.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/duration/duration.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/duration/duration.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/timestamp.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/timestamp/timestamp.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/ptypes/timestamp/timestamp.proto" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/labstack/gommon/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/labstack/gommon/color/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/labstack/gommon/color/color.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/labstack/gommon/log/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/labstack/gommon/log/color.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/labstack/gommon/log/log.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/labstack/gommon/log/white.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-colorable/.travis.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-colorable/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-colorable/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-colorable/colorable_appengine.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-colorable/colorable_others.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-colorable/colorable_windows.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-colorable/noncolorable.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/.travis.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_appengine.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_bsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_linux_ppc64x.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_others.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_solaris.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_windows.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/bytebufferpool/.travis.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/bytebufferpool/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/bytebufferpool/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/bytebufferpool/bytebuffer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/bytebufferpool/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/bytebufferpool/pool.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/fasttemplate/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/fasttemplate/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/fasttemplate/template.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/fasttemplate/unsafe.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/valyala/fasttemplate/unsafe_gae.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/context/context.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/context/go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/context/go19.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/context/pre_go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/context/pre_go19.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http/httpguts/guts.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http/httpguts/httplex.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/.gitignore" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/Dockerfile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/Makefile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/README" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/ciphers.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/client_conn_pool.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/configure_transport.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/databuffer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/errors.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/flow.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/frame.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/go111.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/go16.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/go17_not18.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/go18.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/go19.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/gotrack.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/headermap.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/hpack/encode.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/hpack/hpack.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/hpack/huffman.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/hpack/tables.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/http2.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/not_go111.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/not_go16.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/not_go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/not_go18.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/not_go19.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/pipe.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/server.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/transport.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/write.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/writesched.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/writesched_priority.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/http2/writesched_random.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/idna/idna.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/idna/punycode.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/idna/tables.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/idna/trie.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/idna/trieval.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/internal/timeseries/timeseries.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/trace/events.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/trace/histogram.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/trace/trace.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/trace/trace_go16.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/net/trace/trace_go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/AUTHORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/CONTRIBUTORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/PATENTS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/.gitignore" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/affinity_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/aliases.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_darwin_386.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_darwin_amd64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_darwin_arm.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_darwin_arm64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_dragonfly_amd64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_freebsd_386.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_freebsd_amd64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_freebsd_arm.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_386.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_amd64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_arm.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_arm64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_mips64x.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_mipsx.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_ppc64x.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_s390x.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_netbsd_386.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_netbsd_amd64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_netbsd_arm.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_openbsd_386.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_openbsd_amd64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_openbsd_arm.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_solaris_amd64.s" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/bluetooth_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/cap_freebsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/constants.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_aix_ppc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_aix_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_darwin.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_dragonfly.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_freebsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_netbsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_openbsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dirent.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/endian_big.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/endian_little.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/env_unix.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/errors_freebsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/errors_freebsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/errors_freebsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/fcntl.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/fcntl_linux_32bit.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/gccgo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/gccgo_c.c" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/gccgo_linux_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ioctl.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mkall.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mkerrors.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mkpost.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksyscall.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksyscall_aix.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksyscall_solaris.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksysctl_openbsd.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksysnum_darwin.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksysnum_dragonfly.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksysnum_freebsd.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksysnum_netbsd.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksysnum_openbsd.pl" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/openbsd_pledge.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/pagesize_unix.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/race.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/race0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/sockcmsg_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/sockcmsg_unix.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/str.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_aix.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_aix_ppc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_aix_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_bsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_dragonfly.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_dragonfly_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_amd64_gc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_gc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_gc_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_gccgo_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_gccgo_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_mips64x.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_mipsx.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_ppc64x.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_riscv64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_s390x.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_sparc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_openbsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_openbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_openbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_openbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_solaris.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_solaris_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_unix.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_unix_gc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/timestruct.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_aix.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_darwin.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_dragonfly.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_freebsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_netbsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_openbsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_solaris.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/xattr_bsd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_aix_ppc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_aix_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_darwin_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_darwin_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_darwin_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_darwin_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_dragonfly_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_freebsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_freebsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_freebsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_mips.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_mips64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_mips64le.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_mipsle.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_ppc64le.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_riscv64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_s390x.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_sparc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_netbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_netbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_netbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_openbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_openbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_openbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_solaris_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zptrace386_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zptracearm_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zptracemips_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zptracemipsle_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_dragonfly_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_freebsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_freebsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_freebsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_mips.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_mips64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_mips64le.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_mipsle.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_ppc64le.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_riscv64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_s390x.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_sparc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_netbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_netbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_netbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_openbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_openbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_openbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysctl_openbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysctl_openbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysctl_openbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_darwin_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_darwin_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_darwin_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_darwin_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_dragonfly_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_freebsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_freebsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_freebsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_mips.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_mips64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_mips64le.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_mipsle.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_ppc64le.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_riscv64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_s390x.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_sparc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_netbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_netbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_netbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_openbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_openbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_openbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_aix_ppc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_aix_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_darwin_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_darwin_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_darwin_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_darwin_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_dragonfly_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_freebsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_freebsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_freebsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_arm64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_mips.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_mips64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_mips64le.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_mipsle.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_ppc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_ppc64le.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_riscv64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_s390x.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_sparc64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_netbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_netbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_netbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_openbsd_386.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_openbsd_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_openbsd_arm.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_solaris_amd64.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/AUTHORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/CONTRIBUTORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/PATENTS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/build/builder.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/build/colelem.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/build/contract.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/build/order.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/build/table.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/build/trie.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/collate.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/index.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/maketables.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/option.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/sort.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/collate/tables.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/colltab/collelem.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/colltab/colltab.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/colltab/contract.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/colltab/iter.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/colltab/numeric.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/colltab/table.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/colltab/trie.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/colltab/weighter.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/gen/code.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/gen/gen.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/tag/tag.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/triegen/compact.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/triegen/print.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/triegen/triegen.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/internal/ucd/ucd.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/Makefile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/common.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/coverage.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/gen.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/gen_common.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/gen_index.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/go1_1.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/go1_2.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/index.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/language.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/lookup.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/match.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/parse.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/tables.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/language/tags.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/secure/bidirule/bidirule.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/secure/bidirule/bidirule10.0.0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/secure/bidirule/bidirule9.0.0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/transform/transform.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/bidi.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/bracket.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/core.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/gen.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/gen_ranges.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/gen_trieval.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/prop.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/tables10.0.0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/tables9.0.0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/bidi/trieval.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/cldr/base.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/cldr/cldr.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/cldr/collate.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/cldr/decode.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/cldr/makexml.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/cldr/resolve.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/cldr/slice.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/cldr/xml.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/composition.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/forminfo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/input.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/iter.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/maketables.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/normalize.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/readwriter.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/tables10.0.0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/tables9.0.0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/transform.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/trie.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/norm/triegen.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/rangetable/gen.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/rangetable/merge.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/rangetable/rangetable.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/rangetable/tables10.0.0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/golang.org/x/text/unicode/rangetable/tables9.0.0.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/genproto/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/genproto/googleapis/rpc/status/status.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/.travis.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/AUTHORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/CONTRIBUTING.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/Makefile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/backoff.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/balancer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/balancer/balancer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/balancer/base/balancer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/balancer/base/base.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/balancer/roundrobin/roundrobin.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/balancer_conn_wrappers.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/balancer_v1_wrapper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/call.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/clientconn.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/codec.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/codegen.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/codes/code_string.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/codes/codes.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/connectivity/connectivity.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/credentials/credentials.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/credentials/go16.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/credentials/go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/credentials/go18.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/credentials/go19.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/dialoptions.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/doc.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/encoding/encoding.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/encoding/proto/proto.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/go.mod" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/go.sum" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/go16.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/grpclog/grpclog.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/grpclog/logger.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/grpclog/loggerv2.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/health/grpc_health_v1/health.pb.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/install_gae.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/interceptor.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/backoff/backoff.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/channelz/funcs.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/channelz/types.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/channelz/types_linux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/channelz/types_nonlinux.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/channelz/util_linux_go19.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/channelz/util_nonlinux_pre_go19.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/envconfig/envconfig.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/grpcrand/grpcrand.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/internal.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/bdp_estimator.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/controlbuf.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/defaults.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/flowcontrol.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/go16.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/handler_server.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/http2_client.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/http2_server.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/http_util.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/log.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/internal/transport/transport.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/keepalive/keepalive.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/metadata/metadata.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/naming/dns_resolver.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/naming/go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/naming/go18.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/naming/naming.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/peer/peer.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/picker_wrapper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/pickfirst.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/proxy.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/resolver/dns/dns_resolver.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/resolver/dns/go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/resolver/dns/go18.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/resolver/passthrough/passthrough.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/resolver/resolver.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/resolver_conn_wrapper.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/rpc_util.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/server.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/service_config.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/stats/handlers.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/stats/stats.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/status/go16.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/status/go17.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/status/status.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/stream.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/tap/tap.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/trace.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/version.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/google.golang.org/grpc/vet.sh" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,14 +701,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robot/trade/server.go">
+      <file leaf-file-name="HuobiTrade.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robot/trade/HuobiTrade.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+            <state relative-caret-position="187">
+              <caret line="43" column="28" lean-forward="false" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
               <folding>
-                <element signature="e#15#67#0" expanded="true" />
+                <element signature="e#15#167#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HuobiTrade.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robot/utils/HuobiTrade.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="211" column="20" lean-forward="false" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZG.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robot/models/ZG.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OKexTrade.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robot/utils/OKexTrade.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-180">
+              <caret line="195" column="1" lean-forward="false" selection-start-line="195" selection-start-column="1" selection-end-line="195" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,81 +746,58 @@
       <file leaf-file-name="HuobidataHandle.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="-97">
+              <caret line="228" column="0" lean-forward="false" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZGTrade.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robot/trade/ZGTrade.go">
+      <file leaf-file-name="robot_huobi_finished.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/controllers/robot_huobi_finished.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="86" column="18" lean-forward="false" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
-              <folding>
-                <element signature="e#15#189#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tradeRobot.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robot/logs/tradeRobot.log">
-          <provider selected="true" editor-type-id="LogFileEditorProvider">
-            <state relative-caret-position="-2324">
-              <caret line="2614" column="0" lean-forward="false" selection-start-line="2614" selection-start-column="0" selection-end-line="2614" selection-end-column="0" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="robot_stop_controller.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/controllers/robot_stop_controller.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="-336">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="router.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/routers/router.go">
+      <file leaf-file-name="ZGtrade.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robot/utils/ZGtrade.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
+            <state relative-caret-position="20">
               <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="robot_start_controller.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/controllers/robot_start_controller.go">
+      <file leaf-file-name="ZGDataHandle.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-              <folding>
-                <element signature="e#21#234#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/controllers/default.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="14" selection-end-column="1" />
+            <state relative-caret-position="113">
+              <caret line="154" column="18" lean-forward="false" selection-start-line="154" selection-start-column="18" selection-end-line="154" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tradeResult.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/robot/models/tradeResult.go">
+      <file leaf-file-name="ZGTrade.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/robot/trade/ZGTrade.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="3" column="67" lean-forward="false" selection-start-line="3" selection-start-column="67" selection-end-line="3" selection-end-column="67" />
+            <state relative-caret-position="287">
+              <caret line="90" column="51" lean-forward="false" selection-start-line="90" selection-start-column="51" selection-end-line="90" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OKexTrade.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/robot/trade/OKexTrade.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -168,6 +817,21 @@
       <find>LIMITED</find>
       <find>count</find>
       <find>initialize</find>
+      <find>huobiTradeId:</find>
+      <find>ZGTradeRecords</find>
+      <find>go-playground/universal-translator</find>
+      <find>cnz</find>
+      <find>6.88</find>
+      <find>CNZ</find>
+      <find>models.UsdtPrice</find>
+      <find>cn</find>
+      <find>fmt.Println</find>
+      <find>fmt.Print</find>
+      <find>json.Unmarshal huobi trades failed</find>
+      <find>火币挂单数据:</find>
+      <find>数据库数据:</find>
+      <find>HuobiOrders</find>
+      <find>数据库数据</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
@@ -177,57 +841,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/models/Huobi.go" />
-        <option value="$PROJECT_DIR$/models/const.go" />
-        <option value="$PROJECT_DIR$/trade/server.go" />
-        <option value="$PROJECT_DIR$/trade/ZTTrade.go" />
-        <option value="$PROJECT_DIR$/utils/ZTtrade.go" />
-        <option value="$PROJECT_DIR$/demo03.go" />
-        <option value="$PROJECT_DIR$/models/ZG.go" />
-        <option value="$PROJECT_DIR$/dataAgent/server.go" />
-        <option value="$PROJECT_DIR$/models/tradeResult.go" />
-        <option value="$PROJECT_DIR$/demo04.go" />
-        <option value="$PROJECT_DIR$/trade/ZGTrade.go" />
-        <option value="$PROJECT_DIR$/initialize/accouts.go" />
-        <option value="$PROJECT_DIR$/utils/acounts.go" />
-        <option value="$PROJECT_DIR$/utils/Mysql.go" />
-        <option value="$PROJECT_DIR$/initialize/mysql.go" />
-        <option value="$PROJECT_DIR$/initialize/initRobot.go" />
-        <option value="$PROJECT_DIR$/dataAgent/ZGDataHandle.go" />
-        <option value="$PROJECT_DIR$/utils/HuobiTrade.go" />
-        <option value="$PROJECT_DIR$/demo01.go" />
-        <option value="$PROJECT_DIR$/main/main.go" />
-        <option value="$PROJECT_DIR$/robot/initialize/config.go" />
-        <option value="$PROJECT_DIR$/robot/utils/Mysql.go" />
-        <option value="$PROJECT_DIR$/robot/models/const.go" />
-        <option value="$PROJECT_DIR$/admin/conf/app.conf" />
-        <option value="$PROJECT_DIR$/robot/server.go" />
-        <option value="$PROJECT_DIR$/robot/models/symbols.go" />
-        <option value="$PROJECT_DIR$/admin/controllers/robot_bind_controller.go" />
-        <option value="$PROJECT_DIR$/robot/dataAgent/OKexDataHandle.go" />
-        <option value="$PROJECT_DIR$/robot/trade/readFromRedis.go" />
-        <option value="$PROJECT_DIR$/robot/utils/OKexTrade.go" />
-        <option value="$PROJECT_DIR$/robot/models/OKex.go" />
-        <option value="$PROJECT_DIR$/robot/models/Huobi.go" />
-        <option value="$PROJECT_DIR$/admin/main.go" />
-        <option value="$PROJECT_DIR$/admin/routers/router.go" />
-        <option value="$PROJECT_DIR$/robot/initialize/initRobot.go" />
-        <option value="$PROJECT_DIR$/robot/main/main.go" />
-        <option value="$PROJECT_DIR$/robot/utils/HuobiTrade.go" />
-        <option value="$PROJECT_DIR$/robot/conf/app.conf" />
-        <option value="$PROJECT_DIR$/robot/initialize/UserId.go" />
-        <option value="$PROJECT_DIR$/robot/models/ZG.go" />
-        <option value="$PROJECT_DIR$/robot/utils/ZGtrade.go" />
-        <option value="$PROJECT_DIR$/robot/server/server.go" />
-        <option value="$PROJECT_DIR$/robot/dataAgent/server.go" />
-        <option value="$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go" />
-        <option value="$PROJECT_DIR$/robot/trade/HuobiTrade.go" />
-        <option value="$PROJECT_DIR$/robot/trade/server.go" />
-        <option value="$PROJECT_DIR$/robot/trade/ZGTrade.go" />
-        <option value="$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go" />
         <option value="$PROJECT_DIR$/robot/models/admin.go" />
-        <option value="$PROJECT_DIR$/admin/controllers/robot_start_controller.go" />
+        <option value="$PROJECT_DIR$/admin/controllers/robot_finished_orders.go" />
+        <option value="$PROJECT_DIR$/demo05.go" />
+        <option value="$PROJECT_DIR$/admin/routers/router.go" />
+        <option value="$PROJECT_DIR$/robot/dataAgent/ZTDataHandle.go" />
+        <option value="$PROJECT_DIR$/robot/main/main.go" />
+        <option value="$PROJECT_DIR$/demo01.go" />
+        <option value="$PROJECT_DIR$/cancel.go" />
+        <option value="$PROJECT_DIR$/demo04.go" />
+        <option value="$PROJECT_DIR$/robot/models/tradeResult.go" />
+        <option value="$PROJECT_DIR$/admin/controllers/robot_zg_finished.go" />
+        <option value="$PROJECT_DIR$/admin/controllers/robot_huobi_finished.go" />
         <option value="$PROJECT_DIR$/admin/controllers/robot_stop_controller.go" />
+        <option value="$PROJECT_DIR$/admin/controllers/robot_start_controller.go" />
+        <option value="$PROJECT_DIR$/demo08.go" />
+        <option value="$PROJECT_DIR$/demo09.go" />
+        <option value="$PROJECT_DIR$/robot/models/ID.go" />
+        <option value="$PROJECT_DIR$/admin/main.go" />
+        <option value="$PROJECT_DIR$/robot/dataAgent/USDT_CNZ_Rate.go" />
+        <option value="$PROJECT_DIR$/robot/dataAgent/USDT_CNT_Rate.go" />
+        <option value="$PROJECT_DIR$/robot/utils/USDT_CNT_Rate.go" />
+        <option value="$PROJECT_DIR$/spider2.go" />
+        <option value="$PROJECT_DIR$/robot/utils/GetUsdtPrice.go" />
+        <option value="$PROJECT_DIR$/robot/initialize/redis.go" />
+        <option value="$PROJECT_DIR$/robot/dataAgent/OKexDataHandle.go" />
+        <option value="$PROJECT_DIR$/robot/initialize/initRobot.go" />
+        <option value="$PROJECT_DIR$/robot/conf/app.conf" />
+        <option value="$PROJECT_DIR$/robot/initialize/config.go" />
+        <option value="$PROJECT_DIR$/demo10.go" />
+        <option value="$PROJECT_DIR$/robot/utils/acounts.go" />
+        <option value="$PROJECT_DIR$/robot/initialize/accouts.go" />
+        <option value="$PROJECT_DIR$/spider.go" />
+        <option value="$PROJECT_DIR$/robot/utils/OKexTrade.go" />
+        <option value="$PROJECT_DIR$/robot/initialize/UserId.go" />
+        <option value="$PROJECT_DIR$/robot/utils/Mysql.go" />
+        <option value="$PROJECT_DIR$/robot/trade/server.go" />
+        <option value="$PROJECT_DIR$/robot/utils/ZGtrade.go" />
+        <option value="$PROJECT_DIR$/admin/controllers/robot_manager.go" />
+        <option value="$PROJECT_DIR$/demo0.go" />
+        <option value="$PROJECT_DIR$/robot/models/Huobi.go" />
+        <option value="$PROJECT_DIR$/robot/dataAgent/server.go" />
+        <option value="$PROJECT_DIR$/demo06.go" />
+        <option value="$PROJECT_DIR$/huobiTradeLimit.go" />
+        <option value="$PROJECT_DIR$/admin/conf/app.conf" />
+        <option value="$PROJECT_DIR$/demo07.go" />
+        <option value="$PROJECT_DIR$/robot/trade/HuobiTrade.go" />
+        <option value="$PROJECT_DIR$/robot/utils/HuobiTrade.go" />
+        <option value="$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go" />
+        <option value="$PROJECT_DIR$/robot/models/ZG.go" />
+        <option value="$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go" />
+        <option value="$PROJECT_DIR$/robot/trade/ZGTrade.go" />
       </list>
     </option>
   </component>
@@ -240,7 +904,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="823" />
+    <option name="height" value="821" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -274,8 +938,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,12 +948,88 @@
             <path>
               <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
               <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="routers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
               <item name="robot" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
+              <item name="dataAgent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
+              <item name="trade" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tradeRobot" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="tradeRobot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;tradeRobot&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,11 +1042,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/robot/utils" />
       <recent name="$PROJECT_DIR$/robot/server" />
       <recent name="$PROJECT_DIR$/robot" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/trade" />
-      <recent name="$PROJECT_DIR$/models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -323,15 +1061,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build demo04.go">
-    <configuration name="go build config.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="tradeRobot" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/robot/initialize/config.go" />
-      <directory value="$PROJECT_DIR$/" />
-    </configuration>
+  <component name="RunManager" selected="Go Build.go build huobiAsset.go">
     <configuration name="go build demo01.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="tradeRobot" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -340,29 +1070,36 @@
       <filePath value="$PROJECT_DIR$/demo01.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
-    <configuration name="go build demo04.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+    <configuration name="go build demo06.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="tradeRobot" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/demo04.go" />
+      <filePath value="$PROJECT_DIR$/demo06.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
-    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+    <configuration name="go build demo07.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="tradeRobot" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/robot/main/main.go" />
+      <filePath value="$PROJECT_DIR$/demo07.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+    <configuration name="go build huobiAsset.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="tradeRobot" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/main/main.go" />
-      <package value="tradeRobot" />
+      <filePath value="$PROJECT_DIR$/huobiAsset.go" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
+    <configuration name="go build huobiTradeLimit.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="tradeRobot" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/huobiTradeLimit.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -374,39 +1111,49 @@
       <package value="tradeRobot" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Go Build.go build main.go" />
-      <item index="1" class="java.lang.String" itemvalue="Go Build.go build demo04.go" />
-      <item index="2" class="java.lang.String" itemvalue="Go Build.go build demo01.go" />
-      <item index="3" class="java.lang.String" itemvalue="Go Build.go build main.go (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Go Build.go build config.go" />
+      <item index="0" class="java.lang.String" itemvalue="Go Build.go build demo01.go" />
+      <item index="1" class="java.lang.String" itemvalue="Go Build.go build demo06.go" />
+      <item index="2" class="java.lang.String" itemvalue="Go Build.go build demo07.go" />
+      <item index="3" class="java.lang.String" itemvalue="Go Build.go build huobiAsset.go" />
+      <item index="4" class="java.lang.String" itemvalue="Go Build.go build huobiTradeLimit.go" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Go Build.go build demo04.go" />
-        <item index="1" class="java.lang.String" itemvalue="Go Build.go build main.go (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Go Build.go build demo01.go" />
-        <item index="3" class="java.lang.String" itemvalue="Go Build.go build config.go" />
-        <item index="4" class="java.lang.String" itemvalue="Go Build.go build main.go" />
+        <item index="0" class="java.lang.String" itemvalue="Go Build.go build huobiAsset.go" />
+        <item index="1" class="java.lang.String" itemvalue="Go Build.go build demo07.go" />
+        <item index="2" class="java.lang.String" itemvalue="Go Build.go build huobiTradeLimit.go" />
+        <item index="3" class="java.lang.String" itemvalue="Go Build.go build demo06.go" />
+        <item index="4" class="java.lang.String" itemvalue="Go Build.go build demo01.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="823" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="821" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20600858" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26037195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850942" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24725275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42699724" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.364011" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2911932" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24104683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28732395" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -414,6 +1161,25 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42699724" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.446281" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26037195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850942" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28732395" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -422,101 +1188,171 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.toml" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="Gopkg.lock" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.md" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/dsn.go">
+    <entry file="file://$PROJECT_DIR$/robot/main/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/trade/readFromRedis.go" />
+    <entry file="file://$PROJECT_DIR$/robot/initialize/redis.go" />
+    <entry file="file://$PROJECT_DIR$/robot/initialize/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spider.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/initialize/UserId.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="75" column="32" lean-forward="false" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
           <folding>
-            <element signature="e#358#478#0" expanded="false" />
+            <element signature="e#20#222#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/go/src/database/sql/sql.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="1431" column="58" lean-forward="true" selection-start-line="1431" selection-start-column="58" selection-end-line="1431" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="430" column="0" lean-forward="false" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo02.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/initialize/mysql.go">
+    <entry file="file://$PROJECT_DIR$/admin/controllers/default.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
-          <caret line="2" column="5" lean-forward="false" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo03.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/astaxie/beego/logs/log.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="66" column="4" lean-forward="false" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/initialize/log.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
-            <element signature="e#21#88#0" expanded="false" />
+            <element signature="e#21#59#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo01.go">
+    <entry file="file://$PROJECT_DIR$/robot/initialize/etcd.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="29" column="27" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="29" selection-end-column="27" />
-          <folding>
-            <element signature="e#14#138#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/robot_start_controller.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="44" column="19" lean-forward="false" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robot/utils/Mysql.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
-            <element signature="e#15#182#0" expanded="false" />
+            <element signature="e#15#174#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/server/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/models/ID.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo04.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-301">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1541229555106" expanded="true" signature="626:685" ph="select deal_... user_deal_history_26" />
+            <marker date="1541229555106" expanded="true" signature="1119:1184" ph="select COUNT... user_deal_history_26" />
+            <marker date="1541229555106" expanded="true" signature="1332:1444" ph="select time,... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/initialize/accouts.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dump.rdb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/robot_stop_controller.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo05.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/huobiTradeLimit.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/dataAgent/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-65">
+          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/trade/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-301">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="e#15#67#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -529,25 +1365,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robot/initialize/redis.go">
+    <entry file="file://$PROJECT_DIR$/robot/conf/app.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#20#154#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/astaxie/beego/controller.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="386" column="21" lean-forward="false" selection-start-line="386" selection-start-column="21" selection-end-line="386" selection-end-column="21" />
+        <state relative-caret-position="180">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robot/models/symbols.go">
+    <entry file="file://$PROJECT_DIR$/admin/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/initialize/initRobot.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-579">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="e#20#97#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/robot_manager.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="44" column="51" lean-forward="false" selection-start-line="44" selection-start-column="51" selection-end-line="44" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/utils/acounts.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="38" column="5" lean-forward="false" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo03.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/huobiInsert.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/routers/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/robot_zg_finished.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-187">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gopkg.lock">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -555,334 +1447,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/robot_bind_controller.go">
+    <entry file="file://$PROJECT_DIR$/demo09.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        <state relative-caret-position="262">
+          <caret line="24" column="43" lean-forward="false" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robot/initialize/initSymbols.go">
+    <entry file="file://$PROJECT_DIR$/demo07.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/trade/readFromRedis.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/models/const.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/trade/OKexTrade.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-193">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/models/OKex.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/utils/OKexTrade.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1853">
-          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+        <state relative-caret-position="240">
+          <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
           <folding>
-            <element signature="e#15#198#0" expanded="false" />
+            <element signature="e#14#77#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/main.go">
+    <entry file="file://$PROJECT_DIR$/demo10.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#146#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/initialize/etcd.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="2" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        <state relative-caret-position="180">
+          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robot/initialize/config.go">
+    <entry file="file://$PROJECT_DIR$/demo02.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="63" column="47" lean-forward="false" selection-start-line="63" selection-start-column="47" selection-end-line="63" selection-end-column="47" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robot/utils/HuobiTrade.go">
+    <entry file="file://$PROJECT_DIR$/demo0.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-458">
-          <caret line="161" column="6" lean-forward="false" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/conf/app.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/initialize/initRobot.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="39" column="9" lean-forward="false" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/initialize/accouts.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-          <folding>
-            <element signature="e#20#83#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/utils/acounts.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/initialize/UserId.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="91" column="29" lean-forward="false" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo04.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2003">
+        <state relative-caret-position="40">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
-            <element signature="e#14#195#0" expanded="false" />
-            <marker date="1540961566818" expanded="true" signature="624:682" ph="select deal_... user_deal_history_26" />
-            <marker date="1540961566818" expanded="true" signature="624:683" ph="select deal_... user_deal_history_26" />
-            <marker date="1540961566818" expanded="true" signature="1117:1182" ph="select COUNT... user_deal_history_26" />
-            <marker date="1540961566818" expanded="true" signature="1330:1442" ph="select time,... " />
+            <element signature="e#14#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robot/utils/ZGtrade.go">
+    <entry file="file://$PROJECT_DIR$/huobiAsset.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-661">
-          <caret line="67" column="35" lean-forward="false" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="35" />
-          <folding>
-            <element signature="e#15#260#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/models/ZG.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/main/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-          <folding>
-            <element signature="e#14#171#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/dataAgent/USDT_CNZ_Rate.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        <state relative-caret-position="231">
+          <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robot/dataAgent/OKexDataHandle.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1489">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#19#210#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="20">
+          <caret line="117" column="39" lean-forward="false" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/models/tradeResult.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="21" column="21" lean-forward="false" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robot/models/Huobi.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+        <state relative-caret-position="175">
+          <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/trade/OKexTrade.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="154" column="18" lean-forward="false" selection-start-line="154" selection-start-column="18" selection-end-line="154" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/utils/ZGtrade.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/utils/HuobiTrade.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="211" column="20" lean-forward="false" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/utils/OKexTrade.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="195" column="1" lean-forward="false" selection-start-line="195" selection-start-column="1" selection-end-line="195" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/models/ZG.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/logs/tradeRobot.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="-559">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/robot_huobi_finished.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-336">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-97">
+          <caret line="228" column="0" lean-forward="false" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robot/trade/HuobiTrade.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="51" column="5" lean-forward="false" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="20" />
+        <state relative-caret-position="187">
+          <caret line="43" column="28" lean-forward="false" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
           <folding>
-            <element signature="e#15#104#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/dataAgent/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-          <folding>
-            <element signature="e#19#98#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/server/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-          <folding>
-            <element signature="e#16#124#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/dataAgent/ZGDataHandle.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3175">
-          <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding>
-            <element signature="e#19#180#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/trade/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-          <folding>
-            <element signature="e#15#67#0" expanded="true" />
+            <element signature="e#15#167#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robot/trade/ZGTrade.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="86" column="18" lean-forward="false" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
-          <folding>
-            <element signature="e#15#189#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/dataAgent/HuobidataHandle.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/routers/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/default.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="14" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/logs/tradeRobot.log">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="3602" column="0" lean-forward="true" selection-start-line="3602" selection-start-column="0" selection-end-line="3602" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="-2324">
-          <caret line="2614" column="0" lean-forward="false" selection-start-line="2614" selection-start-column="0" selection-end-line="2614" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/models/tradeResult.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="3" column="67" lean-forward="false" selection-start-line="3" selection-start-column="67" selection-end-line="3" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot/models/admin.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/robot_start_controller.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding>
-            <element signature="e#21#234#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/robot_stop_controller.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="287">
+          <caret line="90" column="51" lean-forward="false" selection-start-line="90" selection-start-column="51" selection-end-line="90" selection-end-column="51" />
           <folding />
         </state>
       </provider>

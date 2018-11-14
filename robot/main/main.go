@@ -6,6 +6,7 @@ import (
 	"tradeRobot/robot/initialize"
 	"tradeRobot/robot/trade"
 	"tradeRobot/robot/dataAgent"
+	"context"
 )
 
 func main() {
@@ -25,9 +26,11 @@ func main() {
 
 	initialize.AppConfig.Wg.Add(1)
 
-	dataAgent.AgentServerRun(symbol)
+	ctx := context.WithValue(context.Background(),"1","2")
 
-	trade.TradeServerRun(symbol)
+	dataAgent.AgentServerRun(symbol,ctx)
+
+	trade.TradeServerRun(symbol,ctx)
 
 	initialize.AppConfig.Wg.Wait()
 

@@ -4,14 +4,14 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/astaxie/beego/logs"
 	"tradeRobot/robot/models"
-	"sync"
 	"strconv"
 	_ "github.com/go-sql-driver/mysql"
 	"database/sql"
 )
 
 var (
-	once sync.Once
+	RobotDB *gorm.DB
+	ExchangeDB *sql.DB
 )
 
 type DBConfig struct {
@@ -23,7 +23,8 @@ type DBConfig struct {
 	Charset  string `default:"utf8"`
 }
 
-func LoadRobotDB()(*gorm.DB,error) {
+func LoadRobotDB() (*gorm.DB, error) {
+	var err error
 	dbConfig := new(DBConfig)
 	dbConfig.Path = "127.0.0.1"
 	dbConfig.Port = 3306
@@ -31,26 +32,27 @@ func LoadRobotDB()(*gorm.DB,error) {
 	dbConfig.User = "root"
 	dbConfig.Password = "root"
 
-	db, err := GetDBConnection(dbConfig)
+	RobotDB, err = GetDBConnection(dbConfig)
 	if err != nil {
 		return nil, err
 	}
-	return db, nil
+	return RobotDB, err
 }
 
 func InitRobotDB() (error) {
-	db, err := LoadRobotDB()
-	defer db.Close()
+	var err error
+	RobotDB, err = LoadRobotDB()
+
 	if err != nil {
-		logs.Error("loadDB failed err:",err)
+		logs.Error("loadDB failed err:", err)
 	}
-	if !db.HasTable(&models.HuobiTradeResults{}) {
-		if err = db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").CreateTable(&models.HuobiTradeResults{}).Error; err != nil {
+	if !RobotDB.HasTable(&models.HuobiTradeResults{}) {
+		if err = RobotDB.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").CreateTable(&models.HuobiTradeResults{}).Error; err != nil {
 			return err
 		}
 	}
-	if !db.HasTable(&models.ZGTradeResults{}) {
-		if err = db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").CreateTable(&models.ZGTradeResults{}).Error; err != nil {
+	if !RobotDB.HasTable(&models.ZGTradeResults{}) {
+		if err = RobotDB.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").CreateTable(&models.ZGTradeResults{}).Error; err != nil {
 			return err
 		}
 	}
@@ -59,29 +61,25 @@ func InitRobotDB() (error) {
 }
 
 func GetDBConnection(conf *DBConfig) (db *gorm.DB, err error) {
-	once.Do(func() {
-		str := conf.User + ":" +
-			conf.Password + "@tcp(" +
-			conf.Path + ":" +
-			strconv.FormatUint(uint64(conf.Port), 10) + ")/" +
-			conf.DbName + "?" +
-			conf.Charset + "&parseTime=True&loc=Local"
-		db, err = gorm.Open("mysql", str)
-		if err!= nil {
-			logs.Error("gorm open mysql failed err:",err)
-		}
 
-		db.DB().SetMaxIdleConns(200)
-		db.DB().SetMaxOpenConns(100)
-	})
+	str := conf.User + ":" +
+		conf.Password + "@tcp(" +
+		conf.Path + ":" +
+		strconv.FormatUint(uint64(conf.Port), 10) + ")/" +
+		conf.DbName + "?" +
+		conf.Charset + "&parseTime=True&loc=Local"
+	db, err = gorm.Open("mysql", str)
+	if err != nil {
+		logs.Error("gorm open mamria failed err:", err)
+	}
 	return
 }
 
-func LoadExchangeDB() (*sql.DB,error) {
+func LoadExchangeDB() (*sql.DB, error) {
 	conf := new(DBConfig)
-	conf.Path = "47.99.74.117"
+	conf.Path = "exchange-readonly.crdydmbkv0de.ap-northeast-1.rds.amazonaws.com"
 	conf.User = "exchange"
-	conf.Password = "exchange"
+	conf.Password = "7wdUVYriIyeMI2zaicpYnNy2nT6YFUUm"
 	conf.Port = 3306
 	conf.DbName = "trade_history"
 
@@ -92,10 +90,10 @@ func LoadExchangeDB() (*sql.DB,error) {
 		conf.DbName + "?" +
 		conf.Charset
 
-	db, err := sql.Open("mysql",str)
+	db, err := sql.Open("mysql", str)
 	if err != nil {
-		logs.Error("sql open mysql failed err:",err)
-		return nil,err
+		logs.Error("sql open mysql failed err:", err)
+		return nil, err
 	}
-	return db,nil
+	return db, nil
 }

@@ -165,11 +165,12 @@ func (r *ZTRestfulApiRequest) ZTQueyMd5Sign() {
 
 	var data = make(map[string]string)
 	data["api_key"] = r.API_KEY
+
 	r.Sign = ZGSign(data, r.SECRET_KEY)
 }
 
 // 获取用户资产
-func (r *ZTRestfulApiRequest) ZTGetUserAssets() {
+func (r *ZTRestfulApiRequest) ZTGetUserAssets() (error,string) {
 	v := url.Values{}
 	v.Set("api_key", r.API_KEY)
 	v.Set("secret_key", r.SECRET_KEY)
@@ -180,19 +181,20 @@ func (r *ZTRestfulApiRequest) ZTGetUserAssets() {
 	resp, err := http.Post(assetsUrl, models.ZG_Content_type, rd)
 	if err != nil {
 		logs.Error("http.Post GetUserAssets failed err:", err)
-		return
+		return err ,""
 	}
 	defer resp.Body.Close()
 
 	Doc, err := goquery.NewDocumentFromReader(resp.Body)
+
 	if err != nil {
 		logs.Error("goquery.NewDocumentFromReader failed err:", err)
-		return
+		return err ,""
 	}
 	if resp.StatusCode == http.StatusOK {
-		fmt.Println("Doc.Text:", Doc.Text())
+		return nil,Doc.Text()
 	} else {
-		fmt.Println("Doc.Text:", Doc.Text())
+		return err ,""
 	}
 }
 
@@ -220,7 +222,7 @@ func (r *ZTRestfulApiRequest) ZTTradeLimit() {
 		logs.Error("goquery.NewDocumentFromReader failed err:", err)
 		return
 	}
-	logs.Info("交易成功")
+	logs.Info("ZG挂单成功")
 	tradeNum ++
 	fmt.Println("tradeNum:", tradeNum)
 	resp.Body.Close()
@@ -251,7 +253,6 @@ func (r *ZTRestfulApiRequest) ZTTradeMarket() {
 			return
 		}
 		logs.Info("市价交易成功")
-		//logs.Info(doc.Text())
 	}
 	resp.Body.Close()
 }
@@ -291,7 +292,6 @@ func (r *ZTRestfulApiRequest) ZTOrderFinished() (string) {
 }
 
 func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
-
 	v := url.Values{}
 	v.Set("market", r.PostDataQueryPending.Market)
 	v.Set("offset", strconv.Itoa(r.PostDataQueryPending.Offset))
@@ -308,7 +308,8 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 		logs.Error("http.Post tradeLimit failed err:", err)
 		return nil
 	}
-	fmt.Println("resp.StatusCode:", resp.StatusCode)
+	// ----测试----
+	// fmt.Println("resp.StatusCode:", resp.StatusCode)
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		var pendingOrders = &PendingOrder{
@@ -366,9 +367,9 @@ func (r *ZTRestfulApiRequest) ZTCancelOrder() {
 	}
 	if resp.StatusCode == http.StatusOK {
 		_, err = goquery.NewDocumentFromReader(resp.Body)
-		fmt.Println("取消订单成功")
+		logs.Info("取消订单成功")
 		cancelNum ++
-		fmt.Println("cancelNum:", cancelNum)
+		logs.Info("cancelNum:", cancelNum)
 		resp.Body.Close()
 		return
 	}
@@ -378,6 +379,7 @@ func (r *ZTRestfulApiRequest) ZTCancelOrder() {
 }
 
 func ZGSign(data map[string]string, secretKey string) (sign string) {
+
 	var signStr string
 	tempSlice := make([]string, 0)
 	for key := range data {

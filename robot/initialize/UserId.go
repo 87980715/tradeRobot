@@ -25,6 +25,16 @@ type ZGAccountReturn struct {
 	Code int `json:"code"`
 }
 
+type UserAssets struct {
+	Code int `json:"code"`
+	Message string `json:"message"`
+	Result  *Result `json:"result"`
+
+}
+
+type Result struct {
+	User_id int `json:"user_id"`
+}
 func HuobiUserId() (userId int, err error) {
 
 	data := make(map[string]string)
@@ -56,15 +66,39 @@ func HuobiUserId() (userId int, err error) {
 	return accountReturn.Data[0].Id, nil
 }
 
+func ZGUserId() (userId int, err error) {
+
+	account := utils.ZTAccount
+	account.API_KEY = models.ZT_API_KEY
+	account.SECRET_KEY = models.ZT_SECRET_KEY
+	account.ZTQueyMd5Sign()
+
+	err, data := account.ZTGetUserAssets()
+	if err != nil {
+		logs.Error("get user assets failed err:", err)
+		return
+	}
+
+	var userAssets = &UserAssets{}
+	err = json.Unmarshal([]byte(data), userAssets)
+	if err != nil {
+		logs.Error("json.Unmarshal user assets failed err:", err)
+		return
+	}
+	userId = userAssets.Result.User_id
+
+	return
+}
+
 func VerfiZGKey() (bool) {
 	var flag = true
 	var data = make(map[string]string)
-	data["api_key"] = models.ZG_API_KEY
-	sign := utils.ZGSign(data, models.ZG_SECRET_KEY)
+	data["api_key"] = models.ZT_API_KEY
+	sign := utils.ZGSign(data, models.ZT_SECRET_KEY)
 
 	v := url.Values{}
-	v.Set("api_key", models.ZG_API_KEY)
-	v.Set("secret_key", models.ZG_SECRET_KEY)
+	v.Set("api_key", models.ZT_API_KEY)
+	v.Set("secret_key", models.ZT_SECRET_KEY)
 	v.Set("sign", sign)
 	rd := ioutil.NopCloser(strings.NewReader(v.Encode()))
 	assetsUrl := models.ZG_API_URL + "user"
@@ -92,6 +126,6 @@ func VerfiZGKey() (bool) {
 	if accountReturn.Code != 0 {
 		flag = false
 	}
-
 	return flag
 }
+

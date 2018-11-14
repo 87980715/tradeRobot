@@ -13,8 +13,6 @@ import (
 	"context"
 )
 
-//var DepthsChan = make(chan map[string]string, 100)
-
 // 限价交易
 func TradeLimitZG(ctx context.Context) {
 	postDataLimit := &utils.ZTPostDataLimit{}
@@ -32,7 +30,7 @@ Loop:
 				continue Loop
 			}
 			symbolStrs := strings.Split(postDataLimit.Market, "_")
-			symbol := strings.ToUpper(symbolStrs[0]) + "_" + "CNZ"
+			symbol := strings.ToUpper(symbolStrs[0]) + "_" + "CNT"
 			//账户进行限价交易
 			account := utils.ZTAccount
 			account.PostDataLimit.Market = symbol
@@ -44,8 +42,9 @@ Loop:
 			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", a*models.TradeAmountMultiple)
 			// 签名
 			account.ZTLimitMd5Sign()
-			fmt.Printf("%s 挂单价格：%s  数量：%s\n", account.PostDataLimit.Market, account.PostDataLimit.Price, account.PostDataLimit.Amount)
+
 			account.ZTTradeLimit()
+			logs.Info("%s ZT挂单价格：%s  数量：%s\n", account.PostDataLimit.Market, account.PostDataLimit.Price, account.PostDataLimit.Amount)
 		}
 	}
 }
@@ -62,7 +61,7 @@ Loop:
 			continue Loop
 		}
 		symbolStrs := strings.Split(postDataLimit.Market, "_")
-		symbol := strings.ToUpper(symbolStrs[0]) + "_" + "CNZ"
+		symbol := strings.ToUpper(symbolStrs[0]) + "_" + "CNT"
 
 		// 交易
 		account := utils.ZTAccount
@@ -89,7 +88,7 @@ func CanleOrdersZG(symbol []string,ctx context.Context) {
 			account := utils.ZTAccount
 			account.PostDataQueryPending.Limit = 20
 			account.PostDataQueryPending.Market = market
-			account.PostDataQueryPending.Offset = 300
+			account.PostDataQueryPending.Offset = 200 // 300
 			account.ZTQueryPendingMd5Sign()
 			postDatas := account.ZTQueryPending()
 			// 分开处理

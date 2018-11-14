@@ -4,7 +4,6 @@ import (
 	"github.com/astaxie/beego"
 	"strings"
 	"github.com/astaxie/beego/logs"
-	"encoding/json"
 	"tradeRobot/robot/models"
 )
 
@@ -34,13 +33,10 @@ func (c *HuobiFinishedController) HuobiFinished() {
 		result["code"] = 1001
 		result["message"] = "操作失败"
 	}
-
 	defer db.Close()
+
 	var tradeResult []models.HuobiTradeResults
 
 	db.Model(&models.HuobiTradeResults{}).Where(&models.HuobiTradeResults{Symbol: symbol}).Find(&tradeResult)
-
-	bytes, _ := json.Marshal(tradeResult)
-
-	result["results"] = string(bytes)
+	result["results"] = tradeResult
 }

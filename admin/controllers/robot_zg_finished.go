@@ -5,7 +5,6 @@ import (
 	"tradeRobot/robot/models"
 	"github.com/astaxie/beego/logs"
 	"strings"
-	"encoding/json"
 	"github.com/jinzhu/gorm"
 	"strconv"
 )
@@ -37,24 +36,20 @@ func (c *ZGFinishedController) ZGFinished() {
 
 	s := strings.ToUpper(c.GetString("symbol"))
 	tempSymbol := strings.Split(s, "-")
-	symbol := tempSymbol[0] + "_" + "CNZ"
+	symbol := tempSymbol[0] + "_" + "CNT"
 
 	db, err := LoadRobotDB()
-
 	if err != nil {
 		logs.Error("load robotDB failed err:", err)
 		result["code"] = 1001
 		result["message"] = "操作失败"
 	}
-
 	defer db.Close()
-	var tradeResult []models.ZGTradeResults
 
+	var tradeResult []models.ZGTradeResults
 	db.Model(&models.ZGTradeResults{}).Where(&models.ZGTradeResults{Symbol: symbol}).Find(&tradeResult)
 
-	bytes, _ := json.Marshal(tradeResult)
-
-	result["results"] = string(bytes)
+	result["results"] = tradeResult
 }
 
 func LoadRobotDB() (*gorm.DB, error) {
@@ -73,6 +68,7 @@ func LoadRobotDB() (*gorm.DB, error) {
 		conf.Charset + "&parseTime=True&loc=Local"
 	db, err := gorm.Open("mysql", str)
 	if err != nil {
+		logs.Error("gorm open db failed")
 		return nil, err
 	}
 	return db, nil

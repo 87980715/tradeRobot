@@ -3,13 +3,13 @@ package dataAgent
 import (
 	"tradeRobot/robot/utils"
 	"github.com/astaxie/beego/logs"
-	"encoding/json"
 	"strconv"
 	"fmt"
 	"tradeRobot/robot/models"
 	"strings"
 	"time"
 	"context"
+	"database/sql"
 )
 
 type ZTCurTicker struct {
@@ -28,123 +28,121 @@ type ZTTicker struct {
 }
 
 var ZGTradeResult = make(chan *models.ZGTradeResults, 100)
+var ZGTradeRecords = make(chan *utils.Record, 100)
+var ZGDealIds = make(chan []int, 100)
 
 // 从ZG交易所中，获取账户真实成交记录,并进行处处理
-func GetFinishedOrdersFromZT(symbol []string, ctx context.Context) {
-	var preTradeId int64
+func GetDealOrdersZG(ctx context.Context) {
 	for {
+		time.Sleep(1000 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return
 		default:
-			orders := QueryDealZG(symbol)
-			var ordersFinished = &utils.ZTOrderFinishedResp{
-				Result: &utils.Result{
-					Records: make([]*utils.Record, 10),
-				},
-			}
-			err := json.Unmarshal([]byte(orders), ordersFinished)
-			if err != nil {
-				logs.Error("json.Unmarshal curOrdersFinished failed err:", err)
-				continue
-			}
-			records := ordersFinished.Result.Records
-			for _, r := range records {
-				if r.Id > preTradeId {
-					dealIds := QueryDealIds(r.Id, r.User)
-					//fmt.Println("dealIds:", dealIds)
-					if len(dealIds) != 0 {
-						record := QureyDealOerder(dealIds, r.User)
-						// ------测试----
-						//fmt.Println("record：", record)
-						if record != nil {
-							var postDataLimit = &utils.HuobiPostDataLimit{}
-							str := strings.Split(record.Market, "_")
-							postDataLimit.Symbol = str[0] + "usdt"
-							if record.Side == 1 {
-								postDataLimit.Type = "buy-limit"
-								p, _ := strconv.ParseFloat(record.Price, 64)
-								// 买单价格 ，去除成交手续费
-								d, _ := strconv.ParseFloat(record.Deal_fee, 64)
-								price := (p/6.88)*(1-0.002) - d
-								postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
-							} else {
-								postDataLimit.Type = "sell-limit"
-								p, _ := strconv.ParseFloat(record.Price, 64)
-								// 卖单价格 ，包含成交手续费
-								d, _ := strconv.ParseFloat(record.Deal_fee, 64)
-								price := (p/6.88)*(1+0.002) + d
-								postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
-							}
-							postDataLimit.Amount = record.Amount
-							postDataLimit.Account_id = models.Huobi_Account_ID
-							utils.HuobiOrders <- postDataLimit
-						}
-					}
+			record := <-ZGTradeRecords
+			if record != nil {
+				var postDataLimit = &utils.HuobiPostDataLimit{}
+				str := strings.Split(record.Market, "_")
+				postDataLimit.Symbol = strings.ToLower(str[0] + "eth")
+				if record.Side == 1 {
+					postDataLimit.Type = "buy-limit"
+					p, _ := strconv.ParseFloat(record.Price, 64)
+					// 买单价格 ，去除成交手续费
+					price := p*(1-0.002)
+					postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
+				} else {
+					postDataLimit.Type = "sell-limit"
+					p, _ := strconv.ParseFloat(record.Price, 64)
+					// 卖单价格 ，包含成交手续费
+					price := p*(1+0.002)
+					postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 				}
+				postDataLimit.Amount = record.Amount
+				postDataLimit.Account_id = models.Huobi_Account_ID
+				//------测试-------
+				fmt.Println("火币挂单数据:", postDataLimit)
+				utils.HuobiOrders <- postDataLimit
+
 			}
-			// 去重
-			preTradeId = records[0].Id
 		}
 	}
 }
 
-// 查询ZG已成交订单
-func QueryDealZG(symbol []string) string {
+// 查询ZT已成交订单
+func QueryRealDealZG(ctx context.Context) {
 
-	account := utils.ZTAccount
-	account.PostDataOrderFinished.Market = strings.ToUpper(symbol[0] + "_" + "CNZ")
-	account.PostDataOrderFinished.Side = "0"
-	account.PostDataOrderFinished.Limit = "10"
-	account.PostDataOrderFinished.Offset = "0"
-	account.PostDataOrderFinished.Start_time = "0"
-	account.PostDataOrderFinished.Start_time = "0"
+	userId, _ := strconv.ParseInt(models.ZGUserID, 10, 64)
+	for {
+		time.Sleep(1000 * time.Millisecond)
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			dealIds := <-ZGDealIds
+			if len(dealIds) != 0 {
+				QureyDealOerder(utils.ExchangeDB, dealIds, userId)
+			}
+		}
 
-	account.ZTQueryDealMd5Sign()
-	orders := account.ZTOrderFinished()
-
-	return orders
-
+	}
 }
 
-func QueryDealIds(orderId, userId int64) ([]int) {
+func QueryDealIds(symbol []string, ctx context.Context) {
 
-	db, err := utils.LoadExchangeDB()
-	if err != nil {
-		logs.Error("initMaria failed err:", err)
-		return nil
+	userId, _ := strconv.ParseInt(models.ZGUserID, 10, 64)
+	for {
+		time.Sleep(1000 * time.Millisecond)
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			key := symbol[0] + "cnt" + "ZGDealId"
+			table := fmt.Sprintf("user_deal_history_%d", userId%100)
+			queryStr := "select deal_id from " + table + " order by id desc limit " + models.ZGQueryDealOrderSize
+			//fmt.Println("queryStr:",queryStr)
+			row, err := utils.ExchangeDB.Query(queryStr)
+			if err != nil {
+				logs.Error("select deal_id form %s failed err %v:", table, err)
+				return
+			}
+			var dealId = 0
+			dealIds := make([]int, 0)
+			for row.Next() {
+				row.Scan(&dealId)
+				if int64(dealId) > models.ZGPreDealId[key] {
+					dealIds = append(dealIds, dealId)
+				}
+			}
+			if len(dealIds) != 0 {
+				models.ZGPreDealId[key] = int64(dealIds[0])
+			}
+			row.Close()
+			ZGDealIds <- dealIds
+		}
 	}
-	defer db.Close()
-	table := fmt.Sprintf("user_deal_history_%d", userId%100)
-	queryStr := "select deal_id from " + table + " where order_id = " + strconv.Itoa(int(orderId))
-
-	row, err := db.Query(queryStr)
-	if err != nil {
-		logs.Error("select deal_id form user_deal_history_26 failed err:", err)
-		return nil
-	}
-	defer row.Columns()
-	var dealId = 0
-	dealIds := make([]int, 0)
-	for row.Next() {
-		row.Scan(&dealId)
-		dealIds = append(dealIds, dealId)
-	}
-	return dealIds
 }
-
-func QureyDealOerder(dealIds []int, userId int64) (data *utils.Record) {
-	db, err := utils.LoadExchangeDB()
-	if err != nil {
-		logs.Error("initMaria failed err:", err)
-		return
+func QureyDealOerder(db *sql.DB, dealIds []int, userId int64) {
+	logs.Info("dealIds:", dealIds)
+	m := make(map[int]int)
+	// 统计每个dealId 出现的次数
+	for _, v := range dealIds {
+		if m[v] != 0 {
+			m[v] ++
+		} else {
+			m[v] = 1
+		}
 	}
-	defer db.Close()
-	n := 0
 	table := fmt.Sprintf("user_deal_history_%d", userId%100)
-	var CreatedAt, UserId, TradeId, Symbol, Type, Price, DealAmount, DealFee, Total string
-	for _, id := range dealIds {
-		queryStr := "select COUNT(deal_id) from " + table + " where deal_id = " + strconv.Itoa(id)
+	var UserId, TradeId, Symbol, Type, Price, DealAmount, DealFee, Total string
+	var CreatedAt float64
+	var n int
+	// 出现两次的即为虚拟交易
+	for k, v := range m {
+		if v == 2 {
+			continue
+		}
+		//fmt.Println("dealId:", k)
+		queryStr := "select COUNT(deal_id) from " + table + " where deal_id = " + strconv.Itoa(k) + " and " + " user_id = " + strconv.Itoa(int(userId))
 		row, err := db.Query(queryStr)
 		if err != nil {
 			logs.Error(" select count(deal_id) failed err:", err)
@@ -152,29 +150,32 @@ func QureyDealOerder(dealIds []int, userId int64) (data *utils.Record) {
 		}
 		for row.Next() {
 			row.Scan(&n)
-			// -------测试-----
 			// fmt.Println("n:", n)
 			// 提取真实交易
 			if n != 2 {
-				qureyStr := "select time,user_id,market,order_id,side,price,amount,deal,deal_fee from " + table + " where deal_id = " + strconv.Itoa(id)
+				qureyStr := "select time,user_id,market,order_id,side,price,amount,deal,deal_fee from " + table + " where deal_id = " + strconv.Itoa(k)
 				r, err := db.Query(qureyStr)
 				if err != nil {
 					logs.Error(" select count(deal_id) failed err:", err)
 					return
 				}
 				for r.Next() {
-					row.Scan(&CreatedAt, &UserId, &Symbol, &TradeId, &Type, &Price, &DealAmount, &Total, &DealFee)
+					r.Scan(&CreatedAt, &UserId, &Symbol, &TradeId, &Type, &Price, &DealAmount, &Total, &DealFee)
 					// huobi 交易所需数据
+					//fmt.Println("数据库数据:",CreatedAt, UserId, TradeId, Symbol, Type, Price, DealAmount, DealFee, Total)
+					data := &utils.Record{}
 					data.Amount = DealAmount
 					data.Price = Price
 					side, _ := strconv.Atoi(Type)
 					data.Side = side
 					data.Market = Symbol
 					data.Deal_fee = DealFee
-
+					ZGTradeRecords <- data
+					// 写入数据库的数据
 					tradeResult := &models.ZGTradeResults{}
 					tradeResult.Type = Type
-					tradeResult.Created_at = CreatedAt
+					CreatedAt = CreatedAt * 1000
+					tradeResult.Created_at = strconv.FormatFloat(CreatedAt, 'E', -1, 64)
 					tradeResult.User_id = UserId
 					tradeResult.Trade_id = TradeId
 					tradeResult.Symbol = Symbol
@@ -182,26 +183,16 @@ func QureyDealOerder(dealIds []int, userId int64) (data *utils.Record) {
 					tradeResult.Deal_amount = DealAmount
 					tradeResult.Deal_fees = DealFee
 					tradeResult.Total = Total
-
 					ZGTradeResult <- tradeResult
-					//fmt.Println(CreatedAt, UserId, TradeId, Symbol, Type, Price, DealAmount, DealFee, CreatedAt, Total)
 				}
-				r.Columns()
+				r.Close()
 			}
-			row.Columns()
+			row.Close()
 		}
 	}
-	return
 }
 
 func ZGInsertToDB(ctx context.Context) {
-	db, err := utils.LoadRobotDB()
-	if err != nil {
-		logs.Error("loadDB failed err:", err)
-		return
-	}
-	defer db.Close()
-
 	for {
 		select {
 		case <-ctx.Done():
@@ -209,6 +200,7 @@ func ZGInsertToDB(ctx context.Context) {
 		default:
 			time.Sleep(time.Second)
 			tradeResult := <-ZGTradeResult
+			db := utils.RobotDB
 			if err := db.Create(tradeResult).Error; err != nil {
 				logs.Error("insert failed into Huobi tradeResult ")
 				return
@@ -216,6 +208,7 @@ func ZGInsertToDB(ctx context.Context) {
 		}
 	}
 }
+
 
 /*
 // 判断交易对是否属于OKex

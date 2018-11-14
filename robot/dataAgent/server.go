@@ -10,17 +10,30 @@ func AgentServerRun(symbol []string,ctx context.Context) {
 
 	go func(symbol []string,ctx context.Context) {
 		initialize.AppConfig.Wg.Add(1)
-		GetFinishedOrdersFromZT(symbol,ctx)
+		GetTradesHuobiMtEth(symbol, models.Huobi_OrdersSize,ctx)
 	}(symbol,ctx)
+
+	go func(ctx context.Context) {
+		initialize.AppConfig.Wg.Add(1)
+		GetDealOrdersZG(ctx)
+	}(ctx)
 
 	go func(symbol []string,ctx context.Context) {
-		initialize.AppConfig.Wg.Add(1)
-		GetTradesHuobi(symbol, models.Huobi_OrdersSize,ctx)
+		QueryDealIds(symbol,ctx)
 	}(symbol,ctx)
 
-	/*
-	go func() {
-		ZGInsertToDB()
+	go func(ctx context.Context){
+		initialize.AppConfig.Wg.Add(1)
+		QueryRealDealZG(ctx)
+	}(ctx)
+
+	go func(ctx context.Context) {
+		initialize.AppConfig.Wg.Add(1)
+		ZGInsertToDB(ctx)
+	}(ctx)
+
+	// 获取usdt价格
+	go func(){
+		GetHuobiUsdtPrice()
 	}()
-	*/
 }

@@ -115,12 +115,12 @@ Loop:
 							postDataLimit.Side = "2"
 							p, _ := strconv.ParseFloat(trade.Price, 64)
 							// 设置价格
-							price := p*6.88 + rand.Float64()
+							price := p*models.UsdtPrice["Huobi"] + rand.Float64()
 							postDataLimit.Price = strconv.FormatFloat(price, 'E', -1, 64)
 						}else{
 							postDataLimit.Side = "2"
 							p, _ := strconv.ParseFloat(trade.Price, 64)
-							price := p*6.88 - rand.Float64()
+							price := p*models.UsdtPrice["Huobi"] - rand.Float64()
 							postDataLimit.Price = strconv.FormatFloat(price, 'E', -1, 64)
 						}
 					} else {
@@ -129,12 +129,12 @@ Loop:
 							postDataLimit.Side = "1"
 							p, _ := strconv.ParseFloat(trade.Price, 64)
 							// 设置价格
-							price := p*6.88 + rand.Float64()
+							price := p*models.UsdtPrice["Huobi"] + rand.Float64()
 							postDataLimit.Price = strconv.FormatFloat(price, 'E', -1, 64)
 						} else {
 							postDataLimit.Side = "1"
 							p, _ := strconv.ParseFloat(trade.Price, 64)
-							price := p*6.88 - rand.Float64()
+							price := p*models.UsdtPrice["Huobi"] - rand.Float64()
 							postDataLimit.Price = strconv.FormatFloat(price, 'E', -1, 64)
 						}
 					}
