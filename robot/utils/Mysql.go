@@ -27,6 +27,7 @@ func LoadRobotDB() (*gorm.DB, error) {
 	var err error
 	dbConfig := new(DBConfig)
 	dbConfig.Path = "127.0.0.1"
+	//dbConfig.Path = "192.168.0.33"
 	dbConfig.Port = 3306
 	dbConfig.DbName = "tradeRobot"
 	dbConfig.User = "root"
@@ -77,8 +78,10 @@ func GetDBConnection(conf *DBConfig) (db *gorm.DB, err error) {
 
 func LoadExchangeDB() (*sql.DB, error) {
 	conf := new(DBConfig)
+	//conf.Path = "47.99.74.117"
 	conf.Path = "exchange-readonly.crdydmbkv0de.ap-northeast-1.rds.amazonaws.com"
 	conf.User = "exchange"
+	//conf.Password = "exchange"
 	conf.Password = "7wdUVYriIyeMI2zaicpYnNy2nT6YFUUm"
 	conf.Port = 3306
 	conf.DbName = "trade_history"

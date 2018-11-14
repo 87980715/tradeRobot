@@ -33,6 +33,6 @@ var (
 	HuobiUserID         string
 
 	// 默认值设置
-	UsdtPrice = map[string]float64{"huobi":6.88}
+	UsdtPrice = map[string]float64{"huobi":6.84}
 	EthPrice = make(map[string]float64)
 )

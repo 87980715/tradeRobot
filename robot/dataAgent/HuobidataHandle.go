@@ -183,6 +183,7 @@ func GetHuobiUsdtPrice() {
 
 	var url = "https://otc.huobi.br.com/zh-cn/trade/buy-usdt/"
 	for {
+
 		opts := []selenium.ServiceOption{}
 		caps := selenium.Capabilities{
 			"browserName": "chrome",
@@ -236,7 +237,7 @@ func GetHuobiUsdtPrice() {
 		WRMuLock.Unlock()
 
 		fmt.Println("usdtPrice:", p)
-		time.Sleep(40 * time.Second)
+		time.Sleep(20 * time.Second)
 	}
 }
 
