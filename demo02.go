@@ -1,18 +1,20 @@
 package main
 
 import (
+	"net/http"
 	"fmt"
-	"math/rand"
-	"time"
 )
 
 func main() {
+	f1()
+}
 
-	rand.Seed(time.Now().UnixNano())
-	a := rand.Float64()
-	b := rand.Float64()
-	c := rand.Intn(10)
-	d := rand.Intn(10)
+func f1() {
 
-	fmt.Println(a,b,c,d)
+	resp,err := http.Get("https://www.huobi.com/zh-cn/mt_eth/exchange/")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer resp.Body.Close()
 }

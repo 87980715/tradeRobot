@@ -213,19 +213,22 @@ func (r *ZTRestfulApiRequest) ZTTradeLimit() {
 	rd := ioutil.NopCloser(strings.NewReader(v.Encode()))
 	limitUrl := models.ZG_API_URL + "trade/limit"
 	resp, err := http.Post(limitUrl, models.ZG_Content_type, rd)
+
 	if err != nil {
 		logs.Error("http.Post tradeLimit failed err:", err)
 		return
 	}
+	defer resp.Body.Close()
 	_, err = goquery.NewDocumentFromReader(resp.Body)
+
 	if err != nil {
 		logs.Error("goquery.NewDocumentFromReader failed err:", err)
 		return
 	}
 	logs.Info("ZG挂单成功")
 	tradeNum ++
-	fmt.Println("tradeNum:", tradeNum)
-	resp.Body.Close()
+	logs.Info("tradeNum:", tradeNum)
+
 }
 
 // 进行市价交易
@@ -245,16 +248,17 @@ func (r *ZTRestfulApiRequest) ZTTradeMarket() {
 		logs.Error("http.Post tradeLimit failed err:", err)
 		return
 	}
-
+	defer resp.Body.Close()
 	if resp.StatusCode == http.StatusOK {
 		_, err := goquery.NewDocumentFromReader(resp.Body)
+
 		if err != nil {
 			logs.Error("goquery.NewDocumentFromReader failed err:", err)
 			return
 		}
 		logs.Info("市价交易成功")
 	}
-	resp.Body.Close()
+	// resp.Body.Close()
 }
 
 // 查询已成交订单
@@ -277,16 +281,18 @@ func (r *ZTRestfulApiRequest) ZTOrderFinished() (string) {
 	resp, err := http.Post(OrdersUrl, models.ZG_Content_type, rd)
 	if err != nil {
 		logs.Error("http post finished order failed err:", err)
+		return ""
 	}
+	defer resp.Body.Close()
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
+		resp.Body.Close()
 		if err != nil {
 			logs.Error("goquery.NewDocumentFromReader failed err:", err)
 		}
 		return doc.Text()
-		resp.Body.Close()
+
 	}
-	resp.Body.Close()
 	logs.Error("查询用户已成交订单失败")
 	return ""
 }
@@ -305,9 +311,10 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 	OrdersUrl := models.ZG_API_URL + "order/pending"
 	resp, err := http.Post(OrdersUrl, models.ZG_Content_type, rd)
 	if err != nil {
-		logs.Error("http.Post tradeLimit failed err:", err)
+		logs.Error("http.Post query pending failed err:", err)
 		return nil
 	}
+	defer resp.Body.Close()
 	// ----测试----
 	// fmt.Println("resp.StatusCode:", resp.StatusCode)
 	if resp.StatusCode == http.StatusOK {
@@ -319,7 +326,7 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 		}
 		err = json.Unmarshal([]byte(doc.Text()), pendingOrders)
 		if err != nil {
-			logs.Error("http.Post tradeLimit failed err:", err)
+			logs.Error("http.Post query pending failed err:", err)
 		}
 
 		var cancelOrders []*ZTPostDataCancel
@@ -337,10 +344,9 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 				}
 			}
 		}
-		resp.Body.Close()
+		logs.Error("查询未成交订单成功")
 		return cancelOrders
 	}
-	resp.Body.Close()
 	time.Sleep(3 * time.Second)
 	logs.Error("查询未成交订单失败")
 	return nil
@@ -362,9 +368,10 @@ func (r *ZTRestfulApiRequest) ZTCancelOrder() {
 	OrdersUrl := models.ZG_API_URL + "trade/cancel"
 	resp, err := http.Post(OrdersUrl, models.ZG_Content_type, rd)
 	if err != nil {
-		logs.Error("http.Post tradeLimit failed err:", err)
+		logs.Error("http.Post cancel order failed err:", err)
 		return
 	}
+	defer resp.Body.Close()
 	if resp.StatusCode == http.StatusOK {
 		_, err = goquery.NewDocumentFromReader(resp.Body)
 		logs.Info("取消订单成功")
@@ -374,7 +381,7 @@ func (r *ZTRestfulApiRequest) ZTCancelOrder() {
 		return
 	}
 	logs.Error("取消订单失败")
-	resp.Body.Close()
+	//resp.Body.Close()
 	return
 }
 

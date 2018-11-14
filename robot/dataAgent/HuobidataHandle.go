@@ -66,6 +66,7 @@ Loop:
 			tradesRes, err := http.Get(tradesUrl)
 			if err != nil {
 				logs.Error("http.Get trades failed from huobi err:", err)
+				tradesRes.Body.Close()
 				continue Loop
 			}
 			mtEthDoc, err := goquery.NewDocumentFromReader(tradesRes.Body)
@@ -96,6 +97,7 @@ Loop:
 			tradesRes, err = http.Get(tradesUrl)
 			if err != nil {
 				logs.Error("http.Get trades failed from huobi err:", err)
+				tradesRes.Body.Close()
 				continue Loop
 			}
 			ethUsdtDoc, err := goquery.NewDocumentFromReader(tradesRes.Body)
@@ -174,7 +176,6 @@ Loop:
 			if len(mtEthhuobiTrades.Datas) != 0 {
 				models.HuoPreTradeId[key] = mtEthhuobiTrades.Datas[0].Id
 			}
-			tradesRes.Body.Close()
 		}
 	}
 }
@@ -255,12 +256,13 @@ Loop:
 			key := symbol + "TradeId"
 			tradesUrl := "https://api.huobi.br.com/market/history/trade?symbol=" + symbol + "&size=" + size
 			tradesRes, err := http.Get(tradesUrl)
-
 			if err != nil {
 				logs.Error("http.Get trades failed from huobi err:", err)
+				tradesRes.Body.Close()
 				continue Loop
 			}
 			doc, err := goquery.NewDocumentFromReader(tradesRes.Body)
+			tradesRes.Body.Close()
 			if err != nil {
 				logs.Error("goquery.NewDocumentFromReader failed err:", err)
 				continue Loop
@@ -335,7 +337,6 @@ Loop:
 			if len(huobiTrades.Datas) != 0 {
 				models.HuoPreTradeId[key] = huobiTrades.Datas[0].Id
 			}
-			tradesRes.Body.Close()
 		}
 	}
 }

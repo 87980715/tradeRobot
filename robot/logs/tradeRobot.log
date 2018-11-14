@@ -2522,3 +2522,356 @@
 
 2018/11/14 14:41:42.163 [I] [ZGTrade.go:100]  取消订单成功
 2018/11/14 14:41:42.163 [I] [ZGTrade.go:100]  cancelNum: 24
+2018/11/14 14:41:55.956 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:41:55.956 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0259  数量：947.0200
+
+2018/11/14 14:41:59.719 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:41:59.719 [I] [ZGTrade.go:100]  cancelNum: 25
+2018/11/14 14:42:25.716 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:42:25.717 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0261  数量：74.6400
+
+2018/11/14 14:42:30.274 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:42:30.275 [I] [ZGTrade.go:100]  cancelNum: 26
+2018/11/14 14:42:35.630 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:42:35.631 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：67.3200
+
+2018/11/14 14:42:39.128 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:42:39.129 [I] [ZGTrade.go:100]  cancelNum: 27
+2018/11/14 14:43:05.047 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:43:05.047 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0264  数量：8660.0000
+
+2018/11/14 14:43:06.511 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:43:06.511 [I] [ZGTrade.go:100]  cancelNum: 28
+2018/11/14 14:43:07.277 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:43:07.277 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0259  数量：875.4800
+
+2018/11/14 14:43:07.726 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:43:07.726 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0264  数量：975.6600
+
+2018/11/14 14:43:08.520 [I] [ZGDataHandle.go:83]  dealIds: [1717718 1717718]
+2018/11/14 14:43:11.074 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:43:11.074 [I] [ZGTrade.go:100]  cancelNum: 29
+2018/11/14 14:44:12.901 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:44:12.903 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：897.7400
+
+2018/11/14 14:44:14.372 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:44:14.372 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0261  数量：782.2400
+
+2018/11/14 14:44:14.837 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:44:14.837 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：7756.0000
+
+2018/11/14 14:44:15.439 [I] [ZGDataHandle.go:83]  dealIds: [1717766 1717766]
+2018/11/14 14:44:17.209 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:44:17.209 [I] [ZGTrade.go:100]  cancelNum: 30
+2018/11/14 14:44:17.532 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:44:17.533 [I] [ZGTrade.go:100]  cancelNum: 31
+2018/11/14 14:44:59.071 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:44:59.072 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0260  数量：741.7000
+
+2018/11/14 14:44:59.209 [I] [ZGDataHandle.go:83]  dealIds: [1717799 1717799 1717798 1717798]
+2018/11/14 14:45:34.624 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:45:34.625 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0256  数量：7656.0000
+
+2018/11/14 14:45:48.112 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:45:48.112 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0270  数量：861.3200
+
+2018/11/14 14:45:49.972 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:45:49.972 [I] [ZGTrade.go:100]  cancelNum: 32
+2018/11/14 14:46:01.954 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:46:01.957 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0258  数量：570.8600
+
+2018/11/14 14:46:03.357 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:46:03.357 [I] [ZGTrade.go:100]  cancelNum: 33
+2018/11/14 14:46:32.893 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:46:32.893 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0256  数量：3.1600
+
+2018/11/14 14:46:34.199 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:46:34.199 [I] [ZGTrade.go:100]  cancelNum: 34
+2018/11/14 14:46:41.074 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:46:41.074 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0262  数量：9832.0000
+
+2018/11/14 14:46:43.788 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:46:43.788 [I] [ZGTrade.go:100]  cancelNum: 35
+2018/11/14 14:46:58.188 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:46:58.189 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0260  数量：807.6000
+
+2018/11/14 14:46:58.980 [I] [ZGDataHandle.go:83]  dealIds: [1717874 1717874]
+2018/11/14 14:47:33.157 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:47:33.157 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0259  数量：558.8600
+
+2018/11/14 14:47:37.815 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:47:37.816 [I] [ZGTrade.go:100]  cancelNum: 36
+2018/11/14 14:47:38.542 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:47:38.544 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0258  数量：7120.0000
+
+2018/11/14 14:47:42.427 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:47:42.427 [I] [ZGTrade.go:100]  cancelNum: 37
+2018/11/14 14:47:59.042 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:47:59.044 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0256  数量：879.9800
+
+2018/11/14 14:48:00.480 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:48:00.480 [I] [ZGTrade.go:100]  cancelNum: 38
+2018/11/14 14:48:55.207 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:48:55.207 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0268  数量：127.3200
+
+2018/11/14 14:48:57.496 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:48:57.497 [I] [ZGTrade.go:100]  cancelNum: 39
+2018/11/14 14:48:59.630 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:48:59.633 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0260  数量：251.6400
+
+2018/11/14 14:49:00.423 [I] [ZGDataHandle.go:83]  dealIds: [1717961 1717961]
+2018/11/14 14:49:08.748 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:49:08.750 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0259  数量：8698.0000
+
+2018/11/14 14:49:10.805 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:49:10.807 [I] [ZGTrade.go:100]  cancelNum: 40
+2018/11/14 14:49:35.640 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:49:35.640 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0267  数量：656.5000
+
+2018/11/14 14:49:37.219 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:49:37.220 [I] [ZGTrade.go:100]  cancelNum: 41
+2018/11/14 14:50:12.265 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:50:12.268 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：8590.0000
+
+2018/11/14 14:50:13.237 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:50:13.237 [I] [ZGTrade.go:100]  cancelNum: 42
+2018/11/14 14:50:19.755 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:50:19.756 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0259  数量：928.8400
+
+2018/11/14 14:50:21.730 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:50:21.730 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：710.5000
+
+2018/11/14 14:50:22.165 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:50:22.165 [I] [ZGTrade.go:100]  cancelNum: 43
+2018/11/14 14:50:22.501 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:50:22.501 [I] [ZGTrade.go:100]  cancelNum: 44
+2018/11/14 14:50:23.183 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:50:23.183 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0260  数量：393.3400
+
+2018/11/14 14:50:24.082 [I] [ZGDataHandle.go:83]  dealIds: [1718022 1718022]
+2018/11/14 14:50:55.764 [I] [ZGDataHandle.go:83]  dealIds: [1718050 1718050]
+2018/11/14 14:50:55.789 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:50:55.790 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0262  数量：656.1800
+
+2018/11/14 14:51:02.809 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:51:02.810 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0264  数量：11512.0000
+
+2018/11/14 14:51:03.255 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:51:03.256 [I] [ZGTrade.go:100]  cancelNum: 45
+2018/11/14 14:51:29.896 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:51:29.897 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0270  数量：825.0800
+
+2018/11/14 14:51:34.272 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:51:34.272 [I] [ZGTrade.go:100]  cancelNum: 46
+2018/11/14 14:51:48.470 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:51:48.470 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：707.5200
+
+2018/11/14 14:51:49.215 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:51:49.215 [I] [ZGTrade.go:100]  cancelNum: 47
+2018/11/14 14:52:01.397 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:52:01.399 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0256  数量：6296.0000
+
+2018/11/14 14:52:02.475 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:52:02.477 [I] [ZGTrade.go:100]  cancelNum: 48
+2018/11/14 14:52:12.491 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:52:12.493 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0260  数量：747.5600
+
+2018/11/14 14:52:13.101 [I] [ZGDataHandle.go:83]  dealIds: [1718090 1718090]
+2018/11/14 14:52:24.320 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:52:24.320 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：765.5600
+
+2018/11/14 14:52:24.849 [I] [ZGDataHandle.go:83]  dealIds: [1718098 1718098]
+2018/11/14 14:53:01.006 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:53:01.006 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0270  数量：404.8800
+
+2018/11/14 14:53:01.488 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:53:01.488 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0270  数量：872.1800
+
+2018/11/14 14:53:04.898 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:53:04.898 [I] [ZGTrade.go:100]  cancelNum: 49
+2018/11/14 14:53:05.224 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:53:05.224 [I] [ZGTrade.go:100]  cancelNum: 50
+2018/11/14 14:53:06.466 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:53:06.466 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0264  数量：9554.0000
+
+2018/11/14 14:53:10.558 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:53:10.559 [I] [ZGTrade.go:100]  cancelNum: 51
+2018/11/14 14:53:43.144 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:53:43.146 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：586.9000
+
+2018/11/14 14:53:45.983 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:53:45.984 [I] [ZGTrade.go:100]  cancelNum: 52
+2018/11/14 14:53:49.733 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:53:49.733 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：418.8000
+
+2018/11/14 14:53:49.883 [I] [ZGDataHandle.go:83]  dealIds: [1718150 1718150]
+2018/11/14 14:53:50.068 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A49&symbol=mteth&size=15&Signature=7qVrIeI2lJuQS%2F1yWpCkpWFDHYaTMy2grFshqyvG2fE%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: unexpected EOF
+2018/11/14 14:53:50.070 [E] [ZGTrade.go:93]  http.Post tradeLimit failed err: Post https://www.zt.com/api/v1/private/order/pending: EOF
+2018/11/14 14:53:50.070 [E] [server.go:13]  http.Get trades failed from huobi err: Get https://api.huobi.br.com/market/history/trade?symbol=mteth&size=10: unexpected EOF
+2018/11/14 14:53:50.070 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Signature=6X%2FtUG3Luph9vDOuVBelUt4OhV%2FJzE52cz6ldyESwSE%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A49&account-id=4821321&symbol=mteth&size=15: unexpected EOF
+2018/11/14 14:53:50.229 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?symbol=mteth&size=15&Signature=QSEl439MxnagsEiDWUB8OqWX9%2F7tzzAKB%2BirLbvA8KQ%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.259 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&account-id=4821321&symbol=mteth&size=15&Signature=%2Bx2EE9GwxB371ZbMueIEPJDIOzxeT7wEu7eLQWTX5HM%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.348 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&symbol=mteth&size=15&Signature=QSEl439MxnagsEiDWUB8OqWX9%2F7tzzAKB%2BirLbvA8KQ%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.381 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Signature=%2Bx2EE9GwxB371ZbMueIEPJDIOzxeT7wEu7eLQWTX5HM%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&account-id=4821321&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.462 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?symbol=mteth&size=15&Signature=QSEl439MxnagsEiDWUB8OqWX9%2F7tzzAKB%2BirLbvA8KQ%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.543 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Signature=%2Bx2EE9GwxB371ZbMueIEPJDIOzxeT7wEu7eLQWTX5HM%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&account-id=4821321&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.622 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A50&symbol=mteth&size=15&Signature=QSEl439MxnagsEiDWUB8OqWX9%2F7tzzAKB%2BirLbvA8KQ%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.664 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&account-id=4821321&symbol=mteth&size=15&Signature=%2Bx2EE9GwxB371ZbMueIEPJDIOzxeT7wEu7eLQWTX5HM%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.787 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?size=15&Signature=QSEl439MxnagsEiDWUB8OqWX9%2F7tzzAKB%2BirLbvA8KQ%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.830 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&account-id=4821321&symbol=mteth&size=15&Signature=%2Bx2EE9GwxB371ZbMueIEPJDIOzxeT7wEu7eLQWTX5HM%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.885 [E] [server.go:22]  select deal_id form user_deal_history_2 failed err invalid connection:
+2018/11/14 14:53:50.905 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?size=15&Signature=QSEl439MxnagsEiDWUB8OqWX9%2F7tzzAKB%2BirLbvA8KQ%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:50.995 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?symbol=mteth&size=15&Signature=%2Bx2EE9GwxB371ZbMueIEPJDIOzxeT7wEu7eLQWTX5HM%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A50&account-id=4821321: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.023 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&symbol=mteth&size=15&Signature=ES%2F3V4uT%2FcY2Y5MVoXR3EgWfcxVT4xFTzhl28RRiwqs%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.115 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Timestamp=2018-11-14T06%3A53%3A51&account-id=4821321&symbol=mteth&size=15&Signature=39BOlyF%2FOcLBZrtRyXayCNKtvuyr%2BMLqslLOVM1Zvz4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.190 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&symbol=mteth&size=15&Signature=ES%2F3V4uT%2FcY2Y5MVoXR3EgWfcxVT4xFTzhl28RRiwqs%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.228 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&account-id=4821321&symbol=mteth&size=15&Signature=39BOlyF%2FOcLBZrtRyXayCNKtvuyr%2BMLqslLOVM1Zvz4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.354 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&symbol=mteth&size=15&Signature=ES%2F3V4uT%2FcY2Y5MVoXR3EgWfcxVT4xFTzhl28RRiwqs%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.393 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&account-id=4821321&symbol=mteth&size=15&Signature=39BOlyF%2FOcLBZrtRyXayCNKtvuyr%2BMLqslLOVM1Zvz4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.515 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&symbol=mteth&size=15&Signature=ES%2F3V4uT%2FcY2Y5MVoXR3EgWfcxVT4xFTzhl28RRiwqs%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.557 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&account-id=4821321&symbol=mteth&size=15&Signature=39BOlyF%2FOcLBZrtRyXayCNKtvuyr%2BMLqslLOVM1Zvz4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.674 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&account-id=4821321&symbol=mteth&size=15&Signature=39BOlyF%2FOcLBZrtRyXayCNKtvuyr%2BMLqslLOVM1Zvz4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.679 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&symbol=mteth&size=15&Signature=ES%2F3V4uT%2FcY2Y5MVoXR3EgWfcxVT4xFTzhl28RRiwqs%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.793 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A51&symbol=mteth&size=15&Signature=ES%2F3V4uT%2FcY2Y5MVoXR3EgWfcxVT4xFTzhl28RRiwqs%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.833 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&account-id=4821321&symbol=mteth&size=15&Signature=39BOlyF%2FOcLBZrtRyXayCNKtvuyr%2BMLqslLOVM1Zvz4%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.951 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Timestamp=2018-11-14T06%3A53%3A51&account-id=4821321&symbol=mteth&size=15&Signature=39BOlyF%2FOcLBZrtRyXayCNKtvuyr%2BMLqslLOVM1Zvz4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:51.962 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A51&symbol=mteth&size=15&Signature=ES%2F3V4uT%2FcY2Y5MVoXR3EgWfcxVT4xFTzhl28RRiwqs%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.098 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?account-id=4821321&symbol=mteth&size=15&Signature=KbJV748NIn5%2F7%2B82pKNhvCJDx9iOR7oEQdZhYYZyq%2Fk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.103 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52&symbol=mteth&size=15&Signature=73B9g2ORSOJ3AwVx6DSUBHz%2BjpwC%2FIbd%2F2AZvp9uXnY%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.225 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?account-id=4821321&symbol=mteth&size=15&Signature=KbJV748NIn5%2F7%2B82pKNhvCJDx9iOR7oEQdZhYYZyq%2Fk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.225 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52&symbol=mteth&size=15&Signature=73B9g2ORSOJ3AwVx6DSUBHz%2BjpwC%2FIbd%2F2AZvp9uXnY%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.345 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Timestamp=2018-11-14T06%3A53%3A52&account-id=4821321&symbol=mteth&size=15&Signature=KbJV748NIn5%2F7%2B82pKNhvCJDx9iOR7oEQdZhYYZyq%2Fk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.347 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52&symbol=mteth&size=15&Signature=73B9g2ORSOJ3AwVx6DSUBHz%2BjpwC%2FIbd%2F2AZvp9uXnY%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.459 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Timestamp=2018-11-14T06%3A53%3A52&account-id=4821321&symbol=mteth&size=15&Signature=KbJV748NIn5%2F7%2B82pKNhvCJDx9iOR7oEQdZhYYZyq%2Fk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.462 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52&symbol=mteth&size=15&Signature=73B9g2ORSOJ3AwVx6DSUBHz%2BjpwC%2FIbd%2F2AZvp9uXnY%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.575 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Timestamp=2018-11-14T06%3A53%3A52&account-id=4821321&symbol=mteth&size=15&Signature=KbJV748NIn5%2F7%2B82pKNhvCJDx9iOR7oEQdZhYYZyq%2Fk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.577 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52&symbol=mteth&size=15&Signature=73B9g2ORSOJ3AwVx6DSUBHz%2BjpwC%2FIbd%2F2AZvp9uXnY%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.697 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Signature=KbJV748NIn5%2F7%2B82pKNhvCJDx9iOR7oEQdZhYYZyq%2Fk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52&account-id=4821321&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.697 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52&symbol=mteth&size=15&Signature=73B9g2ORSOJ3AwVx6DSUBHz%2BjpwC%2FIbd%2F2AZvp9uXnY%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.818 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Timestamp=2018-11-14T06%3A53%3A52&account-id=4821321&symbol=mteth&size=15&Signature=KbJV748NIn5%2F7%2B82pKNhvCJDx9iOR7oEQdZhYYZyq%2Fk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.838 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A52&symbol=mteth&size=15&Signature=73B9g2ORSOJ3AwVx6DSUBHz%2BjpwC%2FIbd%2F2AZvp9uXnY%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.942 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?account-id=4821321&symbol=mteth&size=15&Signature=KbJV748NIn5%2F7%2B82pKNhvCJDx9iOR7oEQdZhYYZyq%2Fk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:52.991 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A52&symbol=mteth&size=15&Signature=73B9g2ORSOJ3AwVx6DSUBHz%2BjpwC%2FIbd%2F2AZvp9uXnY%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.105 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?symbol=mteth&size=15&Signature=qM7Sb7oHaYZ6jVaMFQmJrY%2BYapWDqJxoFSr5Pt9i56c%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&account-id=4821321: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.105 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&symbol=mteth&size=15&Signature=x0ha6wMxyPt8I5vjR6XOU9GRxS%2B%2FL%2B9tBNWelVq1dK8%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.268 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Signature=qM7Sb7oHaYZ6jVaMFQmJrY%2BYapWDqJxoFSr5Pt9i56c%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&account-id=4821321&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.268 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?symbol=mteth&size=15&Signature=x0ha6wMxyPt8I5vjR6XOU9GRxS%2B%2FL%2B9tBNWelVq1dK8%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.428 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?size=15&Signature=x0ha6wMxyPt8I5vjR6XOU9GRxS%2B%2FL%2B9tBNWelVq1dK8%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.428 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?symbol=mteth&size=15&Signature=qM7Sb7oHaYZ6jVaMFQmJrY%2BYapWDqJxoFSr5Pt9i56c%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&account-id=4821321: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.543 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&account-id=4821321&symbol=mteth&size=15&Signature=qM7Sb7oHaYZ6jVaMFQmJrY%2BYapWDqJxoFSr5Pt9i56c%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.587 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&symbol=mteth&size=15&Signature=x0ha6wMxyPt8I5vjR6XOU9GRxS%2B%2FL%2B9tBNWelVq1dK8%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.663 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Timestamp=2018-11-14T06%3A53%3A53&account-id=4821321&symbol=mteth&size=15&Signature=qM7Sb7oHaYZ6jVaMFQmJrY%2BYapWDqJxoFSr5Pt9i56c%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.700 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&symbol=mteth&size=15&Signature=x0ha6wMxyPt8I5vjR6XOU9GRxS%2B%2FL%2B9tBNWelVq1dK8%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.787 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&account-id=4821321&symbol=mteth&size=15&Signature=qM7Sb7oHaYZ6jVaMFQmJrY%2BYapWDqJxoFSr5Pt9i56c%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.863 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Signature=x0ha6wMxyPt8I5vjR6XOU9GRxS%2B%2FL%2B9tBNWelVq1dK8%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.951 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&account-id=4821321&symbol=mteth&size=15&Signature=qM7Sb7oHaYZ6jVaMFQmJrY%2BYapWDqJxoFSr5Pt9i56c%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:53.983 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Signature=x0ha6wMxyPt8I5vjR6XOU9GRxS%2B%2FL%2B9tBNWelVq1dK8%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A53&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.112 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Signature=S4nN450FJmbAl8CRUMtmWZBwxqo1a5vnfQCRgvNtOuw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&account-id=4821321&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.140 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?size=15&Signature=xKMYZPFHX33Ve4jCX50gXXYYJNVTKrDy0NJOauS1Atw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.232 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&account-id=4821321&symbol=mteth&size=15&Signature=S4nN450FJmbAl8CRUMtmWZBwxqo1a5vnfQCRgvNtOuw%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.257 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&symbol=mteth&size=15&Signature=xKMYZPFHX33Ve4jCX50gXXYYJNVTKrDy0NJOauS1Atw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.348 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?account-id=4821321&symbol=mteth&size=15&Signature=S4nN450FJmbAl8CRUMtmWZBwxqo1a5vnfQCRgvNtOuw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.419 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&symbol=mteth&size=15&Signature=xKMYZPFHX33Ve4jCX50gXXYYJNVTKrDy0NJOauS1Atw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.467 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?symbol=mteth&size=15&Signature=S4nN450FJmbAl8CRUMtmWZBwxqo1a5vnfQCRgvNtOuw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&account-id=4821321: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.540 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&symbol=mteth&size=15&Signature=xKMYZPFHX33Ve4jCX50gXXYYJNVTKrDy0NJOauS1Atw%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.627 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Signature=S4nN450FJmbAl8CRUMtmWZBwxqo1a5vnfQCRgvNtOuw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&account-id=4821321&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.700 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Signature=xKMYZPFHX33Ve4jCX50gXXYYJNVTKrDy0NJOauS1Atw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.792 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Timestamp=2018-11-14T06%3A53%3A54&account-id=4821321&symbol=mteth&size=15&Signature=S4nN450FJmbAl8CRUMtmWZBwxqo1a5vnfQCRgvNtOuw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.819 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&symbol=mteth&size=15&Signature=xKMYZPFHX33Ve4jCX50gXXYYJNVTKrDy0NJOauS1Atw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.910 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A54&account-id=4821321&symbol=mteth&size=15&Signature=S4nN450FJmbAl8CRUMtmWZBwxqo1a5vnfQCRgvNtOuw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:54.983 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A54&symbol=mteth&size=15&Signature=xKMYZPFHX33Ve4jCX50gXXYYJNVTKrDy0NJOauS1Atw%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.032 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?size=15&Signature=vyzNuK4rRkfqmSJnZDmQ8Ih4Wg0Um%2FLoF48aLdqriw4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&account-id=4821321&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.103 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&symbol=mteth&size=15&Signature=Muz99dGK7fOah6XjLG5l%2BL9Pxqdh4R5ptTLQ0yO5sVc%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.218 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A55&symbol=mteth&size=15&Signature=Muz99dGK7fOah6XjLG5l%2BL9Pxqdh4R5ptTLQ0yO5sVc%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.230 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&account-id=4821321&symbol=mteth&size=15&Signature=vyzNuK4rRkfqmSJnZDmQ8Ih4Wg0Um%2FLoF48aLdqriw4%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.347 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&account-id=4821321&symbol=mteth&size=15&Signature=vyzNuK4rRkfqmSJnZDmQ8Ih4Wg0Um%2FLoF48aLdqriw4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.377 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&symbol=mteth&size=15&Signature=Muz99dGK7fOah6XjLG5l%2BL9Pxqdh4R5ptTLQ0yO5sVc%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.509 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?symbol=mteth&size=15&Signature=vyzNuK4rRkfqmSJnZDmQ8Ih4Wg0Um%2FLoF48aLdqriw4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&account-id=4821321: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.541 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&symbol=mteth&size=15&Signature=Muz99dGK7fOah6XjLG5l%2BL9Pxqdh4R5ptTLQ0yO5sVc%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.629 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?Signature=vyzNuK4rRkfqmSJnZDmQ8Ih4Wg0Um%2FLoF48aLdqriw4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&account-id=4821321&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.650 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:53:55.650 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0267  数量：2.0200
+
+2018/11/14 14:53:55.703 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A55&symbol=mteth&size=15&Signature=Muz99dGK7fOah6XjLG5l%2BL9Pxqdh4R5ptTLQ0yO5sVc%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.748 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?symbol=mteth&size=15&Signature=vyzNuK4rRkfqmSJnZDmQ8Ih4Wg0Um%2FLoF48aLdqriw4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&account-id=4821321: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.865 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?size=15&Signature=Muz99dGK7fOah6XjLG5l%2BL9Pxqdh4R5ptTLQ0yO5sVc%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.865 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?account-id=4821321&symbol=mteth&size=15&Signature=vyzNuK4rRkfqmSJnZDmQ8Ih4Wg0Um%2FLoF48aLdqriw4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:55.984 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?account-id=4821321&symbol=mteth&size=15&Signature=vyzNuK4rRkfqmSJnZDmQ8Ih4Wg0Um%2FLoF48aLdqriw4%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.029 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A55&symbol=mteth&size=15&Signature=Muz99dGK7fOah6XjLG5l%2BL9Pxqdh4R5ptTLQ0yO5sVc%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.165 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?size=15&Signature=TAsmXx5yfs1qYdxu5BBA9h3UIo54Qb0Wb93zB09YsbA%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&account-id=4821321&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.193 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?size=15&Signature=X1bcZnU0LoC4upr4%2FMH%2FjhriyigSEXT5cPiq0ccJ1S0%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.350 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Signature=X1bcZnU0LoC4upr4%2FMH%2FjhriyigSEXT5cPiq0ccJ1S0%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&symbol=mteth&size=15: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.361 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?symbol=mteth&size=15&Signature=TAsmXx5yfs1qYdxu5BBA9h3UIo54Qb0Wb93zB09YsbA%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&account-id=4821321: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.510 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&symbol=mteth&size=15&Signature=X1bcZnU0LoC4upr4%2FMH%2FjhriyigSEXT5cPiq0ccJ1S0%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.522 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&account-id=4821321&symbol=mteth&size=15&Signature=TAsmXx5yfs1qYdxu5BBA9h3UIo54Qb0Wb93zB09YsbA%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.631 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&symbol=mteth&size=15&Signature=X1bcZnU0LoC4upr4%2FMH%2FjhriyigSEXT5cPiq0ccJ1S0%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.687 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?account-id=4821321&symbol=mteth&size=15&Signature=TAsmXx5yfs1qYdxu5BBA9h3UIo54Qb0Wb93zB09YsbA%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.750 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A56&symbol=mteth&size=15&Signature=X1bcZnU0LoC4upr4%2FMH%2FjhriyigSEXT5cPiq0ccJ1S0%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.848 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&account-id=4821321&symbol=mteth&size=15&Signature=TAsmXx5yfs1qYdxu5BBA9h3UIo54Qb0Wb93zB09YsbA%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.868 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&symbol=mteth&size=15&Signature=X1bcZnU0LoC4upr4%2FMH%2FjhriyigSEXT5cPiq0ccJ1S0%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:56.990 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56&symbol=mteth&size=15&Signature=X1bcZnU0LoC4upr4%2FMH%2FjhriyigSEXT5cPiq0ccJ1S0%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.011 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?account-id=4821321&symbol=mteth&size=15&Signature=TAsmXx5yfs1qYdxu5BBA9h3UIo54Qb0Wb93zB09YsbA%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A56: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.155 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?Timestamp=2018-11-14T06%3A53%3A57&symbol=mteth&size=15&Signature=6hAMx9eFyYVpNAicSBmGOYdenBtkUZ79K9hb1Nt9ynk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.175 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A57&account-id=4821321&symbol=mteth&size=15&Signature=n94mIc0guyTSWCrGkWZxg7dABFDnH3rFPU%2FMEyRmtS8%3D: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.291 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A57&account-id=4821321&symbol=mteth&size=15&Signature=n94mIc0guyTSWCrGkWZxg7dABFDnH3rFPU%2FMEyRmtS8%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.316 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A57&symbol=mteth&size=15&Signature=6hAMx9eFyYVpNAicSBmGOYdenBtkUZ79K9hb1Nt9ynk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.405 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?symbol=mteth&size=15&Signature=n94mIc0guyTSWCrGkWZxg7dABFDnH3rFPU%2FMEyRmtS8%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A57&account-id=4821321: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.436 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A57&symbol=mteth&size=15&Signature=6hAMx9eFyYVpNAicSBmGOYdenBtkUZ79K9hb1Nt9ynk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.557 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?symbol=mteth&size=15&Signature=6hAMx9eFyYVpNAicSBmGOYdenBtkUZ79K9hb1Nt9ynk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A57: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.567 [E] [HuobiTrade.go:62]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/openOrders?size=15&Signature=n94mIc0guyTSWCrGkWZxg7dABFDnH3rFPU%2FMEyRmtS8%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A57&account-id=4821321&symbol=mteth: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:57.717 [E] [HuobiTrade.go:79]  http get pending orders failed err: Get https://api.huobi.pro/v1/order/matchresults?SignatureMethod=HmacSHA256&Timestamp=2018-11-14T06%3A53%3A57&symbol=mteth&size=15&Signature=6hAMx9eFyYVpNAicSBmGOYdenBtkUZ79K9hb1Nt9ynk%3D&AccessKeyId=b2af8f9f-4ac75b4d-4fce0763-1c789&SignatureVersion=2: dial tcp 173.252.103.64:443: connect: connection refused
+2018/11/14 14:53:59.109 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:53:59.109 [I] [ZGTrade.go:100]  cancelNum: 53
+2018/11/14 14:54:17.212 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:54:17.212 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0254  数量：2.9600
+
+2018/11/14 14:54:18.497 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:54:18.498 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：14402.0000
+
+2018/11/14 14:54:20.354 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:54:20.354 [I] [ZGTrade.go:100]  cancelNum: 54
+2018/11/14 14:54:20.454 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:54:20.454 [I] [ZGTrade.go:100]  cancelNum: 55
+2018/11/14 14:54:31.532 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:54:31.534 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0269  数量：552.6000
+
+2018/11/14 14:54:32.865 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:54:32.866 [I] [ZGTrade.go:100]  cancelNum: 56
+2018/11/14 14:55:15.116 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:55:15.116 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0261  数量：308.4400
+
+2018/11/14 14:55:15.754 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:55:15.755 [I] [ZGTrade.go:100]  cancelNum: 57
+2018/11/14 14:55:17.272 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:55:17.272 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0253  数量：14690.0000
+
+2018/11/14 14:55:19.961 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:55:19.961 [I] [ZGTrade.go:100]  cancelNum: 58
+2018/11/14 14:55:35.212 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:55:35.212 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：983.5200
+
+2018/11/14 14:55:36.822 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:55:36.824 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0266  数量：134.1800
+
+2018/11/14 14:55:37.345 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:55:37.345 [I] [ZGTrade.go:100]  cancelNum: 59
+2018/11/14 14:55:37.449 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:55:37.450 [I] [ZGTrade.go:100]  cancelNum: 60
+2018/11/14 14:56:10.568 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:56:10.570 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0264  数量：9702.0000
+
+2018/11/14 14:56:10.774 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:56:10.775 [I] [ZGTrade.go:100]  cancelNum: 61
+2018/11/14 14:56:22.999 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:56:23.000 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0261  数量：860.2400
+
+2018/11/14 14:56:43.514 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:56:43.515 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：1071.2200
+
+2018/11/14 14:56:43.970 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:56:43.972 [I] [ZGTrade.go:100]  cancelNum: 62
+2018/11/14 14:56:45.216 [I] [ZGTrade.go:46]  ZG挂单成功
+2018/11/14 14:56:45.216 [I] [server.go:12]  MT_CNT ZT挂单价格：0.0263  数量：73.8600
+
+2018/11/14 14:56:48.460 [I] [ZGTrade.go:100]  取消订单成功
+2018/11/14 14:56:48.460 [I] [ZGTrade.go:100]  cancelNum: 63
