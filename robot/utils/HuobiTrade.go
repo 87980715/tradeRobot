@@ -258,7 +258,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 		}
 
 		//-测试------------
-		// fmt.Println("火币已成交数据:",doc.Text())
+		fmt.Println("火币已成交数据:",doc.Text())
 		err = json.Unmarshal([]byte(doc.Text()), tradesDealReturn)
 		if err != nil {
 			logs.Error(" json unmarshal filled orders failed err:", err)
@@ -294,7 +294,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 				tradeResult.Created_at = strconv.Itoa(order.Created_at)
 				tradeResult.Total = total
 
-				db := RobotDB
+				//db := RobotDB
 				//db, err := LoadRobotDB()
 				//if err != nil {
 				//	logs.Error("loadDB failed")
@@ -302,10 +302,10 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 				//}
 				//defer db.Close()
 
-				if err = db.Create(tradeResult).Error; err != nil {
-					logs.Error("insert failed into Huobi tradeResult ")
-					return
-				}
+				//if err = db.Create(tradeResult).Error; err != nil {
+				//	logs.Error("insert failed into Huobi tradeResult ")
+				//	return
+				//}
 			}
 		}
 		// 去重

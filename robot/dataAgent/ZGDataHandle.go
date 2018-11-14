@@ -60,7 +60,7 @@ func GetDealOrdersZG(ctx context.Context) {
 				postDataLimit.Amount = record.Amount
 				postDataLimit.Account_id = models.Huobi_Account_ID
 				//------测试-------
-				fmt.Println("火币挂单数据:", postDataLimit)
+				// fmt.Println("火币挂单数据:", postDataLimit)
 				utils.HuobiOrders <- postDataLimit
 
 			}
