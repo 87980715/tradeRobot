@@ -66,7 +66,7 @@ func (c *RobotManagerController) Add() {
 		result["error"] = "invalid HuobiAccessKeyId or HuobiSecretkey"
 		return
 	}
-	models.Huobi_Account_ID = strconv.Itoa(id)
+	models.HuobiUserID = strconv.Itoa(id)
 
 	//id,err = initialize.ZGUserId()
 	//if err != nil {
@@ -77,6 +77,10 @@ func (c *RobotManagerController) Add() {
 	//}
 	models.ZGUserID = strconv.Itoa(902) //strconv.Itoa(id)
 
+	// 初始化账户
+	initialize.InitAccounts()
+
+	// 新建机器人
 	robot := Robot{}
 	robot.Symbol = strings.ToUpper(symbol[0] + "_" + "CNT")
 

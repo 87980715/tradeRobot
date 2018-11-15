@@ -29,22 +29,25 @@ func TradeLimitHuobi(ctx context.Context) {
 			account.PostDataLimit.Symbol = postDataLimit.Symbol
 			// 数量最小为0.01，2位小数
 			amount,_:= strconv.ParseFloat(postDataLimit.Amount, 64)
-			a := amount + rand.Float64()
-
+			a := amount + rand.Float64()/1000
 			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(2)+"f", a)
 			// fmt.Println("amount:",account.PostDataLimit.Amount)
 			// 价格，8位小数
 			p,_:= strconv.ParseFloat(postDataLimit.Price, 64)
-			RMuLock.RLock()
+
+		Loop:RMuLock.RLock()
 			ethPrice := models.EthPrice["huobi"]
 			usdtPrice := models.UsdtPrice["huobi"]
 			RMuLock.RUnlock()
+			if ethPrice * usdtPrice == 0 {
+				continue Loop
+			}
 			price := p / (ethPrice * usdtPrice)
 			// fmt.Println("price:",price)
 			account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 
 			account.PostDataLimit.Type = postDataLimit.Type
-			account.PostDataLimit.Account_id = models.Huobi_Account_ID
+			account.PostDataLimit.Account_id = models.HuobiUserID
 			// 执行交易
 			account.HuobiLimitTrade()
 			logs.Info("%s 火币挂单价格：%s  数量：%s\n", account.PostDataLimit.Symbol, account.PostDataLimit.Price, account.PostDataLimit.Amount)
@@ -63,7 +66,7 @@ func TradeCancelHuobi(symbol []string, ctx context.Context) {
 			s := strings.ToLower(symbol [0] + "eth")
 			acount := utils.HuobiAccount
 			acount.GetDataPending.Symbol = s
-			acount.GetDataPending.Account_id = models.Huobi_Account_ID
+			acount.GetDataPending.Account_id = models.HuobiUserID
 			acount.GetDataPending.Size = models.Huobi_PendingOrdersSize
 			acount.HuobiCancelPendingOrders()
 		}

@@ -38,8 +38,7 @@ func InitRobot() (err error){
 		return
 	}
 
-	initAccounts()
-	logs.Info("init Accounts success")
+	//logs.Info("init Accounts success")
 
 	return
 }
