@@ -409,7 +409,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 
 						var n = 0
 						n++
-						//fmt.Println("取消成功，重新挂单:",postDataLimit)
+						fmt.Println("取消成功，重新挂单:",postDataLimit)
 						HuobiOrders <- postDataLimit
 					}
 				}
@@ -462,7 +462,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		//
-		//fmt.Println("cancelReturn:",doc.Text())
+		fmt.Println("cancelReturn:",doc.Text())
 		if err != nil {
 			logs.Error(" go qurey new document from cancel huobi order failed err:", err)
 			return false

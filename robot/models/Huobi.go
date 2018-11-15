@@ -23,8 +23,8 @@ var (
 	Huobi_FilledOrdersSize  = 15   // huobi 每次已成交订单获取条数
 	Huobi_OrdersSize        = "10" // 查询火币交易历史
 
-	Huobi_AccessKeyId string // = "b2af8f9f-4ac75b4d-4fce0763-1c789"
-	Huobi_Secretkey   string // = "80653212-f2b1fc55-f1af7577-b9a3f"
+	Huobi_AccessKeyId string  = "b2af8f9f-4ac75b4d-4fce0763-1c789"
+	Huobi_Secretkey   string  = "80653212-f2b1fc55-f1af7577-b9a3f"
 	// Huobi_Account_ID  string = "4821321"
 
 	TradeAmountMultiple float64
