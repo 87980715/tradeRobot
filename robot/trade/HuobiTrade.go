@@ -35,12 +35,20 @@ func TradeLimitHuobi(ctx context.Context) {
 			// 价格，8位小数
 			p,_:= strconv.ParseFloat(postDataLimit.Price, 64)
 
-		Loop:RMuLock.RLock()
+			RMuLock.RLock()
 			ethPrice := models.EthPrice["huobi"]
 			usdtPrice := models.UsdtPrice["huobi"]
 			RMuLock.RUnlock()
-			if ethPrice * usdtPrice == 0 {
-				continue Loop
+
+			for ethPrice * usdtPrice == 0 {
+				RMuLock.RLock()
+				ethPrice = models.EthPrice["huobi"]
+				usdtPrice = models.UsdtPrice["huobi"]
+				RMuLock.RUnlock()
+
+				if ethPrice * usdtPrice != 0 {
+					break
+				}
 			}
 			price := p / (ethPrice * usdtPrice)
 			// fmt.Println("price:",price)
