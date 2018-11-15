@@ -44,7 +44,7 @@ Loop:
 			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
 			// 签名
 			account.ZTLimitMd5Sign()
-			//account.ZTTradeLimit()
+			account.ZTTradeLimit()
 			logs.Info("%s ZT挂单价格：%s  数量：%s\n", account.PostDataLimit.Market, account.PostDataLimit.Price, account.PostDataLimit.Amount)
 		}
 	}
