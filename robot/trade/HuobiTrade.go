@@ -63,7 +63,6 @@ func TradeLimitHuobi(ctx context.Context) {
 	}
 }
 
-
 func TradeCancelHuobi(symbol []string, ctx context.Context) {
 	for {
 		time.Sleep(100 * time.Millisecond)

@@ -216,7 +216,7 @@ func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 		n++
 		for {
 			if limitTradeReturn.Status == "ok" {
-				logs.Info("火币交易挂单成功")
+				logs.Info("火币挂单成功")
 				return
 			}
 
@@ -317,6 +317,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 		// 去重
 		if len(tradesDealReturn.Data) != 0 {
 			models.HuoPreDealId[key] = int64(tradesDealReturn.Data[0].Id)
+			// fmt.Println("huopreDealId",models.HuoPreDealId[key])
 		}
 	}
 }
@@ -363,7 +364,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 			return
 		}
 		// 测试--
-		//fmt.Println("火币未成交数据:",doc.Text())
+		// fmt.Println("火币未成交数据:",doc.Text())
 		err = json.Unmarshal([]byte(doc.Text()), pendingOrdersReturn)
 		if err != nil {
 			logs.Error(" json unmarshal huobi pending orders failed err:", err)
@@ -384,6 +385,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 						usdtPrice := models.UsdtPrice["huobi"]
 						ethPrice := models.EthPrice["huobi"]
 						RMuLock.RUnlock()
+
 						postDataLimit := &HuobiPostDataLimit{}
 						postDataLimit.Account_id = strconv.Itoa(order.Account_id)
 						postDataLimit.Symbol = order.Symbol
@@ -405,7 +407,9 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 						filledAmount, _ := strconv.ParseFloat(order.Filled_amount, 64)
 						postDataLimit.Amount = strconv.FormatFloat(amount - filledAmount, 'E', -1, 64)
 
-						//fmt.Println("cancel:",postDataLimit)
+						var n = 0
+						n++
+						//fmt.Println("取消成功，重新挂单:",postDataLimit)
 						HuobiOrders <- postDataLimit
 					}
 				}
@@ -457,6 +461,8 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
+		//
+		//fmt.Println("cancelReturn:",doc.Text())
 		if err != nil {
 			logs.Error(" go qurey new document from cancel huobi order failed err:", err)
 			return false
@@ -467,9 +473,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 			logs.Error(" json unmarshal huobi cancelReturn failed err:", err)
 			return false
 		}
-
 		// fmt.Println("huobicancelReturn.Status",cancelReturn.Status)
-
 		if cancelReturn.Status != "ok" {
 			logs.Error("huobi cancelReturn status is not ok ")
 			return false
