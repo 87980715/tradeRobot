@@ -271,7 +271,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 		}
 
 		// -测试------------
-		fmt.Println("火币已成交数据:",doc.Text())
+		// fmt.Println("火币已成交数据:",doc.Text())
 		err = json.Unmarshal([]byte(doc.Text()), tradesDealReturn)
 		if err != nil {
 			logs.Error(" json unmarshal huobi filled orders failed err:", err)
