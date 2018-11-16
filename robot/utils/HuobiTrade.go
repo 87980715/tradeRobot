@@ -271,7 +271,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 		}
 
 		// -测试------------
-		// fmt.Println("火币已成交数据:",doc.Text())
+		fmt.Println("火币已成交数据:",doc.Text())
 		err = json.Unmarshal([]byte(doc.Text()), tradesDealReturn)
 		if err != nil {
 			logs.Error(" json unmarshal huobi filled orders failed err:", err)
@@ -343,7 +343,6 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36")
 
 	resp, err := client.Do(req)
-
 	if resp != nil {
 		defer resp.Body.Close()
 	}
@@ -376,10 +375,9 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 				curTime := time.Now().UnixNano() / 1e6
 				createTime := order.Created_at
 				// 超过500ms,未成交
-				//fmt.Println("未成交时间:",curTime-int64(createTime),"参数时间:",models.TradeInspectTime)
 				if curTime-int64(createTime) > models.TradeInspectTime {
-					// 取消订单
 					orderId := strconv.Itoa(order.Id)
+					// 取消订单
 					if r.HuobiCancelOrder(orderId) {
 						RMuLock.RLock()
 						usdtPrice := models.UsdtPrice["huobi"]
@@ -407,10 +405,10 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 						filledAmount, _ := strconv.ParseFloat(order.Filled_amount, 64)
 						postDataLimit.Amount = strconv.FormatFloat(amount - filledAmount, 'E', -1, 64)
 
-						var n = 0
-						n++
 						fmt.Println("取消成功，重新挂单:",postDataLimit)
 						HuobiOrders <- postDataLimit
+					}else{
+						fmt.Println("取消失败,id:",orderId)
 					}
 				}
 			}
