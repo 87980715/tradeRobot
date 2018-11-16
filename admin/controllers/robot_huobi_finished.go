@@ -4,7 +4,6 @@ import (
 	"github.com/astaxie/beego"
 	"strings"
 	"tradeRobot/robot/models"
-	"tradeRobot/robot/utils"
 )
 
 type HuobiFinishedController struct {

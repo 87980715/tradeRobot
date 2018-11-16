@@ -4,7 +4,6 @@ import (
 	"github.com/astaxie/beego"
 	"tradeRobot/robot/models"
 	"strings"
-	"tradeRobot/robot/utils"
 	"github.com/jinzhu/gorm"
 	"strconv"
 	"github.com/astaxie/beego/logs"
