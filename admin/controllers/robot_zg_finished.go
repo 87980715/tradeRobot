@@ -3,10 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"tradeRobot/robot/models"
-	"github.com/astaxie/beego/logs"
 	"strings"
-	"github.com/jinzhu/gorm"
-	"strconv"
 	"tradeRobot/robot/utils"
 )
 
