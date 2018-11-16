@@ -402,10 +402,11 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 						}
 						// 数量设置：减去已成交的数量
 						amount, _ := strconv.ParseFloat(order.Amount, 64)
+
 						filledAmount, _ := strconv.ParseFloat(order.Filled_amount, 64)
 						postDataLimit.Amount = strconv.FormatFloat(amount - filledAmount, 'E', -1, 64)
-
-						fmt.Println("取消成功，重新挂单:",postDataLimit)
+						//fmt.Println("amount:",amount,filledAmount,amount - filledAmount)
+						//fmt.Println("取消成功，重新挂单:",postDataLimit)
 						HuobiOrders <- postDataLimit
 					}else{
 						fmt.Println("取消失败,id:",orderId)
@@ -460,7 +461,7 @@ func (r *HuobiRestfulApiRequest) HuobiCancelOrder(orderId string) bool {
 	if resp.StatusCode == http.StatusOK {
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		//
-		fmt.Println("cancelReturn:",doc.Text())
+		// fmt.Println("cancelReturn:",doc.Text())
 		if err != nil {
 			logs.Error(" go qurey new document from cancel huobi order failed err:", err)
 			return false
