@@ -3,8 +3,8 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"strings"
-	"github.com/astaxie/beego/logs"
 	"tradeRobot/robot/models"
+	"tradeRobot/robot/utils"
 )
 
 type HuobiFinishedController struct {
@@ -26,14 +26,7 @@ func (c *HuobiFinishedController) HuobiFinished() {
 	tempSymbol := strings.Split(s, "-")
 	symbol := tempSymbol[0] + tempSymbol[1]
 
-	db, err := LoadRobotDB()
-
-	if err != nil {
-		logs.Error("load robotDB failed err:", err)
-		result["code"] = 1001
-		result["message"] = "操作失败"
-	}
-	defer db.Close()
+	db := utils.RobotDB
 
 	var tradeResult []models.HuobiTradeResults
 
