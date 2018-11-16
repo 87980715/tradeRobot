@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"strings"
 	"tradeRobot/robot/models"
+	"tradeRobot/robot/utils"
 )
 
 type HuobiFinishedController struct {
@@ -25,12 +26,7 @@ func (c *HuobiFinishedController) HuobiFinished() {
 	tempSymbol := strings.Split(s, "-")
 	symbol := tempSymbol[0] + tempSymbol[1]
 
-	db,err := LoadRobotDB()
-	if err != nil  {
-		result["code"] = 1001
-		result["message"] = "操作失败"
-		return
-	}
+	db:=utils.RobotDB
 
 	var tradeResult []models.HuobiTradeResults
 

@@ -7,6 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"strconv"
 	"github.com/astaxie/beego/logs"
+	"tradeRobot/robot/utils"
 )
 
 type ZGFinishedController struct {
@@ -38,14 +39,7 @@ func (c *ZGFinishedController) ZGFinished() {
 	tempSymbol := strings.Split(s, "-")
 	symbol := tempSymbol[0] + "_" + "CNT"
 
-	db,err := LoadRobotDB()
-	if err != nil  {
-		result["code"] = 1001
-		result["message"] = "操作失败"
-		return
-	}
-
-	defer db.Close()
+	db := utils.RobotDB
 
 	var tradeResult []models.ZGTradeResults
 	db.Model(&models.ZGTradeResults{}).Where(&models.ZGTradeResults{Symbol: symbol}).Find(&tradeResult)
