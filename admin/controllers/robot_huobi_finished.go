@@ -26,7 +26,12 @@ func (c *HuobiFinishedController) HuobiFinished() {
 	tempSymbol := strings.Split(s, "-")
 	symbol := tempSymbol[0] + tempSymbol[1]
 
-	db := utils.RobotDB
+	db,err := LoadRobotDB()
+	if err != nil  {
+		result["code"] = 1001
+		result["message"] = "操作失败"
+		return
+	}
 
 	var tradeResult []models.HuobiTradeResults
 

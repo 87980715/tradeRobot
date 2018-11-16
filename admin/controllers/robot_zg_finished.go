@@ -5,6 +5,9 @@ import (
 	"tradeRobot/robot/models"
 	"strings"
 	"tradeRobot/robot/utils"
+	"github.com/jinzhu/gorm"
+	"strconv"
+	"github.com/astaxie/beego/logs"
 )
 
 type ZGFinishedController struct {
@@ -36,7 +39,12 @@ func (c *ZGFinishedController) ZGFinished() {
 	tempSymbol := strings.Split(s, "-")
 	symbol := tempSymbol[0] + "_" + "CNT"
 
-	db := utils.RobotDB
+	db,err := LoadRobotDB()
+	if err != nil  {
+		result["code"] = 1001
+		result["message"] = "操作失败"
+		return
+	}
 
 	defer db.Close()
 
@@ -46,24 +54,24 @@ func (c *ZGFinishedController) ZGFinished() {
 	result["results"] = tradeResult
 }
 
-//func LoadRobotDB() (*gorm.DB, error) {
-//	conf := new(DBConfig)
-//	conf.Path = "127.0.0.1"
-//	conf.Port = 3306
-//	conf.DbName = "tradeRobot"
-//	conf.User = "root"
-//	conf.Password = "root"
-//
-//	str := conf.User + ":" +
-//		conf.Password + "@tcp(" +
-//		conf.Path + ":" +
-//		strconv.FormatUint(uint64(conf.Port), 10) + ")/" +
-//		conf.DbName + "?" +
-//		conf.Charset + "&parseTime=True&loc=Local"
-//	db, err := gorm.Open("mysql", str)
-//	if err != nil {
-//		logs.Error("gorm open db failed")
-//		return nil, err
-//	}
-//	return db, nil
-//}
+func LoadRobotDB() (*gorm.DB, error) {
+	conf := new(DBConfig)
+	conf.Path = "47.244.14.215"
+	conf.Port = 3306
+	conf.DbName = "tradeRobot"
+	conf.User = "robot"
+	conf.Password = "robot"
+
+	str := conf.User + ":" +
+		conf.Password + "@tcp(" +
+		conf.Path + ":" +
+		strconv.FormatUint(uint64(conf.Port), 10) + ")/" +
+		conf.DbName + "?" +
+		conf.Charset + "&parseTime=True&loc=Local"
+	db, err := gorm.Open("mysql", str)
+	if err != nil {
+		logs.Error("gorm open db failed")
+		return nil, err
+	}
+	return db, nil
+}
