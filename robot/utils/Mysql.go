@@ -26,7 +26,7 @@ type DBConfig struct {
 func LoadRobotDB() (*gorm.DB, error) {
 	var err error
 	dbConfig := new(DBConfig)
-	dbConfig.Path = "127.0.0.1"
+	dbConfig.Path = "47.244.14.215"
 	//dbConfig.Path = "192.168.0.33"
 	dbConfig.Port = 3306
 	dbConfig.DbName = "tradeRobot"
