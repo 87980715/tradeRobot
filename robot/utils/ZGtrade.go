@@ -214,17 +214,21 @@ func (r *ZTRestfulApiRequest) ZTTradeLimit() {
 	resp, err := http.Post(limitUrl, models.ZG_Content_type, rd)
 
 	if resp != nil {
-		defer resp.Body.Close()
+		resp.Body.Close()
 	}
 	if err != nil {
+		if resp != nil {
+			resp.Body.Close()
+		}
 		logs.Error("http.Post tradeLimit failed err:", err)
 		return
 	}
 
-
 	_, err = goquery.NewDocumentFromReader(resp.Body)
-
 	if err != nil {
+		if resp != nil {
+			resp.Body.Close()
+		}
 		logs.Error("goquery.NewDocumentFromReader failed err:", err)
 		return
 	}

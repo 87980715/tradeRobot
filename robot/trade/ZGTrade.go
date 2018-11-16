@@ -19,7 +19,7 @@ func TradeLimitZG(ctx context.Context) {
 	postDataLimit := &utils.ZTPostDataLimit{}
 Loop:
 	for {
-		time.Sleep(150 * time.Millisecond)
+		time.Sleep(500 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return

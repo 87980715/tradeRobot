@@ -33,7 +33,8 @@ func AgentServerRun(symbol []string,ctx context.Context) {
 	}(ctx)
 
 	// 获取usdt价格
-	go func(){
-		GetHuobiUsdtPrice()
-	}()
+	go func(ctx context.Context){
+		initialize.AppConfig.Wg.Add(1)
+		GetHuobiUsdtPrice(ctx)
+	}(ctx)
 }

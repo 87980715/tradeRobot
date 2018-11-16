@@ -65,7 +65,7 @@ func TradeLimitHuobi(ctx context.Context) {
 
 func TradeCancelHuobi(symbol []string, ctx context.Context) {
 	for {
-		time.Sleep(300 * time.Millisecond)
+		time.Sleep(500 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return
@@ -83,7 +83,7 @@ func TradeCancelHuobi(symbol []string, ctx context.Context) {
 // 将已成交的交易插入数据库
 func HuobiInsertToDB(symbol []string,ctx context.Context) {
 	for {
-		time.Sleep(300 * time.Millisecond)
+		time.Sleep(500 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return
