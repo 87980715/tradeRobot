@@ -124,9 +124,11 @@ Loop:
 				continue Loop
 			}
 
-			WRMuLock.Lock()
-			models.EthPrice["huobi"] = ethUsdthuobiTrades.Datas[0].Data[0].Price
-			WRMuLock.Unlock()
+			if len(ethUsdthuobiTrades.Datas) != 0 {
+				WRMuLock.Lock()
+				models.EthPrice["huobi"] = ethUsdthuobiTrades.Datas[0].Data[0].Price
+				WRMuLock.Unlock()
+			}
 
 			WRMuLock.RLock()
 			usdtPrice := models.UsdtPrice["huobi"]
