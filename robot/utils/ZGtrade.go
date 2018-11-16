@@ -212,10 +212,6 @@ func (r *ZTRestfulApiRequest) ZTTradeLimit() {
 	rd := ioutil.NopCloser(strings.NewReader(v.Encode()))
 	limitUrl := models.ZG_API_URL + "trade/limit"
 	resp, err := http.Post(limitUrl, models.ZG_Content_type, rd)
-
-	if resp != nil {
-		resp.Body.Close()
-	}
 	if err != nil {
 		if resp != nil {
 			resp.Body.Close()
@@ -235,6 +231,9 @@ func (r *ZTRestfulApiRequest) ZTTradeLimit() {
 	logs.Info("ZG挂单成功")
 	tradeNum ++
 	logs.Info("tradeNum:", tradeNum)
+	if resp != nil {
+		resp.Body.Close()
+	}
 }
 
 // 进行市价交易
