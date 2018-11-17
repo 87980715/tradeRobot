@@ -83,7 +83,7 @@ func TradeCancelHuobi(symbol []string, ctx context.Context) {
 // 将已成交的交易插入数据库
 func HuobiInsertToDB(symbol []string,ctx context.Context) {
 	for {
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(300 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return
@@ -91,7 +91,6 @@ func HuobiInsertToDB(symbol []string,ctx context.Context) {
 			s := strings.ToLower(symbol [0] + "eth")
 			acount := utils.HuobiAccount
 			acount.GetTradesDeal.Symbol = s
-
 			acount.HuobiTradesDeal()
 		}
 	}
