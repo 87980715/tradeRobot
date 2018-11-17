@@ -191,70 +191,76 @@ Loop:
 
 func GetHuobiUsdtPrice(ctx context.Context) {
 
-	var url= "https://otc.huobi.br.com/zh-cn/trade/buy-usdt/"
 	for {
-		time.Sleep(time.Millisecond * 500)
+		time.Sleep(time.Second * 60)
 		select {
 		case <-ctx.Done():
 			return
 		default:
-			opts := []selenium.ServiceOption{}
-			caps := selenium.Capabilities{
-				"browserName": "chrome",
-			}
-
-			imagCaps := map[string]interface{}{
-				"profile.managed_default_content_settings.images": 2,
-			}
-
-			chromeCaps := chrome.Capabilities{
-				Prefs: imagCaps,
-				Path:  "",
-				Args: []string{
-					"--headless", // 设置Chrome无头模式,linux 必须设置，否则会报错
-					"--no-sandbox",
-					"--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36", // 模拟user-agent，防反爬
-				},
-			}
-
-			caps.AddChrome(chromeCaps)
-
-			service, err := selenium.NewChromeDriverService("/opt/chrome/chromedriver", 9515, opts...)
-			if err != nil {
-				continue
-			}
-			defer service.Stop()
-
-			webDriver, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", 9515))
-			if err != nil {
-				continue
-			}
-
-			webDriver.Refresh()
-			err = webDriver.Get(url)
-			if err != nil {
-				logs.Error("webDriver get failed")
-				continue
-			}
-
-			t, err := webDriver.FindElement(selenium.ByXPATH, `//*[@id="app"]/div[1]/div[2]/div/div/div[2]/div[3]/div[1]/div/div[2]/div[4]`)
-			if err != nil { //*[@id="app"]/div[1]/div[2]/div/div/div[2]/div[3]/div[1]/div/div[2]/div[4]
-				continue
-			}
-
-			price, err := t.Text()
-			s := strings.Split(price, " ")
-			p, _ := strconv.ParseFloat(s[0], 64)
-
-			WRMuLock.Lock()
-			models.UsdtPrice["Huobi"] = p
-			WRMuLock.Unlock()
-
-			fmt.Println("usdtPrice:", p)
-			time.Sleep(20 * time.Second)
+			UsdtPrice()
 		}
 	}
 }
+
+func UsdtPrice() {
+
+	var url = "https://otc.huobi.br.com/zh-cn/trade/buy-usdt/"
+	opts := []selenium.ServiceOption{}
+	caps := selenium.Capabilities{
+		"browserName": "chrome",
+	}
+	imagCaps := map[string]interface{}{
+		"profile.managed_default_content_settings.images": 2,
+	}
+	chromeCaps := chrome.Capabilities{
+		Prefs: imagCaps,
+		Path:  "",
+		Args: []string{
+			"--headless", // 设置Chrome无头模式,linux 必须设置，否则会报错
+			"--no-sandbox",
+			"--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36", // 模拟user-agent，防反爬
+		},
+	}
+
+	caps.AddChrome(chromeCaps)
+
+	service, err := selenium.NewChromeDriverService("/opt/chrome/chromedriver", 9515, opts...)
+	if err != nil {
+		return
+	}
+	defer service.Stop()
+
+	webDriver, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", 9515))
+	if err != nil {
+		return
+	}
+	defer webDriver.Close()
+
+	webDriver.Refresh()
+
+	err = webDriver.Get(url)
+	if err != nil {
+		logs.Error("webDriver get url failed")
+		return
+	}
+
+	t, err := webDriver.FindElement(selenium.ByXPATH, `//*[@id="app"]/div[1]/div[2]/div/div/div[2]/div[3]/div[1]/div/div[2]/div[4]`)
+	if err != nil { //*[@id="app"]/div[1]/div[2]/div/div/div[2]/div[3]/div[1]/div/div[2]/div[4]
+		return
+	}
+
+	price, err := t.Text()
+	s := strings.Split(price, " ")
+	p, _ := strconv.ParseFloat(s[0], 64)
+
+	WRMuLock.Lock()
+	models.UsdtPrice["Huobi"] = p
+	WRMuLock.Unlock()
+	fmt.Println("usdtPrice:", p)
+}
+
+
+
 func GetTradesHuobiEthUsdt(symbol []string, size string, ctx context.Context) {
 Loop:
 	for {

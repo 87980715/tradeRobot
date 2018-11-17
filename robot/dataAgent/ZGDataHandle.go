@@ -204,6 +204,7 @@ func ZGInsertToDB(ctx context.Context) {
 				logs.Error("insert failed into Huobi tradeResult ")
 				return
 			}
+			db.Close()
 		}
 	}
 }
