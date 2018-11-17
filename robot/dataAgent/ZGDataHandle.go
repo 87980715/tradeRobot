@@ -197,14 +197,13 @@ func ZGInsertToDB(ctx context.Context) {
 		case <-ctx.Done():
 			return
 		default:
-			time.Sleep(time.Second)
+			time.Sleep(1 * time.Second)
 			tradeResult := <-ZGTradeResult
 			db := utils.RobotDB
 			if err := db.Create(tradeResult).Error; err != nil {
 				logs.Error("insert failed into Huobi tradeResult ")
 				return
 			}
-			db.Close()
 		}
 	}
 }
