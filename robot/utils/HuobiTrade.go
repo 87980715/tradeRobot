@@ -230,7 +230,7 @@ func (r *HuobiRestfulApiRequest) HuobiLimitTrade() {
 }
 
 // huobi查询已成交订单 并写入数据库
-func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
+func (r *HuobiRestfulApiRequest) HuobiTradesDeal(preTradeResult models.HuobiTradeResults) {
 
 	signParams := make(map[string]string)
 	signParams["AccessKeyId"] = models.Huobi_AccessKeyId
@@ -306,11 +306,13 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal() {
 				tradeResult.Deal_fees = order.Filled_fees
 				tradeResult.Created_at = strconv.Itoa(order.Created_at)
 				tradeResult.Total = total
-
-				db := RobotDB
-				if err = db.Create(tradeResult).Error; err != nil {
-					logs.Error("insert failed into Huobi tradeResult ")
-					return
+				fmt.Println("tradeResult:",tradeResult)
+				if tradeResult.Trade_id > preTradeResult.Trade_id{
+					db := RobotDB
+					if err = db.Create(tradeResult).Error; err != nil {
+						logs.Error("insert failed into Huobi tradeResult ")
+						return
+					}
 				}
 			}
 		}
