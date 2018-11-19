@@ -6,11 +6,10 @@ import (
 	"tradeRobot/robot/utils"
 	)
 
-func InitRobot() (err error){
+func InitRobot(fileName string) (err error){
 
-	filename := "../robot/conf/app.conf"
 
-	err = InitConf("ini", filename)
+	err = InitConf("ini", fileName)
 	if err != nil {
 		fmt.Printf("init conf failed, err:%v\n", err)
 		panic("init conf failed")
