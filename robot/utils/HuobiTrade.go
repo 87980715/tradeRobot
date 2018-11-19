@@ -306,7 +306,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal(preTradeResult models.HuobiTrad
 				tradeResult.Deal_fees = order.Filled_fees
 				tradeResult.Created_at = strconv.Itoa(order.Created_at)
 				tradeResult.Total = total
-				fmt.Println("tradeResult:",tradeResult)
+				// fmt.Println("tradeResult:",tradeResult)
 				if tradeResult.Trade_id > preTradeResult.Trade_id{
 					db := RobotDB
 					if err = db.Create(tradeResult).Error; err != nil {
