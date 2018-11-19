@@ -85,8 +85,7 @@ func HuobiInsertToDB(symbol []string,ctx context.Context) {
 
 	db := utils.RobotDB
 	var preTradeResult models.HuobiTradeResults
-	db.Model(&models.HuobiTradeResults{}).Last(&preTradeResult)
-
+	db.Model(&models.HuobiTradeResults{}).Order("trade_id desc").Limit(1).Find(&preTradeResult)
 	for {
 		time.Sleep(300 * time.Millisecond)
 		select {

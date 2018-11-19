@@ -194,7 +194,7 @@ func QureyDealOerder(db *sql.DB, dealIds []int, userId int64) {
 func ZGInsertToDB(ctx context.Context) {
 	db := utils.RobotDB
 	var preTradeResult models.ZGTradeResults
-	db.Model(&models.HuobiTradeResults{}).Last(&preTradeResult)
+	db.Model(&models.ZGTradeResults{}).Order("trade_id desc").Limit(1).Find(&preTradeResult)
 	for {
 		select {
 		case <-ctx.Done():
