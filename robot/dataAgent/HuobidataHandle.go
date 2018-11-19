@@ -162,7 +162,7 @@ Loop:
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							} else {
-								price := data.Price*models.EthPrice["huobi"]*usdtPrice + (rand.Float64() / 800)
+								price := data.Price*models.EthPrice["huobi"]*usdtPrice + (rand.Float64() / 500)
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							}
