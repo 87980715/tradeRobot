@@ -192,6 +192,9 @@ func QureyDealOerder(db *sql.DB, dealIds []int, userId int64) {
 }
 
 func ZGInsertToDB(ctx context.Context) {
+	db := utils.RobotDB
+	var preTradeResult models.ZGTradeResults
+	db.Model(&models.HuobiTradeResults{}).Last(&preTradeResult)
 	for {
 		select {
 		case <-ctx.Done():
@@ -199,10 +202,12 @@ func ZGInsertToDB(ctx context.Context) {
 		default:
 			time.Sleep(1 * time.Second)
 			tradeResult := <-ZGTradeResult
-			db := utils.RobotDB
-			if err := db.Create(tradeResult).Error; err != nil {
-				logs.Error("insert failed into Huobi tradeResult ")
-				return
+			if tradeResult.Trade_id > preTradeResult.Trade_id {
+				db := utils.RobotDB
+				if err := db.Create(tradeResult).Error; err != nil {
+					logs.Error("insert failed into Huobi tradeResult ")
+					return
+				}
 			}
 		}
 	}
