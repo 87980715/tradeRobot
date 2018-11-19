@@ -81,7 +81,7 @@ func CanleOrdersZG(symbol []string,ctx context.Context) {
 	rand.Seed(time.Now().Unix())
 	market := symbol[0] + "_" + symbol[1]
 	for {
-		time.Sleep(8000 * time.Millisecond)
+		time.Sleep(4000 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return
@@ -89,7 +89,7 @@ func CanleOrdersZG(symbol []string,ctx context.Context) {
 			account := utils.ZTAccount
 			account.PostDataQueryPending.Limit = 20
 			account.PostDataQueryPending.Market = market
-			account.PostDataQueryPending.Offset = 200 // 300
+			account.PostDataQueryPending.Offset = 300 // 300
 			account.ZTQueryPendingMd5Sign()
 			postDatas := account.ZTQueryPending()
 			// 分开处理
@@ -98,7 +98,25 @@ func CanleOrdersZG(symbol []string,ctx context.Context) {
 					account.PostDataCancel.Market = postData.Market
 					account.PostDataCancel.Order_id = postData.Order_id
 					account.ZTCancelMd5Sign()
-					account.ZTCancelOrder()
+					// 取消之后重新挂单
+					if account.ZTCancelOrder() {
+						var postDataLimit = &utils.ZTPostDataLimit{}
+						postDataLimit.Market = postData.Market
+						postDataLimit.Amount = postData.Amount
+						if postData.Side == 1 {
+							postDataLimit.Side = "1"
+							p,_ := strconv.ParseFloat(postData.Price,64)
+							price := p*(1 - 0.002)
+							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f",price)
+						}else {
+							postDataLimit.Side = "2"
+							p,_ := strconv.ParseFloat(postData.Price,64)
+							price := p*(1 + 0.002)
+							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f",price)
+						}
+						data,_ := json.Marshal(postDataLimit)
+						models.ZGTradesChan <- string(data)
+					}
 				}
 			}
 		}

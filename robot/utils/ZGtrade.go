@@ -99,11 +99,21 @@ type PeningRecord struct {
 	Ctime  float64 `json:"ctime"`
 	Id     int64   `json:"id"`
 	Market string  `json:"market"`
+	Price  string  `json:"price"`
+	Side   int     `json:"side"`
+	Amount string  `json:"amount"`
 }
 
 type ZTPostDataCancel struct {
 	Market   string
 	Order_id int64
+	Price    string
+	Side     int
+	Amount   string
+}
+
+type ZTCancelReturn struct {
+	Code int `json:"code"`
 }
 
 func (r *ZTRestfulApiRequest) ZTCancelMd5Sign() {
@@ -354,6 +364,9 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 					var postData = &ZTPostDataCancel{}
 					postData.Market = record.Market
 					postData.Order_id = record.Id
+					postData.Amount = record.Amount
+					postData.Side = record.Side
+					postData.Price = record.Price
 					cancelOrders = append(cancelOrders, postData)
 				}
 			}
@@ -368,8 +381,7 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 
 var cancelNum int64
 // 取消订单
-func (r *ZTRestfulApiRequest) ZTCancelOrder() {
-
+func (r *ZTRestfulApiRequest) ZTCancelOrder() bool {
 	v := url.Values{}
 	v.Set("market", r.PostDataCancel.Market)
 	v.Set("order_id", strconv.Itoa(int(r.PostDataCancel.Order_id)))
@@ -383,22 +395,35 @@ func (r *ZTRestfulApiRequest) ZTCancelOrder() {
 	resp, err := http.Post(OrdersUrl, models.ZG_Content_type, rd)
 	if err != nil {
 		logs.Error("http.Post cancel order failed err:", err)
-		return
+		return false
 	}
 	if resp != nil {
 		defer resp.Body.Close()
 	}
+
+	var cancelReturn = &ZTCancelReturn{}
+	var flag = true
 	if resp.StatusCode == http.StatusOK {
-		_, err = goquery.NewDocumentFromReader(resp.Body)
-		logs.Info("取消订单成功")
-		cancelNum ++
-		logs.Info("cancelNum:", cancelNum)
-		resp.Body.Close()
-		return
+		doc, err := goquery.NewDocumentFromReader(resp.Body)
+		if err != nil {
+			logs.Error("go query new document from read cancel order failed err:", err)
+			return false
+		}
+		err = json.Unmarshal([]byte(doc.Text()), cancelReturn)
+		if err != nil {
+			logs.Error("json unmarshal cancelReturn failed err:", err)
+			return false
+		}
+		if cancelReturn.Code == 0 {
+			cancelNum ++
+			logs.Info("cancelNum:", cancelNum)
+			return true
+		} else {
+			flag = false
+		}
 	}
-	logs.Error("取消订单失败")
-	//resp.Body.Close()
-	return
+	logs.Info("取消订单失败")
+	return flag
 }
 
 func ZGSign(data map[string]string, secretKey string) (sign string) {
