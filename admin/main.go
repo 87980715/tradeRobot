@@ -6,6 +6,7 @@ import (
 	"tradeRobot/robot/initialize"
 	"github.com/astaxie/beego/logs"
 	"runtime"
+	"flag"
 )
 
 
@@ -13,7 +14,11 @@ import (
 func main() {
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
-	err := initialize.InitRobot()
+
+	fileName := flag.String("fileName", "/root/go/src/tradeRobot/robot/conf/app.conf", "configFilePath")
+	flag.Parse()
+
+	err := initialize.InitRobot(*fileName)
 	if err != nil {
 		logs.Error("init robot failed err:",err)
 		panic("init robot failed")
