@@ -87,7 +87,7 @@ func CanleOrdersZG(symbol []string, ctx context.Context) {
 			return
 		default:
 			account := utils.ZTAccount
-			account.PostDataQueryPending.Limit = 50
+			account.PostDataQueryPending.Limit = 30
 			account.PostDataQueryPending.Market = market
 			account.PostDataQueryPending.Offset = 150 // 300
 			account.ZTQueryPendingMd5Sign()
