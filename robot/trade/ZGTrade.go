@@ -40,11 +40,11 @@ Loop:
 			account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", p)
 			// 交易数量Amount 设置
 			a, _ := strconv.ParseFloat(postDataLimit.Amount, 64)
-			amount := a *models.TradeAmountMultiple + rand.Float64()
+			amount := a*models.TradeAmountMultiple + rand.Float64()
 			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
 			// 签名
 			account.ZTLimitMd5Sign()
-			account.ZTTradeLimit()
+			//account.ZTTradeLimit()
 			logs.Info("%s ZT挂单价格：%s  数量：%s\n", account.PostDataLimit.Market, account.PostDataLimit.Price, account.PostDataLimit.Amount)
 		}
 	}
@@ -77,7 +77,7 @@ Loop:
 }
 
 // 取消的ZTorders
-func CanleOrdersZG(symbol []string,ctx context.Context) {
+func CanleOrdersZG(symbol []string, ctx context.Context) {
 	rand.Seed(time.Now().Unix())
 	market := symbol[0] + "_" + symbol[1]
 	for {
@@ -87,9 +87,9 @@ func CanleOrdersZG(symbol []string,ctx context.Context) {
 			return
 		default:
 			account := utils.ZTAccount
-			account.PostDataQueryPending.Limit = 20
+			account.PostDataQueryPending.Limit = 50
 			account.PostDataQueryPending.Market = market
-			account.PostDataQueryPending.Offset = 300 // 300
+			account.PostDataQueryPending.Offset = 0 // 300
 			account.ZTQueryPendingMd5Sign()
 			postDatas := account.ZTQueryPending()
 			// 分开处理
@@ -100,22 +100,25 @@ func CanleOrdersZG(symbol []string,ctx context.Context) {
 					account.ZTCancelMd5Sign()
 					// 取消之后重新挂单
 					if account.ZTCancelOrder() {
-						var postDataLimit = &utils.ZTPostDataLimit{}
-						postDataLimit.Market = postData.Market
-						postDataLimit.Amount = postData.Amount
-						if postData.Side == 1 {
-							postDataLimit.Side = "1"
-							p,_ := strconv.ParseFloat(postData.Price,64)
-							price := p*(1 - 0.002)
-							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f",price)
-						}else {
-							postDataLimit.Side = "2"
-							p,_ := strconv.ParseFloat(postData.Price,64)
-							price := p*(1 + 0.002)
-							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f",price)
+						rand.Seed(time.Now().Unix())
+						if rand.Intn(20)%2 == 0 {
+							var postDataLimit = &utils.ZTPostDataLimit{}
+							postDataLimit.Market = postData.Market
+							postDataLimit.Amount = postData.Amount
+							if postData.Side == 1 {
+								postDataLimit.Side = "1"
+								p, _ := strconv.ParseFloat(postData.Price, 64)
+								price := p * (1 - 0.002)
+								postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+							} else {
+								postDataLimit.Side = "2"
+								p, _ := strconv.ParseFloat(postData.Price, 64)
+								price := p * (1 + 0.002)
+								postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+							}
+							data, _ := json.Marshal(postDataLimit)
+							models.ZGTradesChan <- string(data)
 						}
-						data,_ := json.Marshal(postDataLimit)
-						models.ZGTradesChan <- string(data)
 					}
 				}
 			}

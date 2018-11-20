@@ -59,6 +59,9 @@ func (c *RobotManagerController) Add() {
 	usdtPrice,_ := strconv.ParseFloat(r,64)
 	models.UsdtPrice["Huobi"] = usdtPrice
 
+	// 初始化账户
+	initialize.InitAccounts()
+
 	id, err := initialize.HuobiUserId()
 	if err != nil {
 		result["code"] = 1001
@@ -68,17 +71,14 @@ func (c *RobotManagerController) Add() {
 	}
 	models.HuobiUserID = strconv.Itoa(id)
 
-	//id,err = initialize.ZGUserId()
-	//if err != nil {
-	//	result["code"] = 1001
-	//	result["message"] = "操作失败"
-	//	result["error"] = "invalid AccessKeyId or Secretkey"
-	//	return
-	//}
-	models.ZGUserID = strconv.Itoa(902) //strconv.Itoa(id)
-
-	// 初始化账户
-	initialize.InitAccounts()
+	id,err = initialize.ZGUserId()
+	if err != nil {
+		result["code"] = 1001
+		result["message"] = "操作失败"
+		result["error"] = "invalid AccessKeyId or Secretkey"
+		return
+	}
+	models.ZGUserID = strconv.Itoa(id)
 
 	// 新建机器人
 	robot := Robot{}
