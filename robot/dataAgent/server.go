@@ -10,13 +10,13 @@ func AgentServerRun(symbol []string,ctx context.Context) {
 
 	go func(symbol []string,ctx context.Context) {
 		initialize.AppConfig.Wg.Add(1)
-		GetTradesHuobiMtEth(symbol, models.Huobi_OrdersSize,ctx)
+		GetTradesHuobi(symbol, models.Huobi_OrdersSize,ctx)
 	}(symbol,ctx)
 
-	go func(ctx context.Context) {
+	go func(symbol []string, ctx context.Context) {
 		initialize.AppConfig.Wg.Add(1)
-		GetDealOrdersZG(ctx)
-	}(ctx)
+		GetDealOrdersZG(symbol,ctx)
+	}(symbol,ctx)
 
 	go func(symbol []string,ctx context.Context) {
 		QueryDealIds(symbol,ctx)

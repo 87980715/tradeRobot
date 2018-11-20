@@ -11,6 +11,7 @@ type HuobiFinishedController struct {
 	beego.Controller
 }
 
+// 参数-火币交易对
 func (c *HuobiFinishedController) HuobiFinished() {
 	result := make(map[string]interface{})
 
@@ -22,7 +23,7 @@ func (c *HuobiFinishedController) HuobiFinished() {
 		c.ServeJSON()
 	}()
 
-	s := strings.ToUpper(c.GetString("symbol"))
+	s := strings.ToUpper(c.GetString("HuobiSymbol"))
 	tempSymbol := strings.Split(s, "-")
 	symbol := tempSymbol[0] + tempSymbol[1]
 

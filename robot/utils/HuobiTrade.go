@@ -381,30 +381,22 @@ func (r *HuobiRestfulApiRequest) HuobiCancelPendingOrders() {
 					orderId := strconv.Itoa(order.Id)
 					// 取消订单
 					if r.HuobiCancelOrder(orderId) {
-						RMuLock.RLock()
-						usdtPrice := models.UsdtPrice["huobi"]
-						ethPrice := models.EthPrice["huobi"]
-						RMuLock.RUnlock()
-
 						postDataLimit := &HuobiPostDataLimit{}
 						postDataLimit.Account_id = strconv.Itoa(order.Account_id)
 						postDataLimit.Symbol = order.Symbol
 						postDataLimit.Type = order.Type
 						if order.Type == "buy-limit" {
 							p, _ := strconv.ParseFloat(order.Price, 64)
-							price := p * (1 + models.TradePriceAdjust) * usdtPrice * ethPrice
-							// 4
+							price := p * (1 + models.TradePriceAdjust)
 							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 						} else {
 							// 价格设置：降低价格1‰，重新挂单
 							p, _ := strconv.ParseFloat(order.Price, 64)
-							price := p * (1 - models.TradePriceAdjust) * usdtPrice * ethPrice
-							// 4
+							price := p * (1 - models.TradePriceAdjust)
 							postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 						}
 						// 数量设置：减去已成交的数量
 						amount, _ := strconv.ParseFloat(order.Amount, 64)
-
 						filledAmount, _ := strconv.ParseFloat(order.Filled_amount, 64)
 						postDataLimit.Amount = strconv.FormatFloat(amount - filledAmount, 'E', -1, 64)
 						//fmt.Println("amount:",amount,filledAmount,amount - filledAmount)

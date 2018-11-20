@@ -19,7 +19,7 @@ type DBConfig struct {
 	DbName   string `required:"true"`
 	Charset  string `default:"utf8"`
 }
-
+// 参数-交易对
 func (c *ZGFinishedController) ZGFinished() {
 
 	result := make(map[string]interface{})
@@ -34,7 +34,7 @@ func (c *ZGFinishedController) ZGFinished() {
 
 	s := strings.ToUpper(c.GetString("symbol"))
 	tempSymbol := strings.Split(s, "-")
-	symbol := tempSymbol[0] + "_" + "CNT"
+	symbol := tempSymbol[0] + "_" + tempSymbol[1]
 
 	db := utils.RobotDB
 

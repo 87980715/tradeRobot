@@ -41,7 +41,7 @@ func (c *RobotStopController) Stop() {
 	}
 
 	// 重新生成 ctx，不让重新启动不了了
-	parentCtx := context.WithValue(context.Background(), "symbol", robot.Symbol)
+	parentCtx := context.WithValue(context.Background(), "symbol", robot.symbol)
 	ctx, cancel := context.WithCancel(parentCtx)
 	robot.ctx = ctx
 	robot.cancel = cancel

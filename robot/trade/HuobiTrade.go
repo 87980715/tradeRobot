@@ -12,6 +12,7 @@ import (
 	"github.com/astaxie/beego/logs"
 	"math/rand"
 )
+
 var RMuLock sync.RWMutex
 // 限价交易
 func TradeLimitHuobi(ctx context.Context) {
@@ -27,37 +28,54 @@ func TradeLimitHuobi(ctx context.Context) {
 			// 设置交易参数,精度需处理
 			account := utils.HuobiAccount
 			account.PostDataLimit.Symbol = postDataLimit.Symbol
-			// 数量最小为0.01，2位小数
-			amount,_:= strconv.ParseFloat(postDataLimit.Amount, 64)
-			a := amount + rand.Float64()/1000
-			account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(2)+"f", a)
-			// fmt.Println("amount:",account.PostDataLimit.Amount)
-			// 价格，8位小数
-			p,_:= strconv.ParseFloat(postDataLimit.Price, 64)
+			account.PostDataLimit.Type = postDataLimit.Type
+			account.PostDataLimit.Account_id = models.HuobiUserID
 
 			RMuLock.RLock()
 			ethPrice := models.EthPrice["huobi"]
 			usdtPrice := models.UsdtPrice["huobi"]
 			RMuLock.RUnlock()
 
-			for ethPrice * usdtPrice == 0 {
+			for ethPrice*usdtPrice == 0 {
 				RMuLock.RLock()
 				ethPrice = models.EthPrice["huobi"]
 				usdtPrice = models.UsdtPrice["huobi"]
 				RMuLock.RUnlock()
 
-				if ethPrice * usdtPrice != 0 {
+				if ethPrice*usdtPrice != 0 {
 					break
 				}
 			}
-			price := p / (ethPrice * usdtPrice)
-			// fmt.Println("price:",price)
-			account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 
-			account.PostDataLimit.Type = postDataLimit.Type
-			account.PostDataLimit.Account_id = models.HuobiUserID
+			switch postDataLimit.Symbol {
+			case "mteth":
+				// 数量最小为0.01，2位小数
+				amount, _ := strconv.ParseFloat(postDataLimit.Amount, 64)
+				a := amount + rand.Float64()/1000
+				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(2)+"f", a)
+				// fmt.Println("amount:",account.PostDataLimit.Amount)
+				// 价格，8位小数
+				p, _ := strconv.ParseFloat(postDataLimit.Price, 64)
+				price := p / (ethPrice * usdtPrice)
+				// fmt.Println("price:",price)
+				account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
+			case "ethusdt":
+				amount,_:= strconv.ParseFloat(postDataLimit.Amount, 64)
+				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
+				// 价格，2位小数
+				p,_:= strconv.ParseFloat(postDataLimit.Price, 64)
+				price := p / usdtPrice
+				account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(2)+"f", price)
+			case "btcusdt":
+				amount,_:= strconv.ParseFloat(postDataLimit.Amount, 64)
+				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
+				// 价格，2位小数
+				p,_:= strconv.ParseFloat(postDataLimit.Price, 64)
+				price := p / usdtPrice
+				account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(2)+"f", price)
+			}
 			// 执行交易
-			account.HuobiLimitTrade()
+			// account.HuobiLimitTrade()
 			logs.Info("%s 火币挂单价格：%s  数量：%s\n", account.PostDataLimit.Symbol, account.PostDataLimit.Price, account.PostDataLimit.Amount)
 		}
 	}
@@ -70,7 +88,7 @@ func TradeCancelHuobi(symbol []string, ctx context.Context) {
 		case <-ctx.Done():
 			return
 		default:
-			s := strings.ToLower(symbol [0] + "eth")
+			s := strings.ToLower(symbol [0] + symbol[2])
 			acount := utils.HuobiAccount
 			acount.GetDataPending.Symbol = s
 			acount.GetDataPending.Account_id = models.HuobiUserID
@@ -81,7 +99,7 @@ func TradeCancelHuobi(symbol []string, ctx context.Context) {
 }
 
 // 将已成交的交易插入数据库
-func HuobiInsertToDB(symbol []string,ctx context.Context) {
+func HuobiInsertToDB(symbol []string, ctx context.Context) {
 
 	db := utils.RobotDB
 	var preTradeResult models.HuobiTradeResults
@@ -92,10 +110,9 @@ func HuobiInsertToDB(symbol []string,ctx context.Context) {
 		case <-ctx.Done():
 			return
 		default:
-			s := strings.ToLower(symbol [0] + "eth")
+			s := strings.ToLower(symbol [0] + symbol[2])
 			acount := utils.HuobiAccount
 			acount.GetTradesDeal.Symbol = s
-
 			acount.HuobiTradesDeal(preTradeResult)
 		}
 	}

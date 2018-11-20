@@ -49,6 +49,22 @@ type Data struct {
 
 var WRMuLock sync.RWMutex
 
+func GetTradesHuobi(symbol []string, size string, ctx context.Context) {
+
+	huobiSymbol := strings.ToLower(symbol[0] + symbol[2])
+	switch huobiSymbol {
+
+	case "mteth":
+		GetTradesHuobiMtEth(symbol, size, ctx)
+
+	case "btcusdt":
+		GetTradesHuobiBtcUsdt(symbol, size, ctx)
+
+	case "ethusdt":
+		GetTradesHuobiEthUsdt(symbol, size, ctx)
+	}
+}
+
 func GetTradesHuobiMtEth(symbol []string, size string, ctx context.Context) {
 Loop:
 	for {
@@ -58,7 +74,7 @@ Loop:
 			return
 		default:
 			// 获取火币mteth交易对的价格
-			symbol_mteth := strings.ToLower(symbol[0]) + "eth"
+			symbol_mteth := strings.ToLower(symbol[0] + symbol[2])
 			key := symbol_mteth + "TradeId"
 			tradesUrl := "https://api.huobi.br.com/market/history/trade?symbol=" + symbol_mteth + "&size=" + size
 
@@ -150,7 +166,7 @@ Loop:
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							} else {
-								price := data.Price*models.EthPrice["huobi"]*usdtPrice - (rand.Float64() / 800)
+								price := data.Price * models.EthPrice["huobi"] * usdtPrice * (1 + rand.Float64()/900)
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							}
@@ -162,7 +178,7 @@ Loop:
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							} else {
-								price := data.Price*models.EthPrice["huobi"]*usdtPrice + (rand.Float64() / 500)
+								price := data.Price * models.EthPrice["huobi"] * usdtPrice * ( 1 + rand.Float64()/900)
 								p := strconv.FormatFloat(price, 'E', -1, 64)
 								postDataLimit.Price = p
 							}
@@ -189,77 +205,114 @@ Loop:
 	}
 }
 
-func GetHuobiUsdtPrice(ctx context.Context) {
-
+func GetTradesHuobiBtcUsdt(symbol []string, size string, ctx context.Context) {
+Loop:
 	for {
-		time.Sleep(time.Second * 60)
+		time.Sleep(time.Millisecond * 200)
 		select {
 		case <-ctx.Done():
 			return
 		default:
-			UsdtPrice()
+			ZGSymbol := symbol[0] + "_" + symbol[1]
+			symbol := strings.ToLower(symbol[0] + symbol[2])
+			key := symbol + "TradeId"
+			tradesUrl := "https://api.huobi.br.com/market/history/trade?symbol=" + symbol + "&size=" + size
+			tradesRes, err := http.Get(tradesUrl)
+			if err != nil {
+				logs.Error("http.Get trades failed from huobi err:", err)
+				if tradesRes != nil {
+					tradesRes.Body.Close()
+				}
+				continue Loop
+			}
+			doc, err := goquery.NewDocumentFromReader(tradesRes.Body)
+			if tradesRes != nil {
+				tradesRes.Body.Close()
+			}
+
+			if err != nil {
+				logs.Error("goquery.NewDocumentFromReader failed err:", err)
+				continue Loop
+			}
+			var huobiTrades = &HuobiTrades{
+				Datas: []*Trade{
+				},
+			}
+			err = json.Unmarshal([]byte(doc.Text()), huobiTrades)
+			if err != nil {
+				logs.Error("json.Unmarshal huobi trades failed err:", err)
+				continue Loop
+			}
+
+			WRMuLock.RLock()
+			usdtPrice := models.UsdtPrice["huobi"]
+			WRMuLock.RUnlock()
+
+			for _, trade := range huobiTrades.Datas {
+				// 最新的交易的第一个交易ID和原来最后一交易ID比较，大于则说明拿到的trades都是有效的
+				if trade.Id > models.HuoPreTradeId[key] {
+					rand.Seed(time.Now().Unix())
+					for _, data := range trade.Data {
+						postDataLimit := &utils.ZTPostDataLimit{}
+						postDataLimit.Market = ZGSymbol
+						if data.Direction == "buy" {
+							if rand.Intn(20)%2 == 0 {
+								postDataLimit.Side = "2"
+								// 买 设置价格 增加买卖深度
+								price := data.Price * usdtPrice
+								//fmt.Println("usdtPrice:",usdtPrice,"data.Price:",data.Price)
+								p := strconv.FormatFloat(price, 'E', -1, 64)
+								postDataLimit.Price = p
+							} else {
+								postDataLimit.Side = "2"
+								// 设置价格
+								price := data.Price * usdtPrice * (1 - rand.Float64()/90)
+								p := strconv.FormatFloat(price, 'E', -1, 64)
+								postDataLimit.Price = p
+							}
+						} else {
+							if rand.Intn(10)%2 == 0 {
+								postDataLimit.Side = "1"
+								// 卖 设置价格
+								price := data.Price * usdtPrice
+								p := strconv.FormatFloat(price, 'E', -1, 64)
+								postDataLimit.Price = p
+							} else {
+								postDataLimit.Side = "1"
+								// 设置价格
+								price := data.Price * usdtPrice * (1 + rand.Float64()/90)
+								price += rand.Float64()
+								p := strconv.FormatFloat(price, 'E', -1, 64)
+								postDataLimit.Price = p
+							}
+						}
+						// 防止特大单，出现平行线
+						if data.Amount > 3 {
+							data.Amount = 3
+							a := strconv.FormatFloat(data.Amount, 'E', -1, 64)
+							postDataLimit.Amount = a
+						} else {
+							a := strconv.FormatFloat(data.Amount, 'E', -1, 64)
+							postDataLimit.Amount = a
+						}
+						data, err := json.Marshal(postDataLimit)
+						if err != nil {
+							logs.Error("json.Marshal trade failed err:", err)
+							tradesRes.Body.Close()
+							continue Loop
+						}
+						// ------测试 ------
+						// fmt.Println(string(data))
+						models.ZGTradesChan <- string(data)
+					}
+				}
+			}
+			if len(huobiTrades.Datas) != 0 {
+				models.HuoPreTradeId[key] = huobiTrades.Datas[0].Id
+			}
 		}
 	}
 }
-
-func UsdtPrice() {
-
-	var url = "https://otc.huobi.br.com/zh-cn/trade/buy-usdt/"
-	opts := []selenium.ServiceOption{}
-	caps := selenium.Capabilities{
-		"browserName": "chrome",
-	}
-	imagCaps := map[string]interface{}{
-		"profile.managed_default_content_settings.images": 2,
-	}
-	chromeCaps := chrome.Capabilities{
-		Prefs: imagCaps,
-		Path:  "",
-		Args: []string{
-			"--headless", // 设置Chrome无头模式,linux 必须设置，否则会报错
-			"--no-sandbox",
-			"--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36", // 模拟user-agent，防反爬
-		},
-	}
-
-	caps.AddChrome(chromeCaps)
-
-	service, err := selenium.NewChromeDriverService("/opt/chrome/chromedriver", 9515, opts...)
-	if err != nil {
-		return
-	}
-	defer service.Stop()
-
-	webDriver, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", 9515))
-	if err != nil {
-		return
-	}
-	defer webDriver.Close()
-
-	webDriver.Refresh()
-
-	err = webDriver.Get(url)
-	if err != nil {
-		logs.Error("webDriver get url failed")
-		return
-	}
-
-	t, err := webDriver.FindElement(selenium.ByXPATH, `//*[@id="app"]/div[1]/div[2]/div/div/div[2]/div[3]/div[1]/div/div[2]/div[4]`)
-	if err != nil { //*[@id="app"]/div[1]/div[2]/div/div/div[2]/div[3]/div[1]/div/div[2]/div[4]
-		return
-	}
-
-	price, err := t.Text()
-	s := strings.Split(price, " ")
-	p, _ := strconv.ParseFloat(s[0], 64)
-
-	WRMuLock.Lock()
-	models.UsdtPrice["Huobi"] = p
-	WRMuLock.Unlock()
-	fmt.Println("usdtPrice:", p)
-}
-
-
 
 func GetTradesHuobiEthUsdt(symbol []string, size string, ctx context.Context) {
 Loop:
@@ -270,7 +323,7 @@ Loop:
 			return
 		default:
 			ZGSymbol := symbol[0] + "_" + symbol[1]
-			symbol := strings.ToLower(symbol[0]) + "usdt"
+			symbol := strings.ToLower(symbol[0] + symbol[2])
 			key := symbol + "TradeId"
 			tradesUrl := "https://api.huobi.br.com/market/history/trade?symbol=" + symbol + "&size=" + size
 			tradesRes, err := http.Get(tradesUrl)
@@ -362,3 +415,77 @@ Loop:
 		}
 	}
 }
+
+
+
+func GetHuobiUsdtPrice(ctx context.Context) {
+
+	for {
+		time.Sleep(time.Second * 60)
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			UsdtPrice()
+		}
+	}
+}
+
+func UsdtPrice() {
+
+	var url = "https://otc.huobi.br.com/zh-cn/trade/buy-usdt/"
+	opts := []selenium.ServiceOption{}
+	caps := selenium.Capabilities{
+		"browserName": "chrome",
+	}
+	imagCaps := map[string]interface{}{
+		"profile.managed_default_content_settings.images": 2,
+	}
+	chromeCaps := chrome.Capabilities{
+		Prefs: imagCaps,
+		Path:  "",
+		Args: []string{
+			"--headless", // 设置Chrome无头模式,linux 必须设置，否则会报错
+			"--no-sandbox",
+			"--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36", // 模拟user-agent，防反爬
+		},
+	}
+
+	caps.AddChrome(chromeCaps)
+
+	service, err := selenium.NewChromeDriverService("/opt/chrome/chromedriver", 9515, opts...)
+	if err != nil {
+		return
+	}
+	defer service.Stop()
+
+	webDriver, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", 9515))
+	if err != nil {
+		return
+	}
+	defer webDriver.Close()
+
+	webDriver.Refresh()
+
+	err = webDriver.Get(url)
+	if err != nil {
+		logs.Error("webDriver get url failed")
+		return
+	}
+
+	t, err := webDriver.FindElement(selenium.ByXPATH, `//*[@id="app"]/div[1]/div[2]/div/div/div[2]/div[3]/div[1]/div/div[2]/div[4]`)
+	if err != nil { //*[@id="app"]/div[1]/div[2]/div/div/div[2]/div[3]/div[1]/div/div[2]/div[4]
+		return
+	}
+
+	price, err := t.Text()
+	s := strings.Split(price, " ")
+	p, _ := strconv.ParseFloat(s[0], 64)
+
+	WRMuLock.Lock()
+	models.UsdtPrice["Huobi"] = p
+	WRMuLock.Unlock()
+	fmt.Println("usdtPrice:", p)
+}
+
+

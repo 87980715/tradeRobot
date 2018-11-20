@@ -32,7 +32,7 @@ var ZGTradeRecords = make(chan *utils.Record, 100)
 var ZGDealIds = make(chan []int, 100)
 
 // 从ZG交易所中，获取账户真实成交记录,并进行处处理
-func GetDealOrdersZG(ctx context.Context) {
+func GetDealOrdersZG(symbol []string,ctx context.Context) {
 	for {
 		time.Sleep(1000 * time.Millisecond)
 		select {
@@ -42,8 +42,7 @@ func GetDealOrdersZG(ctx context.Context) {
 			record := <-ZGTradeRecords
 			if record != nil {
 				var postDataLimit = &utils.HuobiPostDataLimit{}
-				str := strings.Split(record.Market, "_")
-				postDataLimit.Symbol = strings.ToLower(str[0] + "eth")
+				postDataLimit.Symbol = strings.ToLower(symbol[0] + symbol[2])
 				if record.Side == 1 {
 					postDataLimit.Type = "buy-limit"
 					p, _ := strconv.ParseFloat(record.Price, 64)
@@ -87,7 +86,6 @@ func QueryRealDealZG(ctx context.Context) {
 }
 
 func QueryDealIds(symbol []string, ctx context.Context) {
-
 	userId, _ := strconv.ParseInt(models.ZGUserID, 10, 64)
 	for {
 		time.Sleep(2000 * time.Millisecond)
@@ -116,12 +114,12 @@ func QueryDealIds(symbol []string, ctx context.Context) {
 				models.ZGPreDealId[key] = int64(dealIds[0])
 			}
 			row.Close()
+			logs.Info(market+"dealIds:", dealIds)
 			ZGDealIds <- dealIds
 		}
 	}
 }
 func QureyDealOerder(db *sql.DB, dealIds []int, userId int64) {
-	logs.Info("dealIds:", dealIds)
 	m := make(map[int]int)
 	// 统计每个dealId 出现的次数
 	for _, v := range dealIds {

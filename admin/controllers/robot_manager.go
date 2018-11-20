@@ -8,6 +8,7 @@ import (
 	"tradeRobot/robot/models"
 	"tradeRobot/robot/initialize"
 )
+
 // 新增 删除
 // 启动 暂停
 
@@ -21,13 +22,14 @@ var (
 )
 
 type Robot struct {
-	Symbol  string `json:"symbol"`
-	cancel  context.CancelFunc
-	RobotId int    `json:"robot_id"`
-	ctx     context.Context
-	Stutas string `json:"stutas"`
+	symbol     string
+	cancel     context.CancelFunc
+	RobotId    int    `json:"robot_id"`
+	ctx        context.Context
+	Stutas     string `json:"stutas"`
+	ShowSymbol string `json:"symbol"`
 }
-
+// 差总得交易对集合 map
 func (c *RobotManagerController) Add() {
 	result := make(map[string]interface{})
 
@@ -49,14 +51,14 @@ func (c *RobotManagerController) Add() {
 
 	// 策略参数
 	i := c.Input().Get("inspectTime")
-	models.TradeInspectTime ,_ = strconv.ParseInt(i,10,64) //单位毫秒
+	models.TradeInspectTime, _ = strconv.ParseInt(i, 10, 64) //单位毫秒
 	p := c.Input().Get("priceAdjust")
-	models.TradePriceAdjust ,_ = strconv.ParseFloat(p,64)
-	a:= c.Input().Get("amountMultiple")
-	models.TradeAmountMultiple,_ = strconv.ParseFloat(a,64)
+	models.TradePriceAdjust, _ = strconv.ParseFloat(p, 64)
+	a := c.Input().Get("amountMultiple")
+	models.TradeAmountMultiple, _ = strconv.ParseFloat(a, 64)
 	// Usdt第一个值
 	r := c.Input().Get("usdtPrice")
-	usdtPrice,_ := strconv.ParseFloat(r,64)
+	usdtPrice, _ := strconv.ParseFloat(r, 64)
 	models.UsdtPrice["Huobi"] = usdtPrice
 
 	// 初始化账户
@@ -71,7 +73,7 @@ func (c *RobotManagerController) Add() {
 	}
 	models.HuobiUserID = strconv.Itoa(id)
 
-	id,err = initialize.ZGUserId()
+	id, err = initialize.ZGUserId()
 	if err != nil {
 		result["code"] = 1001
 		result["message"] = "操作失败"
@@ -82,9 +84,9 @@ func (c *RobotManagerController) Add() {
 
 	// 新建机器人
 	robot := Robot{}
-	robot.Symbol = strings.ToUpper(symbol[0] + "_" + "CNT")
-
-	parentCtx := context.WithValue(context.Background(), "symbol", robot.Symbol)
+	robot.symbol = strings.ToUpper(symbol[0] + "_" + "CNT" + "_" + symbol[1])
+	robot.ShowSymbol = strings.ToUpper(symbol[0] + "_" + "CNT")
+	parentCtx := context.WithValue(context.Background(), "symbol", robot.symbol)
 	ctx, cancel := context.WithCancel(parentCtx)
 	robot.ctx = ctx
 	robot.cancel = cancel
@@ -95,7 +97,7 @@ func (c *RobotManagerController) Add() {
 	Robots[RobotId] = robot
 
 	result["robotId"] = robot.RobotId
-	result["symbol"] = robot.Symbol
+	result["symbol"] = robot.ShowSymbol
 }
 
 func (c *RobotManagerController) Delete() {
@@ -109,17 +111,16 @@ func (c *RobotManagerController) Delete() {
 	}()
 
 	tempId := c.Input().Get("robotId")
-	id,_ := strconv.Atoi(tempId )
+	id, _ := strconv.Atoi(tempId)
 
-	_ , ok:= Robots[id]
+	_, ok := Robots[id]
 	if !ok {
 		result["code"] = 0
 		result["message"] = "操作失败"
 		result["error"] = "无效的机器编号"
 	}
-
 	// 从机器人列表中减去相应的robot
-	delete(Robots,id)
+	delete(Robots, id)
 }
 
 func (c *RobotManagerController) RobotsList() {

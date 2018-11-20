@@ -39,7 +39,7 @@ func  (c *RobotStartController) Start() {
 	}
 
 	ctx := robot.ctx
-	symbol := strings.Split(robot.Symbol,"_")
+	symbol := strings.Split(robot.symbol,"_")
 
 	go func(symbol []string, c context.Context) {
 		server.RobotRun(symbol, ctx)
