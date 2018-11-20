@@ -57,7 +57,7 @@ func TradeLimitHuobi(ctx context.Context) {
 			account.PostDataLimit.Type = postDataLimit.Type
 			account.PostDataLimit.Account_id = models.HuobiUserID
 			// 执行交易
-			// account.HuobiLimitTrade()
+			account.HuobiLimitTrade()
 			logs.Info("%s 火币挂单价格：%s  数量：%s\n", account.PostDataLimit.Symbol, account.PostDataLimit.Price, account.PostDataLimit.Amount)
 		}
 	}
