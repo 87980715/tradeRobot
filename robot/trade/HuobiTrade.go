@@ -17,7 +17,7 @@ var RMuLock sync.RWMutex
 func TradeLimitHuobi(ctx context.Context) {
 	rand.Seed(time.Now().UnixNano())
 	for {
-		time.Sleep(150 * time.Millisecond)
+		time.Sleep(151 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return
