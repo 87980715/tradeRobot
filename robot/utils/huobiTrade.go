@@ -297,7 +297,7 @@ func (r *HuobiRestfulApiRequest) HuobiTradesDeal(preTradeResult models.HuobiTrad
 				t := a * p
 				total := fmt.Sprintf("%."+strconv.Itoa(8)+"f", t)
 
-				tradeResult.User_id = models.HuobiUserID
+				tradeResult.User_id = strconv.FormatInt(models.UserID[r.GetTradesDeal.Symbol],10)
 				tradeResult.Trade_id = strconv.Itoa(order.Id)
 				tradeResult.Symbol = order.Symbol
 				tradeResult.Type = order.Type

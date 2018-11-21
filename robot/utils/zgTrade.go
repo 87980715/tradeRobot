@@ -15,7 +15,7 @@ import (
 	"time"
 	"strconv"
 	"math/rand"
-	"fmt"
+	//"fmt"
 )
 
 type ZTRestfulApiRequest struct {
@@ -353,7 +353,7 @@ func (r *ZTRestfulApiRequest) ZTQueryPending() []*ZTPostDataCancel {
 		if err != nil {
 			logs.Info("unmarshal zt query pending failed err:", err)
 		}
-		fmt.Println("ZG未成交数据",doc.Text())
+		// fmt.Println("ZG未成交数据",doc.Text())
 		var cancelOrders []*ZTPostDataCancel
 		rand.Seed(time.Now().UnixNano())
 		randNum := float64(rand.Intn(5) + 10)
