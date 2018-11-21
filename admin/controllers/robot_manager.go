@@ -29,6 +29,8 @@ type Robot struct {
 	Stutas     string `json:"stutas"`
 	ShowSymbol string `json:"symbol"`
 }
+
+
 // 差总得交易对集合 map
 func (c *RobotManagerController) Add() {
 	result := make(map[string]interface{})

@@ -189,10 +189,11 @@ func QureyDealOerder(db *sql.DB, dealIds []int, userId int64) {
 	}
 }
 
-func ZGInsertToDB(ctx context.Context) {
+func ZGInsertToDB(symbol []string,ctx context.Context) {
 	db := utils.RobotDB
 	var preTradeResult models.ZGTradeResults
-	db.Model(&models.ZGTradeResults{}).Order("trade_id desc").Limit(1).Find(&preTradeResult)
+	s := strings.ToUpper(symbol[0] + "_" + symbol[1])
+	db.Model(&models.ZGTradeResults{}).Where("symbol = ?", s).Order("trade_id desc").Limit(1).Find(&preTradeResult)
 	for {
 		select {
 		case <-ctx.Done():

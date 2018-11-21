@@ -56,16 +56,158 @@ func GetTradesHuobi(symbol []string, size string, ctx context.Context) {
 
 	case "mteth":
 		GetTradesHuobiMtEth(symbol, size, ctx)
-
+	case "aeeth":
+		GetTradesHuobiAEEth(symbol, size, ctx)
 	case "btcusdt":
 		GetTradesHuobiBtcUsdt(symbol, size, ctx)
-
 	case "ethusdt":
 		GetTradesHuobiEthUsdt(symbol, size, ctx)
+	default:
+		GetTradesHuobiAEEth(symbol, size, ctx)
 	}
 }
 
 func GetTradesHuobiMtEth(symbol []string, size string, ctx context.Context) {
+Loop:
+	for {
+		time.Sleep(time.Millisecond * 500)
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			// 获取火币mteth交易对的价格
+			symbol_mteth := strings.ToLower(symbol[0] + symbol[2])
+			key := symbol_mteth + "TradeId"
+			tradesUrl := "https://api.huobi.br.com/market/history/trade?symbol=" + symbol_mteth + "&size=" + size
+
+			tradesRes, err := http.Get(tradesUrl)
+			if err != nil {
+				logs.Error("http.Get trades failed from huobi err:", err)
+				if tradesRes != nil {
+					tradesRes.Body.Close()
+				}
+				continue Loop
+			}
+			mtEthDoc, err := goquery.NewDocumentFromReader(tradesRes.Body)
+			if tradesRes != nil {
+				tradesRes.Body.Close()
+			}
+
+			if err != nil {
+				logs.Error("goquery.NewDocumentFromReader mtEthDoc failed err:", err)
+				continue Loop
+			}
+			var mtEthhuobiTrades = &HuobiTrades{
+				Datas: []*Trade{
+				},
+			}
+			// fmt.Println("mtEthDoc:",mtEthDoc.Text())
+			err = json.Unmarshal([]byte(mtEthDoc.Text()), mtEthhuobiTrades)
+			if err != nil {
+				logs.Error("json.Unmarshal huobi  mtEthDoc trades failed err:", err)
+				continue Loop
+			}
+
+			time.Sleep(time.Millisecond * 500)
+			ZGSymbol := symbol[0] + "_" + symbol[1]
+			// 获取火币ethusdt交易对的价格
+			symbol_ethusdt := "ethusdt"
+			key = symbol_ethusdt + "TradeId"
+			tradesUrl = "https://api.huobi.br.com/market/history/trade?symbol=" + symbol_ethusdt + "&size=" + size
+
+			tradesRes, err = http.Get(tradesUrl)
+			if err != nil {
+				logs.Error("http.Get trades failed from huobi err:", err)
+				if tradesRes != nil {
+					tradesRes.Body.Close()
+				}
+				continue Loop
+			}
+			ethUsdtDoc, err := goquery.NewDocumentFromReader(tradesRes.Body)
+			if tradesRes != nil {
+				tradesRes.Body.Close()
+			}
+			if err != nil {
+				logs.Error("goquery.NewDocumentFromReader failed err:", err)
+				continue Loop
+			}
+
+			var ethUsdthuobiTrades = &HuobiTrades{
+				Datas: []*Trade{
+				},
+			}
+			err = json.Unmarshal([]byte(ethUsdtDoc.Text()), ethUsdthuobiTrades)
+			if err != nil {
+				logs.Error("json.Unmarshal huobi  trades failed err:", err)
+				continue Loop
+			}
+
+			if len(ethUsdthuobiTrades.Datas) != 0 {
+				WRMuLock.Lock()
+				models.EthPrice["huobi"] = ethUsdthuobiTrades.Datas[0].Data[0].Price
+				WRMuLock.Unlock()
+			}
+
+			WRMuLock.RLock()
+			usdtPrice := models.UsdtPrice["huobi"]
+			WRMuLock.RUnlock()
+
+			for _, trade := range mtEthhuobiTrades.Datas {
+				// 最新的交易的第一个交易ID和原来最后一交易ID比较，大于则说明拿到的trades都是有效的
+				if trade.Id > models.HuoPreTradeId[key] {
+					rand.Seed(time.Now().Unix())
+					for _, data := range trade.Data {
+						postDataLimit := &utils.ZTPostDataLimit{}
+						postDataLimit.Market = ZGSymbol
+
+						if data.Direction == "buy" {
+							postDataLimit.Side = "2"
+							if rand.Intn(10)%2 == 0 {
+								// 买 设置价格 增加买卖深度
+								price := data.Price * models.EthPrice["huobi"] * usdtPrice * (1 + 0.005 )
+								p := strconv.FormatFloat(price, 'E', -1, 64)
+								postDataLimit.Price = p
+							} else {
+								price := data.Price * models.EthPrice["huobi"] * usdtPrice * (1 + rand.Float64()/900)
+								p := strconv.FormatFloat(price, 'E', -1, 64)
+								postDataLimit.Price = p
+							}
+						} else {
+							postDataLimit.Side = "1"
+							if rand.Intn(10)%2 == 0 {
+								// 卖 设置价格
+								price := data.Price * models.EthPrice["huobi"] * usdtPrice * (1 - 0.005)
+								p := strconv.FormatFloat(price, 'E', -1, 64)
+								postDataLimit.Price = p
+							} else {
+								price := data.Price * models.EthPrice["huobi"] * usdtPrice * ( 1 + rand.Float64()/900)
+								p := strconv.FormatFloat(price, 'E', -1, 64)
+								postDataLimit.Price = p
+							}
+						}
+						a := strconv.FormatFloat(data.Amount, 'E', -1, 64)
+						postDataLimit.Amount = a
+
+						d, err := json.Marshal(postDataLimit)
+						if err != nil {
+							logs.Error("json.Marshal trade failed err:", err)
+							tradesRes.Body.Close()
+							continue Loop
+						}
+						// ------测试 ------
+						// fmt.Println(string(d))
+						models.ZGTradesChan <- string(d)
+					}
+				}
+			}
+			if len(mtEthhuobiTrades.Datas) != 0 {
+				models.HuoPreTradeId[key] = mtEthhuobiTrades.Datas[0].Id
+			}
+		}
+	}
+}
+
+func GetTradesHuobiAEEth(symbol []string, size string, ctx context.Context) {
 Loop:
 	for {
 		time.Sleep(time.Millisecond * 500)

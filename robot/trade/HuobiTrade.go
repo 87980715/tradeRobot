@@ -41,24 +41,28 @@ func TradeLimitHuobi(ctx context.Context) {
 				ethPrice = models.EthPrice["huobi"]
 				usdtPrice = models.UsdtPrice["huobi"]
 				RMuLock.RUnlock()
-
 				if ethPrice*usdtPrice != 0 {
 					break
 				}
 			}
-
 			switch postDataLimit.Symbol {
 			case "mteth":
 				// 数量最小为0.01，2位小数
 				amount, _ := strconv.ParseFloat(postDataLimit.Amount, 64)
-				a := amount + rand.Float64()/1000
-				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(2)+"f", a)
+				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(2)+"f", amount)
 				// fmt.Println("amount:",account.PostDataLimit.Amount)
 				// 价格，8位小数
 				p, _ := strconv.ParseFloat(postDataLimit.Price, 64)
 				price := p / (ethPrice * usdtPrice)
 				// fmt.Println("price:",price)
 				account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
+			case "aeeth":
+				amount, _ := strconv.ParseFloat(postDataLimit.Amount, 64)
+				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
+				// 价格，6位小数
+				p, _ := strconv.ParseFloat(postDataLimit.Price, 64)
+				price := p / (ethPrice * usdtPrice)
+				account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(6)+"f", price)
 			case "ethusdt":
 				amount,_:= strconv.ParseFloat(postDataLimit.Amount, 64)
 				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
@@ -75,7 +79,7 @@ func TradeLimitHuobi(ctx context.Context) {
 				account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(2)+"f", price)
 			}
 			// 执行交易
-			// account.HuobiLimitTrade()
+			account.HuobiLimitTrade()
 			logs.Info("%s 火币挂单价格：%s  数量：%s\n", account.PostDataLimit.Symbol, account.PostDataLimit.Price, account.PostDataLimit.Amount)
 		}
 	}
@@ -103,14 +107,14 @@ func HuobiInsertToDB(symbol []string, ctx context.Context) {
 
 	db := utils.RobotDB
 	var preTradeResult models.HuobiTradeResults
-	db.Model(&models.HuobiTradeResults{}).Order("trade_id desc").Limit(1).Find(&preTradeResult)
+	s := strings.ToLower(symbol[0] + symbol[2])
+	db.Model(&models.HuobiTradeResults{}).Where("symbol = ?", s).Order("trade_id desc").Limit(1).Find(&preTradeResult)
 	for {
 		time.Sleep(300 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return
 		default:
-			s := strings.ToLower(symbol [0] + symbol[2])
 			acount := utils.HuobiAccount
 			acount.GetTradesDeal.Symbol = s
 			acount.HuobiTradesDeal(preTradeResult)

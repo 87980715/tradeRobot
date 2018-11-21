@@ -27,10 +27,10 @@ func AgentServerRun(symbol []string,ctx context.Context) {
 		QueryRealDealZG(ctx)
 	}(ctx)
 
-	go func(ctx context.Context) {
+	go func(symbol []string,ctx context.Context) {
 		initialize.AppConfig.Wg.Add(1)
-		ZGInsertToDB(ctx)
-	}(ctx)
+		ZGInsertToDB(symbol ,ctx)
+	}(symbol ,ctx)
 
 	// 获取usdt价格
 	go func(ctx context.Context){
