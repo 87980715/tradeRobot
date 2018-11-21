@@ -75,38 +75,78 @@ func CanleOrdersZG(symbol []string, ctx context.Context) {
 		case <-ctx.Done():
 			return
 		default:
-			account := utils.ZTAccount
-			account.PostDataQueryPending.Limit = 30
-			account.PostDataQueryPending.Market = market
-			account.PostDataQueryPending.Offset = 150 // 300
-			account.ZTQueryPendingMd5Sign()
-			postDatas := account.ZTQueryPending()
-			// 分开处理
-			if postDatas != nil {
-				for _, postData := range postDatas {
-					account.PostDataCancel.Market = postData.Market
-					account.PostDataCancel.Order_id = postData.Order_id
-					account.ZTCancelMd5Sign()
-					// 取消之后重新挂单
-					if account.ZTCancelOrder() {
-						rand.Seed(time.Now().Unix())
-						if rand.Intn(20)%2 == 0 {
-							var postDataLimit = &utils.ZTPostDataLimit{}
-							postDataLimit.Market = postData.Market
-							postDataLimit.Amount = postData.Amount
-							if postData.Side == 1 {
-								postDataLimit.Side = "1"
-								p, _ := strconv.ParseFloat(postData.Price, 64)
-								price := p * (1 - 0.002)
-								postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
-							} else {
-								postDataLimit.Side = "2"
-								p, _ := strconv.ParseFloat(postData.Price, 64)
-								price := p * (1 + 0.002)
-								postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+			switch market {
+			case "MT_CNT","AE_CNT":
+				account := utils.ZTAccount
+				account.PostDataQueryPending.Limit = 30
+				account.PostDataQueryPending.Market = market
+				account.PostDataQueryPending.Offset = 100 // 300
+				account.ZTQueryPendingMd5Sign()
+				postDatas := account.ZTQueryPending()
+				// 分开处理
+				if postDatas != nil {
+					for _, postData := range postDatas {
+						account.PostDataCancel.Market = postData.Market
+						account.PostDataCancel.Order_id = postData.Order_id
+						account.ZTCancelMd5Sign()
+						// 取消之后重新挂单
+						if account.ZTCancelOrder() {
+							rand.Seed(time.Now().Unix())
+							if rand.Intn(20)%2 == 0 {
+								var postDataLimit = &utils.ZTPostDataLimit{}
+								postDataLimit.Market = postData.Market
+								postDataLimit.Amount = postData.Amount
+								if postData.Side == 1 {
+									postDataLimit.Side = "1"
+									p, _ := strconv.ParseFloat(postData.Price, 64)
+									price := p * (1 - 0.003)
+									postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+								} else {
+									postDataLimit.Side = "2"
+									p, _ := strconv.ParseFloat(postData.Price, 64)
+									price := p * (1 + 0.003)
+									postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+								}
+								data, _ := json.Marshal(postDataLimit)
+								models.ZGTradesChan <- string(data)
 							}
-							data, _ := json.Marshal(postDataLimit)
-							models.ZGTradesChan <- string(data)
+						}
+					}
+				}
+			default:
+				account := utils.ZTAccount
+				account.PostDataQueryPending.Limit = 30
+				account.PostDataQueryPending.Market = market
+				account.PostDataQueryPending.Offset = 150 // 300
+				account.ZTQueryPendingMd5Sign()
+				postDatas := account.ZTQueryPending()
+				// 分开处理
+				if postDatas != nil {
+					for _, postData := range postDatas {
+						account.PostDataCancel.Market = postData.Market
+						account.PostDataCancel.Order_id = postData.Order_id
+						account.ZTCancelMd5Sign()
+						// 取消之后重新挂单
+						if account.ZTCancelOrder() {
+							rand.Seed(time.Now().Unix())
+							if rand.Intn(20)%2 == 0 {
+								var postDataLimit = &utils.ZTPostDataLimit{}
+								postDataLimit.Market = postData.Market
+								postDataLimit.Amount = postData.Amount
+								if postData.Side == 1 {
+									postDataLimit.Side = "1"
+									p, _ := strconv.ParseFloat(postData.Price, 64)
+									price := p * (1 - 0.002)
+									postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+								} else {
+									postDataLimit.Side = "2"
+									p, _ := strconv.ParseFloat(postData.Price, 64)
+									price := p * (1 + 0.002)
+									postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(4)+"f", price)
+								}
+								data, _ := json.Marshal(postDataLimit)
+								models.ZGTradesChan <- string(data)
+							}
 						}
 					}
 				}

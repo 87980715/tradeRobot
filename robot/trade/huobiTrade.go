@@ -63,14 +63,14 @@ func TradeLimitHuobi(ctx context.Context) {
 				p, _ := strconv.ParseFloat(postDataLimit.Price, 64)
 				price := p / (ethPrice * usdtPrice)
 				account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(6)+"f", price)
-			case "ethusdt":
+			case "ethusdt","btcusdt":
 				amount,_:= strconv.ParseFloat(postDataLimit.Amount, 64)
 				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
 				// 价格，2位小数
 				p,_:= strconv.ParseFloat(postDataLimit.Price, 64)
 				price := p / usdtPrice
 				account.PostDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(2)+"f", price)
-			case "btcusdt":
+			default:
 				amount,_:= strconv.ParseFloat(postDataLimit.Amount, 64)
 				account.PostDataLimit.Amount = fmt.Sprintf("%."+strconv.Itoa(4)+"f", amount)
 				// 价格，2位小数
