@@ -108,7 +108,7 @@ Loop:
 				continue Loop
 			}
 
-			time.Sleep(time.Millisecond * 500)
+			time.Sleep(time.Millisecond * 800)
 			ZGSymbol := symbol[0] + "_" + symbol[1]
 			// 获取火币ethusdt交易对的价格
 			symbol_ethusdt := "ethusdt"

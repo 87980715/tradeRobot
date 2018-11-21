@@ -98,7 +98,7 @@ func QueryDealIds(symbol []string, ctx context.Context) {
 			table := fmt.Sprintf("user_deal_history_%d", userId%100)
 			market := strings.ToUpper(symbol[0]+"_"+symbol[1])
 			queryStr := "select deal_id from " + table + " where market = " + "'"+ market + "'" +" and user_id = " + strconv.Itoa(int(userId)) + " order by id desc limit " + models.ZGQueryDealOrderSize
-			fmt.Println("queryStr:",queryStr)
+			//fmt.Println("queryStr:",queryStr)
 			row, err := utils.ExchangeDB.Query(queryStr)
 			if err != nil {
 				logs.Error("select deal_id form %s failed err %v:", table, err)
