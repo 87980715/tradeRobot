@@ -57,7 +57,7 @@ func GetDealOrdersZG(symbol []string,ctx context.Context) {
 					postDataLimit.Price = fmt.Sprintf("%."+strconv.Itoa(8)+"f", price)
 				}
 				postDataLimit.Amount = record.Amount
-				postDataLimit.Account_id = models.HuobiUserID
+				postDataLimit.Account_id = strconv.FormatInt(models.UserID[postDataLimit.Symbol],10)
 				// ------测试-------
 				// fmt.Println("火币挂单数据:", postDataLimit)
 				utils.HuobiOrders <- postDataLimit
@@ -68,9 +68,9 @@ func GetDealOrdersZG(symbol []string,ctx context.Context) {
 }
 
 // 查询ZT已成交订单
-func QueryRealDealZG(ctx context.Context) {
-
-	userId, _ := strconv.ParseInt(models.ZGUserID, 10, 64)
+func QueryRealDealZG(symbol []string, ctx context.Context) {
+	key := strings.ToUpper(symbol[0] +"_"+ symbol[1])
+	userId := models.UserID[key]
 	for {
 		time.Sleep(1000 * time.Millisecond)
 		select {
@@ -86,17 +86,19 @@ func QueryRealDealZG(ctx context.Context) {
 }
 
 func QueryDealIds(symbol []string, ctx context.Context) {
-	userId, _ := strconv.ParseInt(models.ZGUserID, 10, 64)
+	key := strings.ToUpper(symbol[0] +"_"+ symbol[1])
+	userId := models.UserID[key]
 	for {
 		time.Sleep(2000 * time.Millisecond)
 		select {
 		case <-ctx.Done():
 			return
 		default:
-			key := symbol[0] + "cnt" + "ZGDealId"
+			key := symbol[0] + symbol[1] + "DealId"
 			table := fmt.Sprintf("user_deal_history_%d", userId%100)
-			market := symbol[0]+"_"+symbol[1]
-			queryStr := "select deal_id from " + table + " where market = " + "'"+ market +"'" +" and user_id = " + models.ZGUserID + " order by id desc limit " + models.ZGQueryDealOrderSize
+			market := strings.ToUpper(symbol[0]+"_"+symbol[1])
+			queryStr := "select deal_id from " + table + " where market = " + "'"+ market + "'" +" and user_id = " + strconv.Itoa(int(userId)) + " order by id desc limit " + models.ZGQueryDealOrderSize
+			fmt.Println("queryStr:",queryStr)
 			row, err := utils.ExchangeDB.Query(queryStr)
 			if err != nil {
 				logs.Error("select deal_id form %s failed err %v:", table, err)

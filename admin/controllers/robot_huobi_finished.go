@@ -23,14 +23,12 @@ func (c *HuobiFinishedController) HuobiFinished() {
 		c.ServeJSON()
 	}()
 
-	s := strings.ToUpper(c.GetString("HuobiSymbol"))
+	s := strings.ToUpper(c.GetString("symbol"))
 	tempSymbol := strings.Split(s, "-")
 	symbol := tempSymbol[0] + tempSymbol[1]
 
 	db:=utils.RobotDB
-
 	var tradeResult []models.HuobiTradeResults
-
 	db.Model(&models.HuobiTradeResults{}).Where(&models.HuobiTradeResults{Symbol: symbol}).Find(&tradeResult)
 	result["results"] = tradeResult
 }

@@ -29,7 +29,7 @@ func TradeLimitHuobi(ctx context.Context) {
 			account := utils.HuobiAccount
 			account.PostDataLimit.Symbol = postDataLimit.Symbol
 			account.PostDataLimit.Type = postDataLimit.Type
-			account.PostDataLimit.Account_id = models.HuobiUserID
+			account.PostDataLimit.Account_id = strconv.FormatInt(models.UserID[postDataLimit.Symbol],10)
 
 			RMuLock.RLock()
 			ethPrice := models.EthPrice["huobi"]
@@ -95,7 +95,7 @@ func TradeCancelHuobi(symbol []string, ctx context.Context) {
 			s := strings.ToLower(symbol [0] + symbol[2])
 			acount := utils.HuobiAccount
 			acount.GetDataPending.Symbol = s
-			acount.GetDataPending.Account_id = models.HuobiUserID
+			acount.GetDataPending.Account_id = strconv.FormatInt(models.UserID[s],10)
 			acount.GetDataPending.Size = models.Huobi_PendingOrdersSize
 			acount.HuobiCancelPendingOrders()
 		}

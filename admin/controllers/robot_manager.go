@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"tradeRobot/robot/models"
 	"tradeRobot/robot/initialize"
+	"fmt"
 )
 
 // 新增 删除
@@ -73,7 +74,8 @@ func (c *RobotManagerController) Add() {
 		result["error"] = "invalid HuobiAccessKeyId or HuobiSecretkey"
 		return
 	}
-	models.HuobiUserID = strconv.Itoa(id)
+	key := strings.ToLower(symbol[0]+symbol[1])
+	models.UserID[key] = int64(id)
 
 	id, err = initialize.ZGUserId()
 	if err != nil {
@@ -82,8 +84,10 @@ func (c *RobotManagerController) Add() {
 		result["error"] = "invalid AccessKeyId or Secretkey"
 		return
 	}
-	models.ZGUserID = strconv.Itoa(id)
+	key = strings.ToUpper(symbol[0] + "_" + "CNT")
+	models.UserID[key] = int64(id)
 
+	fmt.Println(models.UserID)
 	// 新建机器人
 	robot := Robot{}
 	robot.symbol = strings.ToUpper(symbol[0] + "_" + "CNT" + "_" + symbol[1])

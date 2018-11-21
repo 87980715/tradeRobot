@@ -30,7 +30,7 @@ var (
 	TradeAmountMultiple float64
 	TradeInspectTime    int64
 	TradePriceAdjust    float64
-	HuobiUserID         string
+	//HuobiUserID         string
 
 	// 默认值设置
 	UsdtPrice = map[string]float64{"huobi":6.84}

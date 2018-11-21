@@ -22,10 +22,10 @@ func AgentServerRun(symbol []string,ctx context.Context) {
 		QueryDealIds(symbol,ctx)
 	}(symbol,ctx)
 
-	go func(ctx context.Context){
+	go func(symbol []string, ctx context.Context){
 		initialize.AppConfig.Wg.Add(1)
-		QueryRealDealZG(ctx)
-	}(ctx)
+		QueryRealDealZG(symbol,ctx)
+	}(symbol,ctx)
 
 	go func(symbol []string,ctx context.Context) {
 		initialize.AppConfig.Wg.Add(1)
